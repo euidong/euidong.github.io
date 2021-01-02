@@ -1,10 +1,11 @@
-- name: Dennis Brotzky
+- name: Euidong Jung
+  authorsPage: true
   bio: |
-    Written by Dennis Brotzky who lives and works in Vancouver building useful things.
-    You should follow him on Twitter.
-  avatar: ./avatars/avatar.jpg
+    Dev - Lang : Javascript Typescript <br />
+    Dev - Front : ReactJS ReactNative <br />
+    Dev - Back : NodeJS Apollo Express <br />
+    Dev - ENV : CloudNative Docker Kubernates AWS
+  avatar: ./avatars/euidong-avatar.jpeg
   featured: true
   social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
+    - url: https://github.com/euidong

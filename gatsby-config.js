@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `blog`,
+    title: `justdo`,
     name: `euidong`,
     siteUrl: `https://euidong.github.io`,
     description: `This is euidong's blog`,
 
     // important to set the main text that appears in the hero
     hero: {
-      heading: `Just Do`,
+      heading: ``,
       maxWidth: 652,
     },
     social: [
