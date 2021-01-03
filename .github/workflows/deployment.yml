@@ -1,14 +1,3 @@
-# Gatsby Blog
-
-Euidong's Gatsby Blog
-
-### Github Action
-
-It is working.
-
-![github pages](https://github.com/euidong/euidong.github.io/workflows/github%20pages/badge.svg?branch=dev&event=push)
-
-```
 name: github pages
 
 on:
@@ -49,4 +38,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-```

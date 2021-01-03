@@ -160,36 +160,49 @@ See bellow example
 blog/.github/workflows/main.yml
 
 ```yml
-name: Gatsby Develop
+name: github pages
+
 on:
   push:
     branches:
       - dev
+
 jobs:
-  build:
-    name: gatsby build
+  deploy:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@dev
+      - uses: actions/checkout@v2
 
-      - name: Cache node modules
-        uses: actions/cache@v1
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
-          restor-keys: |
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+          node-version: "12.x"
 
-      - name: Intsall yarn
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install yarn
         run: npm install -g yarn
 
-      - name: Install Dependencies
+      - name: Install node_modules
         run: yarn install
 
+      - name: Build
+        run: yarn build
+
       - name: Deploy
-        run: yarn deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
 ```
+
+It is status Badge.
+![github pages](https://github.com/euidong/euidong.github.io/workflows/github%20pages/badge.svg?branch=dev&event=push)
 
 ![Gatsby with glass](/images/gatsby-with-glass.jpg)
