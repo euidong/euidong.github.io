@@ -1,10 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `justdo`,
+    title: `justLog`,
     name: `euidong`,
     siteUrl: `https://euidong.github.io`,
     description: `This is euidong's blog`,
-
     // important to set the main text that appears in the hero
     hero: {
       heading: ``,
@@ -22,6 +21,18 @@ module.exports = {
       resolve: "@narative/gatsby-theme-novela",
       options: {
         authorsPage: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "React go",
+        short_name: "Reactgo",
+        start_url: "/",
+        background_color: "#f7f0eb",
+        theme_color: "#a2466c",
+        display: "standalone",
+        icon: "src/image/icon/favicon.png",
       },
     },
   ],
