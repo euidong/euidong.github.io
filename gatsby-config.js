@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `justLog`,
+    title: `JustLog`,
     name: `euidong`,
     siteUrl: `https://euidong.github.io`,
     description: `This is euidong's blog`,
@@ -26,8 +26,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "React go",
-        short_name: "Reactgo",
+        name: "Gatsby manifest",
+        short_name: "manifest",
         start_url: "/",
         background_color: "#f7f0eb",
         theme_color: "#a2466c",
