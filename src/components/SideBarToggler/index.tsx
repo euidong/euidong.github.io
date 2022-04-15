@@ -39,7 +39,7 @@ const SideBarToggler = ({ className }: Props) => {
           checked={isOpen}
           onClick={() => setIsOpen((isOpen) => !isOpen)}
         />
-        {isOpen && <SideBar />}
+        <SideBar isOpen={isOpen} />
       </div>
     </>
   );
