@@ -1,5 +1,5 @@
 const HomeView = () => {
-  return <></>;
+  return <>HomeView</>;
 };
 
 export default HomeView;

@@ -1,0 +1,10 @@
+.side_bar__wrapper {
+  position: absolute;
+  display: flex;
+  width: 300px;
+  height: 100vh;
+  background-color: rgb(0,255,0);
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}

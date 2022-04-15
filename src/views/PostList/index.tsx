@@ -1,5 +1,5 @@
 const PostListView = () => {
-  return <></>;
+  return <>PostListView</>;
 };
 
 export default PostListView;

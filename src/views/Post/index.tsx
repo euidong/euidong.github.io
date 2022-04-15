@@ -1,5 +1,5 @@
 const PostView = () => {
-  return <></>;
+  return <>PostView</>;
 };
 
 export default PostView;
