@@ -1,21 +1,33 @@
+import { useRef } from "react";
 import "./Toggle.scss";
 
 interface Props {
-  onClick: React.MouseEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   checked: boolean;
 }
 
-const Toggle = ({ onClick, checked }: Props) => {
+const Toggle = ({ onChange, checked }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <>
       <input
+        ref={inputRef}
         checked={checked}
-        onClick={onClick}
+        onChange={onChange}
         type="checkbox"
         className="openSidebarMenu"
         id="openSidebarMenu"
       />
-      <label className="sidebarIconToggle" htmlFor="openSidebarMenu">
+      <label
+        className="sidebarIconToggle"
+        htmlFor="openSidebarMenu"
+        tabIndex={0}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            e.currentTarget.click();
+          }
+        }}
+      >
         <div className="spinner diagonal part-1" />
         <div className="spinner horizontal" />
         <div className="spinner diagonal part-2" />

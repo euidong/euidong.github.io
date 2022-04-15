@@ -1,21 +1,43 @@
-.side_bar__wrapper {
-  @mixin side_bar__wrapper {
-    height: 100vh;
-    position: absolute;
-    display: flex;
-    background-color: rgb(0,255,0);
-    justify-content: center;
-    align-items: center;
-    -webkit-transition: width 0.5s, -webkit-transform 0.5s;
-    transition: width 0.5s, transform 0.5s;
+@import "../../static/style/colors.scss";
+@import "../../static/style/variables.scss";
+
+.side_bar {
+  &__wrapper {
+    @mixin side_bar__wrapper {
+      position: fixed;
+      top:0;
+      bottom: 0;
+      display: flex;
+      background-color: $white-gray;
+      flex-direction: column;
+      justify-content: left;
+      align-items: top;
+      padding-top: 60px;
+      -webkit-transition: width 0.5s, -webkit-transform 0.5s;
+      transition: width 0.5s, transform 0.5s;
+      overflow: hidden;
+    }
+    &--open {
+      @include side_bar__wrapper();
+      width: 300px;
+      @media screen and (max-width: $mobile-width) {
+        width: 100vw;
+      }
+    }
+    &--close {
+      @include side_bar__wrapper();
+      width: 0px;
+    }
+  }
+  &__li {
+    margin: 0 15px 0 15px;
+    list-style-type: none;
+    width: 100%;
     overflow: hidden;
-  }
-  &--open {
-    @include side_bar__wrapper();
-    width: 300px;
-  }
-  &--close {
-    @include side_bar__wrapper();
-    width: 0px;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

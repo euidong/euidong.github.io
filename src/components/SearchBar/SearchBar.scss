@@ -1,3 +1,5 @@
+@import "../../static/style/colors.scss";
+
 .search_bar__background {
   position: absolute;
   display: flex;
@@ -21,7 +23,7 @@
   height: 60px;
   padding: 0;
   margin: 0;
-  background-color: rgba(255,255,255, 0.7);
+  background-color: $white-gray;
   border-radius: 10px;
 }
 

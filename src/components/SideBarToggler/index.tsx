@@ -37,9 +37,16 @@ const SideBarToggler = ({ className }: Props) => {
       <div className={className}>
         <Toggle
           checked={isOpen}
-          onClick={() => setIsOpen((isOpen) => !isOpen)}
+          onChange={() => setIsOpen((isOpen) => !isOpen)}
         />
-        <SideBar isOpen={isOpen} />
+        <SideBar
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          categories={[
+            { name: "machine learning", post_cnt: 10 },
+            { name: "Computer Architecture", post_cnt: 13 },
+          ]}
+        />
       </div>
     </>
   );
