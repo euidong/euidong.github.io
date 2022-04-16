@@ -5,4 +5,7 @@
   &:focus {
     outline: 3px solid $palette4;
   }
+  &__image {
+    width: 180px;
+  }
 }

@@ -21,7 +21,7 @@
     }
     &--open {
       @include side_bar__wrapper();
-      width: 300px;
+      width: 400px;
       @media screen and (max-width: $mobile-width) {
         width: 100vw;
       }
@@ -33,7 +33,7 @@
   }
   &__li {
     color: $palette4;
-    margin: 0 50px 0 50px;
+    margin: 0 70px 0 70px;
     list-style-type: none;
     overflow: hidden;
     font-size: 1.5rem;
@@ -41,8 +41,11 @@
     word-break: break-all;
     text-overflow: ellipsis;
     white-space: nowrap;
-    &:focus, &:hover {
+    &:focus , &:hover {
       border-bottom: 2px solid $palette4;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0 30px 0 30px;
     }
   }
 }

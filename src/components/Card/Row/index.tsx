@@ -7,12 +7,14 @@ const RowCard = () => {
       <div className="row_card__thumbnail__wrapper">
         <img
           className="row_card__thumbnail"
-          src="https://via.placeholder.com/300"
+          src="https://via.placeholder.com/200"
           alt="thumbnail"
         />
       </div>
       <div className="row_card__tray">
-        <div className="row_card__tray__title">DynamicProgramming</div>
+        <div className="row_card__tray__title">
+          DynamicProgramming123213123123
+        </div>
         <div className="row_card__tray__date">3월 5일 12시 23분</div>
         <ul className="row_card__tray__tag">
           <Link

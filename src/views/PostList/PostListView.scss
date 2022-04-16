@@ -1,0 +1,20 @@
+.post_list_view {
+  &__wrapper {
+    margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    font-size: 3rem;
+    line-height: 4rem;
+    font-weight: 700;
+  }
+  &__list {
+    max-width: 90vw;
+    > div {
+      margin-top: 20px;
+    }
+  }
+}

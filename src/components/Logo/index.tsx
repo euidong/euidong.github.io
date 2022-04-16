@@ -10,7 +10,11 @@ interface Props {
 const Logo = ({ color }: Props) => {
   return (
     <Link to="/" className="logo">
-      <img src={color === "black" ? LogoBlack : LogoWhite} alt="Logo" />
+      <img
+        className="logo__image"
+        src={color === "black" ? LogoBlack : LogoWhite}
+        alt="Logo"
+      />
     </Link>
   );
 };

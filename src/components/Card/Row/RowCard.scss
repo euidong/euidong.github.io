@@ -1,45 +1,69 @@
 @import "../../../static/style/colors.scss";
 @import "../../../static/style/variables.scss";
 
-$thumbnail-width: 250px;
+$thumbnail-size: 200px;
+$mobile-thumbnail-size: 100px;
 
 .row_card {
   &__wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+    align-items: center;
+    @media screen and (max-width: $mobile-width) {
+      max-width: 335px;
+    }
   }
   &__thumbnail {
-    width: $thumbnail-width;
-    margin-top: -25px;
+    width: $thumbnail-size;
+    @media screen and (max-width: $mobile-width) {
+      width: $mobile-thumbnail-size;
+    }
     &__wrapper {
-      width: $thumbnail-width;
-      height: 200px;
+      width: $thumbnail-size;
+      height: $thumbnail-size;
+      @media screen and (max-width: $mobile-width) {
+        width: $mobile-thumbnail-size;
+        height: $mobile-thumbnail-size;
+      }
       overflow-y: hidden;
       flex-shrink: 0;
     }
   }
   &__tray {
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     color: $palette1;
-    padding: 10px 30px;
-    height: 200px;
-    overflow-x: hidden;
+    padding: 10px 10px;
+    height: $thumbnail-size;
+    @media screen and (max-width: $mobile-width) {
+      height: $mobile-thumbnail-size;
+    }
     &__title {
       font-weight: 700;
-      font-size: 3rem;
+      font-size: 2rem;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 1rem;
+        line-height: 1rem;
+      }
       line-height: 3.5rem;
       white-space: nowrap;
       vertical-align: top;
       overflow: hidden;
       text-overflow: ellipsis;
-      flex-shrink: 0; 
+      flex-shrink: 0;
     }
     &__date {
       opacity: 0.5;
       vertical-align: top;
       line-height: 3rem;
       flex-shrink: 0;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+      }
     }
     &__tag {
       line-height: 1.25rem;
@@ -48,6 +72,10 @@ $thumbnail-width: 250px;
       flex-wrap: wrap;
       flex-direction: row;
       overflow-y: hidden;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 0.75rem;
+        line-height: 0.94rem;
+      }
       &__li {
         color: inherit;
         padding-right: 5px;

@@ -1,6 +1,11 @@
 @import "./static/style/variables.scss";
 @import "./static/style/colors.scss";
 
+body {
+  background-color: $palette3;
+  
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -11,13 +16,16 @@
 #root {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  justify-content: flex-end;
 }
 
 .main {
-  padding: 50px 10px 50px 10px;
+  padding: 0px 10px 50px 10px;
 }
 .footer {
   display: flex;
+  margin-top: auto;
   flex-direction: row;
   justify-content: flex-end;
   background-color: $palette1;
@@ -31,7 +39,7 @@
   &__contents {
     display: flex;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 60px;
     width: 240px;
     flex-direction: row;
     justify-content: space-around;
@@ -62,12 +70,16 @@
   &__copyright {
     margin-top: 1rem;
     display: flex;
-    margin-left: 1rem;
+    margin-left: 60px;
     margin-right: 1rem;
     flex-direction: column;
     justify-content: center;
     color: $palette4;
     font-size: 13px;
+    @media screen and (max-width: 500px) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
   }
 }
 
@@ -76,11 +88,10 @@
 .right_bottom_float_button {
   position: fixed;
   z-index: 3;
-  bottom: 50px;
-  right: 50px;
+  top: 47px;
+  right: 60px;
   @media screen and (max-width: $mobile-width) {
-      bottom: 30px;
-      right: 30px;
+    right: 20px;
   }
 }
 

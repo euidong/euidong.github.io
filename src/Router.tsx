@@ -26,7 +26,6 @@ const Router = () => {
           <Route path="/tag/:id" element={<PostListView />} />
           <Route path="/" element={<HomeView />} />
         </Routes>
-        <Placeholder />
       </section>
       <footer className="footer">
         <div className="footer__copyright">

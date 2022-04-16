@@ -1,0 +1,38 @@
+@import "../../static/style/colors.scss";
+
+.home_view {
+  &__wrapper {
+    margin-left: 50px;
+    margin-right: 50px;
+    @media screen and (max-width: 500px) {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    > div {
+      margin: 80px 0px 80px 0px;
+    }
+  }
+  &__posts {
+    &__background {
+      padding: 20px;
+      border-radius: 25px;
+    }
+    &__title {
+      font-size: 2rem;
+      line-height: 4rem;
+      font-weight: 700;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      overflow-x: scroll;
+      > div {
+        margin-left: 15px;
+        &:first-child {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}
