@@ -1,0 +1,46 @@
+@import "../../../static/style/colors.scss";
+@import "../../../static/style/variables.scss";
+
+.column_card {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: $card-width;
+  }
+  &__thumbnail {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px 15px 0px 0px;
+    &__wrapper {
+      width: 100%;
+      height: $card-width;
+    }
+  }
+  &__tray {
+    background-color: $palette2;
+    color: $palette4;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0px 0px 15px 15px;
+    &__title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+    }
+    &__tag {
+      line-height: 1.25rem;
+      width: $card-width;
+      height: 2.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      overflow-y: hidden;
+      &__li {
+        color: inherit;
+        padding-right: 5px;
+      }
+    }
+  }
+}

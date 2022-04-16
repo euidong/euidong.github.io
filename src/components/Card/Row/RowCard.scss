@@ -1,0 +1,57 @@
+@import "../../../static/style/colors.scss";
+@import "../../../static/style/variables.scss";
+
+$thumbnail-width: 250px;
+
+.row_card {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  &__thumbnail {
+    width: $thumbnail-width;
+    margin-top: -25px;
+    &__wrapper {
+      width: $thumbnail-width;
+      height: 200px;
+      overflow-y: hidden;
+      flex-shrink: 0;
+    }
+  }
+  &__tray {
+    display: flex;
+    flex-direction: column;
+    color: $palette1;
+    padding: 10px 30px;
+    height: 200px;
+    overflow-x: hidden;
+    &__title {
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 3.5rem;
+      white-space: nowrap;
+      vertical-align: top;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0; 
+    }
+    &__date {
+      opacity: 0.5;
+      vertical-align: top;
+      line-height: 3rem;
+      flex-shrink: 0;
+    }
+    &__tag {
+      line-height: 1.25rem;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      overflow-y: hidden;
+      &__li {
+        color: inherit;
+        padding-right: 5px;
+      }
+    }
+  }
+}

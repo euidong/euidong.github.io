@@ -1,6 +1,6 @@
 import "./SearchBarToggler.scss";
 import { BsSearch, BsXLg } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchBar from "../SearchBar";
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 
 const SearchBarToggler = ({ className }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const open = (e: KeyboardEvent) => {
       if (e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "ㄴ")) {
@@ -32,11 +33,13 @@ const SearchBarToggler = ({ className }: Props) => {
       window.removeEventListener("keypress", open);
     };
   }, [isOpen]);
+
   return (
     <>
       {isOpen && <SearchBar />}
       <div className={className}>
         <button
+          ref={buttonRef}
           className="search_bar_toggler"
           onClick={() => {
             setIsOpen((isOpen) => !isOpen);

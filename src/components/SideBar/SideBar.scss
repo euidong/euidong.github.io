@@ -8,14 +8,16 @@
       top:0;
       bottom: 0;
       display: flex;
-      background-color: $white-gray;
+      background-color: $palette1;
+      
       flex-direction: column;
       justify-content: left;
       align-items: top;
-      padding-top: 60px;
+      padding-top: 110px;
       -webkit-transition: width 0.5s, -webkit-transform 0.5s;
       transition: width 0.5s, transform 0.5s;
       overflow: hidden;
+      border-radius: 0px 25px 0px 0px;
     }
     &--open {
       @include side_bar__wrapper();
@@ -30,14 +32,17 @@
     }
   }
   &__li {
-    margin: 0 15px 0 15px;
+    color: $palette4;
+    margin: 0 50px 0 50px;
     list-style-type: none;
-    width: 100%;
     overflow: hidden;
     font-size: 1.5rem;
     line-height: 2rem;
     word-break: break-all;
     text-overflow: ellipsis;
     white-space: nowrap;
+    &:focus, &:hover {
+      border-bottom: 2px solid $palette4;
+    }
   }
 }

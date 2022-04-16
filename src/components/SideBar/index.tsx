@@ -8,32 +8,24 @@ interface Props {
 }
 
 const SideBar = ({ isOpen, setIsOpen, categories }: Props) => {
+  const close = () => {
+    setIsOpen(false);
+  };
   return (
     <nav className={`side_bar__wrapper${isOpen ? "--open" : "--close"}`}>
-      <Link
-        onClick={() => setIsOpen(false)}
-        className="side_bar__li"
-        to="/"
-        tabIndex={-1}
-      >
+      <Link onClick={close} className="side_bar__li" to="/">
         Home
       </Link>
-      <Link
-        onClick={() => setIsOpen(false)}
-        className="side_bar__li"
-        to="/tag"
-        tabIndex={-1}
-      >
+      <Link onClick={close} className="side_bar__li" to="/tag">
         Tags
       </Link>
       {categories?.map((category) => (
         <Link
-          onClick={() => setIsOpen(false)}
+          onClick={close}
           className="side_bar__li"
-          to={`/category/${category}`}
-          tabIndex={-1}
+          to={`/category/${category.name}`}
         >
-          {category.name} ({category.post_cnt})
+          {category.name}
         </Link>
       ))}
     </nav>

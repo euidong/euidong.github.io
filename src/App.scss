@@ -1,11 +1,81 @@
 @import "./static/style/variables.scss";
+@import "./static/style/colors.scss";
 
-.left_top_float_button {
-  
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  padding: 50px 10px 50px 10px;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: $palette1;
+  color: $palette4;
+  min-height: 150px;
+  @media screen and (max-width: $mobile-width) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  &__contents {
+    display: flex;
+    margin-left: auto;
+    margin-right: 20px;
+    width: 240px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    @media screen and (max-width: $mobile-width) {
+      margin: 0;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    &__link {
+      display: flex;
+      color: $palette4;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      padding: 10px;
+      &:focus {
+        outline: 2px solid $palette4;
+        border-radius: 25px;
+      }
+      span {
+        margin-top:5px;
+      }
+    }
+  }
+  &__copyright {
+    margin-top: 1rem;
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    color: $palette4;
+    font-size: 13px;
+  }
+}
+
+.left_top_float_button {}
+
 .right_bottom_float_button {
-  position: absolute;
+  position: fixed;
+  z-index: 3;
   bottom: 50px;
   right: 50px;
   @media screen and (max-width: $mobile-width) {
@@ -22,5 +92,5 @@ a {
 }
 
 button {
-  outline-color: black;
+  outline-color: $palette4;
 }

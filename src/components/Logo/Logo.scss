@@ -1,0 +1,8 @@
+@import "../../static/style/colors.scss"  ;
+.logo {
+  border-radius: 100px;
+  background-color: $palette1;
+  &:focus {
+    outline: 3px solid $palette4;
+  }
+}
