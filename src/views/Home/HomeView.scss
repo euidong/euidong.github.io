@@ -2,11 +2,11 @@
 
 .home_view {
   &__wrapper {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
     @media screen and (max-width: 500px) {
-      margin-left: 10px;
-      margin-right: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
     }
     > div {
       margin: 80px 0px 80px 0px;
@@ -14,7 +14,6 @@
   }
   &__posts {
     &__background {
-      padding: 20px;
       border-radius: 25px;
     }
     &__title {

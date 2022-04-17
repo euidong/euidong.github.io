@@ -26,15 +26,17 @@ const ColumnCard = ({
 }: Props) => {
   return (
     <div className="column_card__wrapper">
-      <div className="column_card__thumbnail__wrapper">
+      <Link to={`/post/${title}`} className="column_card__thumbnail__wrapper">
         <img
           className="column_card__thumbnail"
           src={thumbnailSrc}
           alt="thumbnail"
         />
-      </div>
+      </Link>
       <div className="column_card__tray">
-        <div className="column_card__tray__title">{title}</div>
+        <Link to={`/post/${title}`} className="column_card__tray__title">
+          {title}
+        </Link>
         <ul className="column_card__tray__tag">
           {tags?.map((tag) => (
             <Link

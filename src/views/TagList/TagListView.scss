@@ -11,8 +11,16 @@
     padding: 30px;
     width: 80vw;
     min-height: 500px;
-    background-color: $palette2;
-    color: $palette4;
+    background-color: $palette4;
+    color: $palette1;
     border-radius: 25px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    a {
+      color: inherit;
+      &:focus, &:hover {
+        border-bottom: 2px solid $palette1;
+      }
+    }
   }
 }

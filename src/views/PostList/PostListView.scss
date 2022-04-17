@@ -1,6 +1,6 @@
 .post_list_view {
   &__wrapper {
-    margin: 0 50px;
+    margin: 0px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,11 +10,13 @@
     font-size: 3rem;
     line-height: 4rem;
     font-weight: 700;
+    margin-bottom: 20px;
   }
   &__list {
     max-width: 90vw;
     > div {
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
+    margin-bottom: 30px;
   }
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./TagListView.scss";
 interface Props {
   tags?: string[];
@@ -9,7 +10,9 @@ const TagListView = ({
   return (
     <section className="tag_list_view__wrapper">
       <div className="tag_list_view__card">
-        {tags?.map((tag) => `#${tag} `)}
+        {tags?.map((tag) => (
+          <Link to={`/tag/${tag}`}>#{tag} </Link>
+        ))}
       </div>
     </section>
   );

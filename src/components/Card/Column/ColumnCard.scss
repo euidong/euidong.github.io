@@ -28,6 +28,10 @@
       white-space: nowrap;
       overflow-x: hidden;
       text-overflow: ellipsis;
+      color: $palette4;
+      a {
+        color: inherit;
+      }
     }
     &__tag {
       line-height: 1.25rem;
