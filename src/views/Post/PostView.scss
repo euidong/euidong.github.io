@@ -1,12 +1,24 @@
 @import "../../static/style/variables.scss";
 @import "../../static/style/colors.scss";
+
 .post_view {
   &__wrapper {
     margin: 20px 15%;
-    border-left: 2px solid $palette1;
-    padding: 30px;
     @media screen and (max-width: $mobile-width) {
       margin: 20px 20px;
     }
   }
+  &__title {
+    font-size: 3rem;
+    line-height: 3.5rem;
+    font-weight: 700;
+  }
+  &__date {
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+}
+.markdown-body {
+  padding: 10px 30px;
+  border-left: 2px solid $palette1;
 }

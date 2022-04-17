@@ -2,6 +2,7 @@ import "./SideBarToggler.scss";
 import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 import SideBar from "../SideBar";
+import categories from "../../static/categories.json";
 
 interface Props {
   className?: string;
@@ -42,10 +43,12 @@ const SideBarToggler = ({ className }: Props) => {
         <SideBar
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          categories={[
-            { name: "machine learning", post_cnt: 10 },
-            { name: "Computer Architecture", post_cnt: 13 },
-          ]}
+          categories={Object.entries(categories).map((category) => {
+            return {
+              name: category[0],
+              post_cnt: category[1].length,
+            };
+          })}
         />
       </div>
     </>

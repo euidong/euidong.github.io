@@ -1,6 +1,8 @@
 @import "./static/style/variables.scss";
 @import "./static/style/colors.scss";
 
+@import "../node_modules/gfm.css/source/gfm.scss";
+
 body {
   background-color: $palette3;
   

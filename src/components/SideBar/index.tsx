@@ -21,9 +21,10 @@ const SideBar = ({ isOpen, setIsOpen, categories }: Props) => {
       </Link>
       {categories?.map((category) => (
         <Link
-          onClick={close}
           className="side_bar__li"
           to={`/category/${category.name}`}
+          key={category.name}
+          onClick={close}
         >
           {category.name}
         </Link>

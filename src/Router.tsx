@@ -2,7 +2,6 @@ import { BsGithub, BsFillPersonLinesFill } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Logo from "./components/Logo";
-import Placeholder from "./components/Placeholder";
 import SearchBarToggler from "./components/SearchBarToggler";
 import SideBarToggler from "./components/SideBarToggler";
 import HomeView from "./views/Home";
