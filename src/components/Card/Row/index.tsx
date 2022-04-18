@@ -20,7 +20,11 @@ const RowCard = ({ thumbnailSrc, time, title, tags }: Props) => {
         />
       </Link>
       <div className="row_card__tray">
-        <Link className="row_card__tray__title" to={`/post/${title}`}>
+        <Link
+          className="row_card__tray__title"
+          to={`/post/${title}`}
+          tabIndex={-1}
+        >
           {title}
         </Link>
         <div className="row_card__tray__date">{formateDate(time)}</div>

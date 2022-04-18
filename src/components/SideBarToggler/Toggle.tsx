@@ -21,7 +21,7 @@ const Toggle = ({ onChange, checked }: Props) => {
       <label
         className="sidebarIconToggle"
         htmlFor="openSidebarMenu"
-        tabIndex={0}
+        tabIndex={1}
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             e.currentTarget.click();

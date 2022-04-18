@@ -21,15 +21,23 @@ $mobile-thumbnail-size: 100px;
     @media screen and (max-width: $mobile-width) {
       width: $mobile-thumbnail-size;
     }
+    &:hover {
+      transform: scale(1.1);
+    }
     &__wrapper {
       width: $thumbnail-size;
       height: $thumbnail-size;
+      
+      overflow: hidden;
       @media screen and (max-width: $mobile-width) {
         width: $mobile-thumbnail-size;
         height: $mobile-thumbnail-size;
       }
       overflow-y: hidden;
       flex-shrink: 0;
+      &:focus {
+        border: 2px solid $palette1;
+      }
     }
   }
   &__tray {

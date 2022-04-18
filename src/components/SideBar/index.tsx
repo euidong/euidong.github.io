@@ -13,18 +13,29 @@ const SideBar = ({ isOpen, setIsOpen, categories }: Props) => {
   };
   return (
     <nav className={`side_bar__wrapper${isOpen ? "--open" : "--close"}`}>
-      <Link onClick={close} className="side_bar__li" to="/">
+      <Link
+        onClick={close}
+        className="side_bar__li"
+        to="/"
+        tabIndex={isOpen ? 1 : -1}
+      >
         Home
       </Link>
-      <Link onClick={close} className="side_bar__li" to="/tag">
+      <Link
+        onClick={close}
+        className="side_bar__li"
+        to="/tag"
+        tabIndex={isOpen ? 1 : -1}
+      >
         Tags
       </Link>
-      {categories?.map((category) => (
+      {categories?.map((category, idx) => (
         <Link
           className="side_bar__li"
           to={`/category/${category.name}`}
           key={category.name}
           onClick={close}
+          tabIndex={isOpen ? 1 : -1}
         >
           {category.name}
         </Link>

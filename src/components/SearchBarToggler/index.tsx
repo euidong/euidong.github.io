@@ -36,7 +36,7 @@ const SearchBarToggler = ({ className }: Props) => {
 
   return (
     <>
-      {isOpen && <SearchBar />}
+      {isOpen && <SearchBar close={() => setIsOpen(false)} />}
       <div className={className}>
         <button
           ref={buttonRef}
@@ -44,6 +44,7 @@ const SearchBarToggler = ({ className }: Props) => {
           onClick={() => {
             setIsOpen((isOpen) => !isOpen);
           }}
+          tabIndex={2}
         >
           {isOpen ? <BsXLg size="25px" /> : <BsSearch size="25px" />}
         </button>

@@ -3,13 +3,20 @@ import "./SearchBar.scss";
 import categoryJson from "../../static/generated/category.json";
 import tagJson from "../../static/generated/tag.json";
 import postJson from "../../static/generated/post.json";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const categories = Object.keys(categoryJson);
 const tags = Object.keys(tagJson);
 const posts = postJson.map((post) => post.title);
 
-const SearchBar = () => {
+interface Props {
+  close: () => void;
+}
+
+const SearchBar = ({ close }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [bestFit, setBestFit] = useState<{
     category: string | null;
     tag: string | null;
@@ -31,21 +38,56 @@ const SearchBar = () => {
       post: postFilter.length > 0 ? postFilter[0] : null,
     });
   };
+
+  useLayoutEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <div className="search_bar__background">
-      <form className="search_bar__wrapper">
+      <form
+        className="search_bar__wrapper"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <BsSearch size="2rem" className="search_bar__icon" />
         <input
+          ref={inputRef}
           type="text"
           className="search_bar__input"
           placeholder="Search"
           onChange={onChange}
         />
-        <input type="submit" hidden />
       </form>
-      {bestFit?.category && <div>{bestFit.category}</div>}
-      {bestFit?.tag && <div>{bestFit.tag}</div>}
-      {bestFit?.post && <div>{bestFit.post}</div>}
+      {bestFit?.post && (
+        <Link
+          className="search_bar__result"
+          to={`/post/${bestFit.post}`}
+          onClick={close}
+        >
+          <span className="search_bar__result__id">post:</span>
+          {bestFit.post}
+        </Link>
+      )}
+      {bestFit?.category && (
+        <Link
+          onClick={close}
+          className="search_bar__result"
+          to={`/category/${bestFit.category}`}
+        >
+          <span className="search_bar__result__id">category:</span>
+          {bestFit.category}
+        </Link>
+      )}
+      {bestFit?.tag && (
+        <Link
+          className="search_bar__result"
+          to={`/tag/${bestFit.tag}`}
+          onClick={close}
+        >
+          <span className="search_bar__result__id">tag:</span>
+          {bestFit.tag}
+        </Link>
+      )}
     </div>
   );
 };

@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-src/static/generated
+src/static/generated/*
+!src/static/generated/.gitkeep
