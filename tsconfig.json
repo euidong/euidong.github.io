@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "generater.js"]
+  "include": ["src", "src/generater.js"]
 }
