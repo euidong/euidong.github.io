@@ -2,7 +2,7 @@ import "./SideBarToggler.scss";
 import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 import SideBar from "../SideBar";
-import categories from "../../static/categories.json";
+import categoryJson from "../../static/generated/category.json";
 
 interface Props {
   className?: string;
@@ -43,7 +43,7 @@ const SideBarToggler = ({ className }: Props) => {
         <SideBar
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          categories={Object.entries(categories).map((category) => {
+          categories={Object.entries(categoryJson).map((category) => {
             return {
               name: category[0],
               post_cnt: category[1].length,

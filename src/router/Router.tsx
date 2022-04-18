@@ -1,17 +1,20 @@
 import { BsGithub, BsFillPersonLinesFill } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Logo from "./components/Logo";
-import SearchBarToggler from "./components/SearchBarToggler";
-import SideBarToggler from "./components/SideBarToggler";
-import HomeView from "./views/Home";
-import PostView from "./views/Post";
-import PostListView from "./views/PostList";
-import TagListView from "./views/TagList";
+import Logo from "../components/Logo";
+import SearchBarToggler from "../components/SearchBarToggler";
+import SideBarToggler from "../components/SideBarToggler";
+import HomeView from "../views/Home";
+import NotFoundView from "../views/NotFound";
+import PostView from "../views/Post";
+import PostListView from "../views/PostList";
+import TagListView from "../views/TagList";
+import ScrollToTopOnMount from "./ScrollToTop";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTopOnMount />
       <SideBarToggler className="left_top_float_button" />
       <SearchBarToggler className="right_bottom_float_button" />
       <header className="header">
@@ -24,6 +27,7 @@ const Router = () => {
           <Route path="/tag" element={<TagListView />} />
           <Route path="/tag/:id" element={<PostListView />} />
           <Route path="/" element={<HomeView />} />
+          <Route path="/404" element={<NotFoundView />} />
         </Routes>
       </section>
       <footer className="footer">

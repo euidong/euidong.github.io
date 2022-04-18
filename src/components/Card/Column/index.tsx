@@ -38,10 +38,10 @@ const ColumnCard = ({
           {title}
         </Link>
         <ul className="column_card__tray__tag">
-          {tags?.map((tag) => (
+          {tags?.map((tag, idx) => (
             <Link
               className="column_card__tray__tag__li"
-              key={tag}
+              key={idx}
               tabIndex={-1}
               to={`/tag/${tag}`}
             >

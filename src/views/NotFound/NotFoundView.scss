@@ -1,0 +1,17 @@
+@import "../../static/style/colors.scss";
+
+.not_found_view{
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  &__box {
+    padding: 30px;
+    background-color: $palette4;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 3rem;
+  }
+}

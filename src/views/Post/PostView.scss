@@ -17,8 +17,30 @@
     opacity: 0.5;
     margin-bottom: 20px;
   }
+  &__related_post_list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    > div {
+      margin-right: 10px;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 30px 0;
+    }
+    &__title {
+      font-size: 2rem;
+      line-height: 3.5rem;
+      font-weight: 700;
+    }
+  }
 }
 .markdown-body {
-  padding: 10px 30px;
+  padding: 10px 50px;
   border-left: 2px solid $palette1;
+  @media screen and (max-width: $mobile-width) {
+    border:0;
+    padding: 10px 20px;
+  }
 }

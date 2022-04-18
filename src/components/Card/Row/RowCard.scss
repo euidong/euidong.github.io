@@ -17,6 +17,7 @@ $mobile-thumbnail-size: 100px;
   }
   &__thumbnail {
     width: $thumbnail-size;
+    height: 100%;
     @media screen and (max-width: $mobile-width) {
       width: $mobile-thumbnail-size;
     }

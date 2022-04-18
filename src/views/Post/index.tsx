@@ -10,17 +10,22 @@ import "katex/dist/katex.min.css"; // `rehype-katex` does not import the CSS for
 import "./PostView.scss";
 
 import { useEffect, useState } from "react";
+import ColumnCard from "../../components/Card/Column";
+import { useLocation } from "react-router-dom";
 
-interface Props {
-  title?: string;
-  date?: string;
-}
-
-const PostView = ({ title = "NotFound", date = "2022년 5월 30일" }: Props) => {
+const PostView = () => {
+  const location = useLocation();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, __, title] = location.pathname.split("/");
   const [markdown, setMarkdown] = useState("");
+  const date = require(`../../static/generated/date.json`)[`${title}`];
+  const tags = require(`../../static/posts/${title}/${title}.json`).tags;
+  const relatedPosts = require("../../static/generated/tag.json")[
+    tags[0]
+  ].filter((e: any) => e.title !== title);
 
   useEffect(() => {
-    const mdSrc = require(`../../static/posts/${title}.md`);
+    const mdSrc = require(`../../static/posts/${title}/${title}.md`);
     fetch(mdSrc)
       .then((response) => {
         return response.text();
@@ -29,6 +34,7 @@ const PostView = ({ title = "NotFound", date = "2022년 5월 30일" }: Props) =>
         setMarkdown(text);
       });
   }, [title]);
+
   return (
     <section className="post_view__wrapper">
       <h1 className="post_view__title">{title}</h1>
@@ -43,6 +49,7 @@ const PostView = ({ title = "NotFound", date = "2022년 5월 30일" }: Props) =>
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
+                  showLineNumbers
                   children={String(children).replace(/\n$/, "")}
                   style={okaidia}
                   language={match[1]}
@@ -58,6 +65,21 @@ const PostView = ({ title = "NotFound", date = "2022년 5월 30일" }: Props) =>
           }}
         />
       </article>
+      {relatedPosts.length !== 0 && (
+        <div className="post_view__related_post_list__wrapper">
+          <h3 className="post_view__related_post_list__title">Related Post</h3>
+          <ul className="post_view__related_post_list">
+            {relatedPosts.map((e: any, idx: number) => (
+              <ColumnCard
+                key={idx}
+                title={e.title}
+                thumbnailSrc={e.thumbnailSrc}
+                tags={e.tags}
+              />
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 };
