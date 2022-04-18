@@ -1,18 +1,17 @@
 @import "./static/style/variables.scss";
 @import "./static/style/colors.scss";
 
-@import "../node_modules/gfm.css/source/gfm.scss";
 
 body {
-  background-color: $palette3;
-  
+  background-color: $palette4;
 }
-
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 150px;
+  background-color: $palette4;
+  border-bottom: 1px solid $palette3;
 }
 
 #root {
@@ -20,15 +19,17 @@ body {
   flex-direction: column;
   min-height: 100vh;
   justify-content: flex-end;
+  background-color: $palette2;
 }
 
 .footer {
+  border-top: 1px solid $palette3;
   display: flex;
   margin-top: auto;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: $palette1;
-  color: $palette4;
+  background-color: $palette4;
+  color: $palette1;
   min-height: 150px;
   @media screen and (max-width: $mobile-width) {
     flex-direction: column;
@@ -51,7 +52,7 @@ body {
     }
     &__link {
       display: flex;
-      color: $palette4;
+      color: $palette1;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -73,7 +74,7 @@ body {
     margin-right: 1rem;
     flex-direction: column;
     justify-content: center;
-    color: $palette4;
+    color: $palette1;
     font-size: 13px;
     @media screen and (max-width: 500px) {
       margin-left: 30px;

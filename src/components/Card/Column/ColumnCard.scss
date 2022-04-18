@@ -8,17 +8,29 @@
     width: $card-width;
   }
   &__thumbnail {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     border-radius: 15px 15px 0px 0px;
+    transition: all .2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
     &__wrapper {
+      box-sizing: border-box;
       width: 100%;
       height: $card-width;
+      border-radius: 15px 15px 0 0;
+      &:focus {
+        border: 2px solid $palette1;
+      }
+      overflow: hidden;
+      
     }
   }
   &__tray {
-    background-color: $palette2;
-    color: $palette4;
+    background-color: $palette4;
+    color: $palette1;
     padding: 10px 10px 10px 10px;
     border-radius: 0px 0px 15px 15px;
     &__title {
@@ -28,7 +40,7 @@
       white-space: nowrap;
       overflow-x: hidden;
       text-overflow: ellipsis;
-      color: $palette4;
+      color: inherit;
       a {
         color: inherit;
       }

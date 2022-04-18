@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { twilight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -12,6 +12,7 @@ import "./PostView.scss";
 import { useEffect, useState } from "react";
 import ColumnCard from "../../components/Card/Column";
 import { useLocation } from "react-router-dom";
+import { formateDate } from "../../utils/date";
 
 const PostView = () => {
   const location = useLocation();
@@ -38,7 +39,8 @@ const PostView = () => {
   return (
     <section className="post_view__wrapper">
       <h1 className="post_view__title">{title}</h1>
-      <p className="post_view__date">{date}</p>
+      <p className="post_view__date">{formateDate(date)}</p>
+
       <article className="markdown-body">
         <ReactMarkdown
           children={markdown}
@@ -51,7 +53,7 @@ const PostView = () => {
                 <SyntaxHighlighter
                   showLineNumbers
                   children={String(children).replace(/\n$/, "")}
-                  style={okaidia}
+                  style={twilight}
                   language={match[1]}
                   PreTag="div"
                   {...props}

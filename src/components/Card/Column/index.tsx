@@ -34,7 +34,11 @@ const ColumnCard = ({
         />
       </Link>
       <div className="column_card__tray">
-        <Link to={`/post/${title}`} className="column_card__tray__title">
+        <Link
+          to={`/post/${title}`}
+          className="column_card__tray__title"
+          tabIndex={-1}
+        >
           {title}
         </Link>
         <ul className="column_card__tray__tag">

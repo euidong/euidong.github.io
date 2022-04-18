@@ -2,6 +2,10 @@
 .logo {
   border-radius: 100px;
   background-color: $palette1;
+  background: $logo;
+  background-size: 150px 60px;
+  width: 150px;
+  height: 60px;
   &:focus {
     outline: 3px solid $palette4;
   }

@@ -5,7 +5,7 @@ const staticPath = "./src/static";
 const dates = {};
 const categories = {};
 const tags = {};
-const recentPosts = [];
+const posts = [];
 
 fs.readdir(`${staticPath}/posts`, async (err, files) => {
   if (err) {
@@ -44,7 +44,7 @@ fs.readdir(`${staticPath}/posts`, async (err, files) => {
       }
     });
 
-    recentPosts.push(fileInfo);
+    posts.push(fileInfo);
   });
 
   fs.writeFileSync(`${staticPath}/generated/date.json`, JSON.stringify(dates));
@@ -53,9 +53,6 @@ fs.readdir(`${staticPath}/posts`, async (err, files) => {
     JSON.stringify(categories)
   );
   fs.writeFileSync(`${staticPath}/generated/tag.json`, JSON.stringify(tags));
-  recentPosts.sort((a, b) => a.date > b.date);
-  fs.writeFileSync(
-    `${staticPath}/generated/recent.json`,
-    JSON.stringify(recentPosts.slice(0, 6))
-  );
+  posts.sort((a, b) => a.date > b.date);
+  fs.writeFileSync(`${staticPath}/generated/post.json`, JSON.stringify(posts));
 });

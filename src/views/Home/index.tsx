@@ -1,6 +1,6 @@
 import ColumnCard from "../../components/Card/Column";
 import "./HomeView.scss";
-import recentJson from "../../static/generated/recent.json";
+import postJson from "../../static/generated/post.json";
 import categoryJson from "../../static/generated/category.json";
 const HomeView = () => {
   return (
@@ -8,7 +8,7 @@ const HomeView = () => {
       <div className="home_view__posts__background">
         <h2 className="home_view__posts__title">Recent Post</h2>
         <div className="home_view__posts__wrapper">
-          {recentJson.map((post, idx) => (
+          {postJson.slice(0, 6).map((post, idx) => (
             <ColumnCard
               key={idx}
               thumbnailSrc={post.thumbnailSrc}
@@ -23,14 +23,16 @@ const HomeView = () => {
           <h2 className="home_view__posts__title">{category}</h2>
           <div className="home_view__posts__wrapper">
             {/* @ts-ignore */}
-            {categoryJson[`${category}`].map((e: any, idx: number) => (
-              <ColumnCard
-                key={idx}
-                thumbnailSrc={e.thumbnailSrc}
-                title={e.title}
-                tags={e.tags}
-              />
-            ))}
+            {categoryJson[`${category}`]
+              .slice(0, 6)
+              .map((e: any, idx: number) => (
+                <ColumnCard
+                  key={idx}
+                  thumbnailSrc={e.thumbnailSrc}
+                  title={e.title}
+                  tags={e.tags}
+                />
+              ))}
           </div>
         </div>
       ))}

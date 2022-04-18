@@ -1,32 +1,15 @@
 import { Link } from "react-router-dom";
+import { formateDate } from "../../../utils/date";
 import "./RowCard.scss";
 
 interface Props {
   thumbnailSrc?: string;
-  time?: string;
-  title?: string;
-  tags?: string[];
+  time: string;
+  title: string;
+  tags: string[];
 }
 
-const dummyProps: Props = {
-  thumbnailSrc: "https://via.placeholder.com/320",
-  time: "3월 5일 12시 23분",
-  title: "DynamicProgramming",
-  tags: [
-    "Algorithm",
-    "DynamicProgramming",
-    "OptimalStructural",
-    "Memoization",
-    "OverlappingSubproblem",
-  ],
-};
-
-const RowCard = ({
-  thumbnailSrc = dummyProps.thumbnailSrc,
-  time = dummyProps.time,
-  title = dummyProps.title,
-  tags = dummyProps.tags,
-}: Props) => {
+const RowCard = ({ thumbnailSrc, time, title, tags }: Props) => {
   return (
     <div className="row_card__wrapper">
       <Link to={`/post/${title}`} className="row_card__thumbnail__wrapper">
@@ -40,7 +23,7 @@ const RowCard = ({
         <Link className="row_card__tray__title" to={`/post/${title}`}>
           {title}
         </Link>
-        <div className="row_card__tray__date">{time}</div>
+        <div className="row_card__tray__date">{formateDate(time)}</div>
         <ul className="row_card__tray__tag">
           {tags?.map((tag) => (
             <Link

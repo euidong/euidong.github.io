@@ -18,7 +18,7 @@ const Router = () => {
       <SideBarToggler className="left_top_float_button" />
       <SearchBarToggler className="right_bottom_float_button" />
       <header className="header">
-        <Logo color="white" />
+        <Logo />
       </header>
       <section className="main">
         <Routes>

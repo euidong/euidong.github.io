@@ -43,6 +43,7 @@ $mobile-thumbnail-size: 100px;
       height: $mobile-thumbnail-size;
     }
     &__title {
+      color: $palette1;
       font-weight: 700;
       font-size: 2rem;
       @media screen and (max-width: $mobile-width) {

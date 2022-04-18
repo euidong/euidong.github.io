@@ -1,3 +1,5 @@
+@import "../../static/style/colors.scss";
+
 .post_list_view {
   &__wrapper {
     margin: 0px 50px;
@@ -7,6 +9,7 @@
     align-items: center;
   }
   &__title {
+    color: $palette1;
     font-size: 3rem;
     line-height: 4rem;
     font-weight: 700;

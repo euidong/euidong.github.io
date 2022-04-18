@@ -3,6 +3,7 @@
 .search_bar__background {
   position: fixed;
   display: flex;
+  flex-direction: column;
   top:0;
   z-index: 2;
   height: 100vh;

@@ -1,8 +1,32 @@
+
 // https://colorhunt.co/palette/f9f7f7dbe2ef3f72af112d4e
 
 $light-gray: #D3D3D3;
 
-$palette1: #112D4E;
-$palette2: #3F72AF;
-$palette3: #F9F7F7;
-$palette4: #DBE2EF;
+
+@media (prefers-color-scheme: light) {
+  body {
+    color-scheme: light;
+    --palette1: #24292f;
+    --palette2: #f6f8fa;
+    --palette3: #d0d7de;
+    --palette4: #ffffff;
+    --logo: url("../images/logo-black.png") no-repeat;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+    --palette1: #c9d1d9;
+    --palette2: #161b22;
+    --palette3: #000;
+    --palette4: #0d1117;
+    --logo: url("../images/logo-white.png") no-repeat;
+  }
+}
+
+$palette1: var(--palette1);
+$palette2: var(--palette2);
+$palette3: var(--palette3);
+$palette4: var(--palette4);
+$logo: var(--logo);
