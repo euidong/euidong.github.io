@@ -62,7 +62,8 @@
   padding: 0 20px;
   margin-left: 30px;
   margin-right: 30px;
-  background-color: $palette4;
+  background-color: $palette1;
+  color: $palette4;
   box-sizing: border-box;
   margin-top: 10px;
   border-radius: 10px;
@@ -70,8 +71,7 @@
   transition: height 0.5s, transform 0.5s;
   font-weight: 500;
   &:focus {
-
-  outline: 1px solid $palette1;
+    outline: 1px solid $palette4;
   }
   &__id {
     opacity: 0.5;
