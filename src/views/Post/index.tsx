@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import ColumnCard from "../../components/Card/Column";
 import { useLocation } from "react-router-dom";
 import { formateDate } from "../../utils/date";
+import { formatTitle } from "../../utils/title";
 
 const PostView = () => {
   const location = useLocation();
@@ -38,7 +39,7 @@ const PostView = () => {
 
   return (
     <section className="post_view__wrapper">
-      <h1 className="post_view__title">{title}</h1>
+      <h1 className="post_view__title">{formatTitle(title)}</h1>
       <p className="post_view__date">{formateDate(date)}</p>
 
       <article className="markdown-body">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatTitle } from "../../../utils/title";
 import "./ColumnCard.scss";
 
 interface Props {
@@ -39,7 +40,7 @@ const ColumnCard = ({
           className="column_card__tray__title"
           tabIndex={-1}
         >
-          {title}
+          {formatTitle(title)}
         </Link>
         <ul className="column_card__tray__tag">
           {tags?.map((tag, idx) => (

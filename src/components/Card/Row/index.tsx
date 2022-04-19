@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { formateDate } from "../../../utils/date";
+import { formatTitle } from "../../../utils/title";
 import "./RowCard.scss";
 
 interface Props {
@@ -25,7 +26,7 @@ const RowCard = ({ thumbnailSrc, time, title, tags }: Props) => {
           to={`/post/${title}`}
           tabIndex={-1}
         >
-          {title}
+          {formatTitle(title)}
         </Link>
         <div className="row_card__tray__date">{formateDate(time)}</div>
         <ul className="row_card__tray__tag">

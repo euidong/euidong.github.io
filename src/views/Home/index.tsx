@@ -2,6 +2,7 @@ import ColumnCard from "../../components/Card/Column";
 import "./HomeView.scss";
 import postJson from "../../static/generated/post.json";
 import categoryJson from "../../static/generated/category.json";
+
 const HomeView = () => {
   return (
     <section className="home_view__wrapper">
