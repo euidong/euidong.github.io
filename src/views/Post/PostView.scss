@@ -43,6 +43,7 @@
 .markdown-body {
   padding: 20px 50px;
   border-radius: 15px;
+  
   @media screen and (max-width: $mobile-width) {
     border:0;
     padding: 10px 20px;

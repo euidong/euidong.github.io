@@ -12,7 +12,7 @@ const SideBarToggler = ({ className }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const open = (e: KeyboardEvent) => {
-      if (e.shiftKey && (e.key === "A" || e.key === "a" || e.key === "ㅁ")) {
+      if (e.shiftKey && (e.key === "!" || e.key === "1")) {
         setIsOpen((isOpen) => !isOpen);
       }
     };

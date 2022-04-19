@@ -12,7 +12,7 @@ const SearchBarToggler = ({ className }: Props) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const open = (e: KeyboardEvent) => {
-      if (e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "ㄴ")) {
+      if (e.shiftKey && e.key === "Enter") {
         setIsOpen((isOpen) => !isOpen);
       }
     };
