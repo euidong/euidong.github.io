@@ -9,12 +9,12 @@ import TagListView from "../views/TagList";
 const Router = () => {
   return (
         <Routes>
-          <Route path="/post/:id" element={<PostView />} />
-          <Route path="/category/:id" element={<PostListView />} />
-          <Route path="/tag" element={<TagListView />} />
-          <Route path="/tag/:id" element={<PostListView />} />
-          <Route path="/" element={<HomeView />} />
-          <Route path="/404" element={<NotFoundView />} />
+          <Route exact path="/post/:id" element={<PostView />} />
+          <Route exact path="/category/:id" element={<PostListView />} />
+          <Route exact path="/tag" element={<TagListView />} />
+          <Route exact path="/tag/:id" element={<PostListView />} />
+          <Route exact path="/" element={<HomeView />} />
+          <Route exact path="/404" element={<NotFoundView />} />
         </Routes>
   );
 };
