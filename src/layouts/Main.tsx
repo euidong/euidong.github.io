@@ -1,35 +1,22 @@
-import { BsGithub, BsFillPersonLinesFill } from "react-icons/bs";
+import { BsFillPersonLinesFill, BsGithub } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Logo from "../components/Logo";
 import SearchBarToggler from "../components/SearchBarToggler";
 import SideBarToggler from "../components/SideBarToggler";
-import HomeView from "../views/Home";
-import NotFoundView from "../views/NotFound";
-import PostView from "../views/Post";
-import PostListView from "../views/PostList";
-import TagListView from "../views/TagList";
-import ScrollToTopOnMount from "./ScrollToTop";
 
-const Router = () => {
+interface Props {
+  children: JSX.Element;
+}
+
+const MainLayout = ({ children }: Props) => {
   return (
-    <BrowserRouter>
-      <ScrollToTopOnMount />
+    <>
       <SideBarToggler className="left_top_float_button" />
       <SearchBarToggler className="right_bottom_float_button" />
       <header className="header">
         <Logo />
       </header>
-      <section className="main">
-        <Routes>
-          <Route path="/post/:id" element={<PostView />} />
-          <Route path="/category/:id" element={<PostListView />} />
-          <Route path="/tag" element={<TagListView />} />
-          <Route path="/tag/:id" element={<PostListView />} />
-          <Route path="/" element={<HomeView />} />
-          <Route path="/404" element={<NotFoundView />} />
-        </Routes>
-      </section>
+      <section className="main">{children}</section>
       <footer className="footer">
         <div className="footer__copyright">
           <span>Copyright © euidong</span>
@@ -71,8 +58,8 @@ const Router = () => {
           </a>
         </div>
       </footer>
-    </BrowserRouter>
+    </>
   );
 };
 
-export default Router;
+export default MainLayout;

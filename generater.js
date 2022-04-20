@@ -53,6 +53,35 @@ fs.readdir(`${staticPath}/posts`, async (err, files) => {
     JSON.stringify(categories)
   );
   fs.writeFileSync(`${staticPath}/generated/tag.json`, JSON.stringify(tags));
-  posts.sort((a, b) => a.date > b.date);
+  posts.sort((a, b) => {
+    if (a.date > b.date) return -1;
+    else if (a.data < b.date) return 1;
+    else return 0;
+  });
   fs.writeFileSync(`${staticPath}/generated/post.json`, JSON.stringify(posts));
+
+  const sitemap = [];
+  sitemap.push('<?xml version="1.0" encoding="UTF-8"?>');
+  sitemap.push(
+    '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+  );
+
+  const host = "euidong.github.io";
+  posts.forEach((post) => {
+    // open
+    sitemap.push(`  <url>`);
+    // location
+    sitemap.push(`    <loc>${host}/post/${post.title}</loc>`);
+    // lasted modified
+    sitemap.push(`    <lastmod>${post.date}</lastmod>`);
+    // change frequency
+    sitemap.push(`    <changefreq>weekly</changefreq>`);
+    // sitemap priority
+    sitemap.push(`    <priority>0.5</priority>`);
+    // close
+    sitemap.push(`  </url>`);
+  });
+  sitemap.push("</urlset>");
+
+  fs.writeFileSync(`./public/sitemap.xml`, sitemap.join("\n"));
 });
