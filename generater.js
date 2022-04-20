@@ -60,20 +60,27 @@ fs.readdir(`${staticPath}/posts`, async (err, files) => {
   });
   fs.writeFileSync(`${staticPath}/generated/post.json`, JSON.stringify(posts));
 
+  // * siteamp for Search Engine Bot
+  gen_sitemap(posts);
+  // * rss for Other Automate System
+  gen_rss_feed(posts);
+});
+
+const gen_sitemap = (posts) => {
   const sitemap = [];
   sitemap.push('<?xml version="1.0" encoding="UTF-8"?>');
   sitemap.push(
     '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
   );
 
-  const host = "euidong.github.io";
+  const host = "https://euidong.github.io";
   posts.forEach((post) => {
     // open
     sitemap.push(`  <url>`);
     // location
     sitemap.push(`    <loc>${host}/post/${post.title}</loc>`);
     // lasted modified
-    sitemap.push(`    <lastmod>${post.date}</lastmod>`);
+    sitemap.push(`    <lastmod>${post.date.toUTCString()}</lastmod>`);
     // change frequency
     sitemap.push(`    <changefreq>weekly</changefreq>`);
     // sitemap priority
@@ -84,4 +91,43 @@ fs.readdir(`${staticPath}/posts`, async (err, files) => {
   sitemap.push("</urlset>");
 
   fs.writeFileSync(`./public/sitemap.xml`, sitemap.join("\n"));
-});
+};
+
+const gen_rss_feed = (posts) => {
+  const host = "https://euidong.github.io";
+  const rss = [];
+  rss.push('<?xml version="1.0" encoding="UTF-8"?>');
+  rss.push('<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">');
+  rss.push("  <channel>");
+  rss.push(`    <title>JustLog</title>`);
+  rss.push(`    <description>Tech Blog</description>`);
+  rss.push(`    <link>${host}</link>`);
+  rss.push(
+    `    <atom:link href="${host}" rel="self" type="application/rss+xml" />`
+  );
+  rss.push(`    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`);
+
+  posts.forEach((post) => {
+    // open
+    rss.push(`    <item>`);
+    // location
+    rss.push(`      <title>${post.title}</title>`);
+    rss.push(`      <link>${host}/post/${post.title}</link>`);
+    rss.push(
+      `      <guid isPermaLink="true">${host}/post/${post.title}</guid>`
+    );
+    // lasted modified
+    rss.push(`      <dc:creator>euidong</dc:creator>`);
+    rss.push(`      <pubDate>${post.date.toUTCString()}</pubDate>`);
+    // change frequency
+
+    rss.push(`      <description>${post.tags.join(" ")}</description>`);
+    // close
+    rss.push(`    </item>`);
+  });
+
+  rss.push("  </channel>");
+  rss.push("</rss>");
+
+  fs.writeFileSync(`./public/feed.xml`, rss.join("\n"));
+};
