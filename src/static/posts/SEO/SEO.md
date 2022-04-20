@@ -14,7 +14,8 @@ Disallow:
 
 ## sitemap.xml
 웹 페이지 내의 모든 페이지 목록을 나열한 파일이다. 이는 site에 해당하는 모든 url을 등록하고, 어느곳에 어느 컨텐츠가 존재하는지를 알려주는 mapping table이라고 볼 수 있다.
-
+이를 명시해두어야만 후에 bot들이 작업을 할 때, 조회를 하여 사용할 수 있다. 이를 생성하기 위한 Script는 해당 Project가 포함하고 있다.
+[euidong.github.io's dev branch](https://github.com/euidong/euidong.github.io/blob/dev/generater.js)
 
 ---
 # Reference
