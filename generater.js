@@ -80,7 +80,7 @@ const gen_sitemap = (posts) => {
     // location
     sitemap.push(`    <loc>${host}/post/${post.title}</loc>`);
     // lasted modified
-    sitemap.push(`    <lastmod>${post.date.toUTCString()}</lastmod>`);
+    sitemap.push(`    <lastmod>${post.date.toISOString()}</lastmod>`);
     // change frequency
     sitemap.push(`    <changefreq>weekly</changefreq>`);
     // sitemap priority
