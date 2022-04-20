@@ -7,7 +7,7 @@ import InsertOpenGraph from "./router/InsertOpenGraph";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollToTopOnMount />
       <InsertOpenGraph />
       <MainLayout>
