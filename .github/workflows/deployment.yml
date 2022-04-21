@@ -28,10 +28,10 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm build
+        run: npm run build
       
       - name: Export
-        run: npm export
+        run: npm run export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
