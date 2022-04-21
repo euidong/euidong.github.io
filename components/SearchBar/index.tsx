@@ -2,8 +2,13 @@ import { BsSearch } from "react-icons/bs";
 import styles from "./SearchBar.module.scss";
 import { useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { fetcher } from "../../lib/utils";
-import useSWR from "swr";
+import categoriesJson from "../../public/exts/categories.json";
+import tagsJson from "../../public/exts/tags.json";
+import postsJson from "../../public/exts/posts.json";
+
+const categories = categoriesJson.map((category) => category.name);
+const tags = tagsJson.map((tag) => tag.name);
+const posts = postsJson.map((post) => post.name);
 
 interface Props {
   close: () => void;
@@ -11,12 +16,6 @@ interface Props {
 
 const SearchBar = ({ close }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { data: categoriesData } = useSWR("/api/categories", fetcher);
-  const { data: tagsData } = useSWR("/api/tags", fetcher);
-  const { data: postsData } = useSWR("/api/posts", fetcher);
-  const categories = categoriesData?.data.map((e: any) => e.name) as string[];
-  const tags = tagsData?.data.map((e: any) => e.name) as string[];
-  const posts = postsData?.data.map((e: any) => e.name) as string[];
 
   const [bestFit, setBestFit] = useState<{
     category: string | null;
@@ -62,7 +61,7 @@ const SearchBar = ({ close }: Props) => {
       {bestFit?.post && (
         <Link
           href={`/posts/${
-            postsData?.data.find((post: any) => post.name === bestFit.post).slug
+            postsJson.find((post: any) => post.name === bestFit.post)?.slug
           }`}
         >
           <a className={styles.search_bar__result} onClick={close}>

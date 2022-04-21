@@ -57,7 +57,7 @@ export const getStaticProps = async ({
   return {
     props: {
       post,
-      relatedPosts: relatedPosts.filter((rp) => rp.title !== post.title),
+      relatedPosts: relatedPosts.filter((rp: any) => rp.title !== post.title),
     },
   };
 };

@@ -10,7 +10,7 @@ const TagList = ({ tags }: Props) => {
     <div className={styles.tag_list__wrapper}>
       <div className={styles.tag_list__card}>
         {tags?.map((tag) => (
-          <Link key={tag} href={`/tag/${tag}`}>
+          <Link key={tag} href={`/tags/${tag}`}>
             <a> # {tag} </a>
           </Link>
         ))}

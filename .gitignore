@@ -37,3 +37,6 @@ yarn-error.log*
 public/sitemap*.xml
 public/robots.txt
 package-lock.json
+
+public/exts/**
+!public/exts/.gitkeep

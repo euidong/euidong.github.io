@@ -7,6 +7,23 @@ import Script from "next/script";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
+      <Script
+        strategy="afterInteractive"
+        src={"https://www.googletagmanager.com/gtag/js?id=G-RHJVZCZ2GL"}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());        
+            gtag('config', 'G-RHJVZCZ2GL');
+          `,
+        }}
+      />
+      <Component {...pageProps} />
       <Head>
         <title>JustLog</title>
         <meta charSet="utf-8" />
@@ -26,23 +43,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           content={`${process.env.PUBLIC_URL}/logo192.png`}
         />
       </Head>
-      <Script
-        strategy="afterInteractive"
-        src={"https://www.googletagmanager.com/gtag/js?id=G-RHJVZCZ2GL"}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());        
-            gtag('config', 'G-RHJVZCZ2GL');
-          `,
-        }}
-      />
-      <Component {...pageProps} />
     </Layout>
   );
 }

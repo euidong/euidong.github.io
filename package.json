@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "node lib/generator.js",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "export": "next export"
   },
   "dependencies": {
-    "axios": "^0.26.1",
     "github-markdown-css": "^5.1.0",
     "gray-matter": "^4.0.3",
     "next": "12.1.5",
@@ -22,8 +22,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "rehype-katex": "^6.0.2",
     "remark-gfm": "^3.0.1",
-    "remark-math": "^5.1.1",
-    "swr": "^1.3.0"
+    "remark-math": "^5.1.1"
   },
   "devDependencies": {
     "@types/node": "17.0.25",

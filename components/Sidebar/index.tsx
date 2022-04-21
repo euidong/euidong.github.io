@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./SideBar.module.scss";
-import useSWR from "swr";
-import { fetcher } from "../../lib/utils";
+import categoryJson from "../../public/exts/categories.json";
 
 interface Props {
   isOpen: boolean;
@@ -9,7 +8,6 @@ interface Props {
 }
 
 const SideBar = ({ isOpen, setIsOpen }: Props) => {
-  const { data } = useSWR("/api/categories", fetcher);
   const close = () => {
     setIsOpen(false);
   };
@@ -35,19 +33,17 @@ const SideBar = ({ isOpen, setIsOpen }: Props) => {
           Tags
         </a>
       </Link>
-      {data?.data &&
-        Array.isArray(data.data) &&
-        data.data.map((category: any) => (
-          <Link href={`/categories/${category.name}`} key={category.name}>
-            <a
-              className={styles.side_bar__li}
-              onClick={close}
-              tabIndex={isOpen ? 1 : -1}
-            >
-              {category.name}
-            </a>
-          </Link>
-        ))}
+      {categoryJson.map((category: any) => (
+        <Link href={`/categories/${category.name}`} key={category.name}>
+          <a
+            className={styles.side_bar__li}
+            onClick={close}
+            tabIndex={isOpen ? 1 : -1}
+          >
+            {category.name}
+          </a>
+        </Link>
+      ))}
     </nav>
   );
 };
