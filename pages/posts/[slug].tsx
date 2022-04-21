@@ -34,11 +34,6 @@ const Post = ({ post, relatedPosts }: Props) => {
           content={post.thumbnailSrc || DEFAULT_THUMBNAIL_SOURCE}
         />
       </Head>
-      <Script
-        strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
-        crossOrigin="anonymous"
-      />
       <div className={styles.post__wrapper}>
         <h1 className={styles.post__title}>{post.title}</h1>
         <p className={styles.post__date}>{post.date}</p>
