@@ -1,0 +1,81 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/variables.scss";
+
+.column_card {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: $card-width;
+  }
+  &__thumbnail {
+    box-sizing: border-box;
+    border-radius: 15px 15px 0px 0px;
+    transition: all .2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &__wrapper {
+      box-sizing: border-box;
+      border-radius: 15px 15px 0 0;
+      &:focus {
+        border: 2px solid $palette1;
+      }
+      overflow: hidden;
+      
+    }
+  }
+  &__tray {
+    background-color: $palette4;
+    color: $palette1;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0px 0px 15px 15px;
+    &__title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      color: inherit;
+      a {
+        color: inherit;
+      }
+    }
+    &__tag {
+      line-height: 1.25rem;
+      width: $card-width;
+      height: 2.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      overflow-y: hidden;
+      &__li {
+        color: inherit;
+        padding-right: 5px;
+      }
+    }
+  }
+  &__list {
+    &__background {
+      border-radius: 25px;
+    }
+    &__title {
+      color: $palette1;
+      font-size: 2rem;
+      line-height: 4rem;
+      font-weight: 700;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      overflow-x: auto;
+      > div {
+        margin-left: 15px;
+        &:first-child {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}

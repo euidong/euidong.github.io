@@ -1,0 +1,18 @@
+@import "../../styles/colors.scss";
+@import "../../styles/variables.scss";
+
+.logo {
+  display: flex;
+  border-radius: 100px;
+  background-color: $palette1;
+  background: $logo;
+  background-size: 150px 60px;
+  width: 150px;
+  height: 60px;
+  &:focus {
+    outline: 2.5px solid $palette1;
+  }
+  &__image {
+    width: 180px;
+  }
+}

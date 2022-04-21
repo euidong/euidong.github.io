@@ -1,0 +1,41 @@
+@import "../../styles/colors.scss";
+@import "../../styles/variables.scss";
+
+.post {
+  &__wrapper {
+    margin: 50px 15%;
+    @media screen and (max-width: $mobile-width) {
+      margin: 20px 20px;
+    }
+  }
+  &__title {
+    color: $palette1;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    font-weight: 700;
+  }
+  &__date {
+    color: $palette1;
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+  &__related_post_list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    > div {
+      margin-right: 10px;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 30px 0;
+    }
+    &__title {
+      color: $palette1;
+      font-size: 2rem;
+      line-height: 3.5rem;
+      font-weight: 700;
+    }
+  }
+}

@@ -1,12 +1,12 @@
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  thumbnailSrc?: string;
-  excerpt?: string;
+export type Post = {
   content: string;
+  title: string;
+  slug: string;
+  date: string;
   category: string;
-  tags: string[];
+  tags?: string[];
+  excerpt?: string;
+  thumbnailSrc?: string;
 };
 
-export default Post;
+export type PostMetadata = Omit<Post, "content">;

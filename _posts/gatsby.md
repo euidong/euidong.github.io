@@ -1,8 +1,10 @@
 ---
 slug: "gatsby"
 title: "Gatsby"
+date: "2022-04-20 12:00"
 category: "Web"
-tags: ["gatsby"]
+tags: ["Gatsby", "MDX", "Blog"]
+thumbnailSrc: "/images/gatsby.png"
 ---
 # Gatsby
 
@@ -137,7 +139,6 @@ import LogoWhite from "../../../../image/icon/logo-white.png";
  * It is recommended to keep the height within 25-35px.
  */
 export default function Logo({ fill }) {
-  console.log(fill);
   return (
     <Link
       to="/"

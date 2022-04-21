@@ -1,0 +1,114 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/variables.scss";
+
+$thumbnail-size: 200px;
+$mobile-thumbnail-size: 100px;
+
+:export {
+  thumbnailSize: $thumbnail-size;
+  mobileThumbnailSize: $mobile-thumbnail-size;
+}
+
+.row_card {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+    align-items: center;
+    @media screen and (max-width: $mobile-width) {
+      max-width: 335px;
+    }
+  }
+  &__thumbnail {
+    &:hover {
+      transform: scale(1.1);
+    }
+    &__wrapper {
+      overflow: hidden;
+      flex-shrink: 0;
+      &:focus {
+        border: 2px solid $palette1;
+      }
+    }
+  }
+  &__tray {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    color: $palette1;
+    padding: 10px 10px;
+    height: $thumbnail-size;
+    @media screen and (max-width: $mobile-width) {
+      height: $mobile-thumbnail-size;
+    }
+    &__title {
+      color: $palette1;
+      font-weight: 700;
+      font-size: 2rem;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+      line-height: 3.5rem;
+      white-space: nowrap;
+      vertical-align: top;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+    &__date {
+      opacity: 0.5;
+      vertical-align: top;
+      line-height: 3rem;
+      flex-shrink: 0;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+      }
+    }
+    &__tag {
+      line-height: 1.25rem;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      overflow-y: hidden;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 0.75rem;
+        line-height: 0.94rem;
+      }
+      &__li {
+        color: inherit;
+        padding-right: 5px;
+      }
+    }
+  }
+  &__list {
+    &__background {
+      margin: 50px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    &__title {
+      color: $palette1;
+      font-size: 3rem;
+      line-height: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    &__wrapper {
+      max-width: 90vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > div {
+        margin-bottom: 20px;
+      }
+      margin-bottom: 30px;
+    }
+  }
+}

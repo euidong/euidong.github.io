@@ -1,0 +1,28 @@
+@import "../../styles/colors.scss";
+
+.tag_list {
+  &__wrapper {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__card {
+    text-align: center;
+    padding: 30px;
+    width: 80vw;
+    min-height: 500px;
+    background-color: $palette4;
+    color: $palette1;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+    a {
+      color: inherit;
+      &:focus, &:hover {
+        border-bottom: 2px solid $palette1;
+      }
+    }
+  }
+}

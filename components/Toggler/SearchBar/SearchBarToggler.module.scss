@@ -1,0 +1,19 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/variables.scss";
+.search_bar_toggler {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: $palette4;
+  color: $palette1;
+  &:focus {
+    outline: 2px solid $palette1;
+  }
+  position: fixed;
+  z-index: 3;
+  top: 47px;
+  right: 60px;
+  @media screen and (max-width: $mobile-width) {
+    right: 20px;
+  }
+}

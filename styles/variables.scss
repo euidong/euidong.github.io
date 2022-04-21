@@ -1,0 +1,26 @@
+$mobile-width: 500px;
+$card-width: 320px;
+
+
+// @media (prefers-color-scheme: light) {
+//   .__next {
+//     color-scheme: light;
+//     --logo: url("../public/images/logo-black.png") no-repeat;
+//   }
+// }
+// @media (prefers-color-scheme: dark) {
+//   .__next {
+//     color-scheme: dark;
+//     --logo: url("../public/images/logo-white.png") no-repeat;
+//   }
+// }
+
+// $logo: var(--logo);
+
+$logo: url("/images/logo-black.png") no-repeat;
+
+
+:export {
+  mobileWidth: $mobile-width;
+  cardWidth: $card-width;
+}
