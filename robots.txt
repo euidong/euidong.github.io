@@ -1,4 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://euidong.github.io
+
+# Sitemaps
 Sitemap: https://euidong.github.io/sitemap.xml
