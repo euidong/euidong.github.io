@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <Component {...pageProps} />
       <Head>
-        <title>JustLog</title>
+        <meta name="descripton" content="Just Tech Blog" />
         <meta charSet="utf-8" />
         <link rel="icon" href={`${process.env.PUBLIC_URL}/favicon.png`} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -35,13 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta property="og:type" content="blog" />
         <meta property="og:site_name" content="JustLog" />
-        <meta property="og:description" content="Just Tech Blog" />
-        <meta property="og:url" content={process.env.PUBLIC_URL} />
-        <meta property="og:title" content="JustLog" />
-        <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/logo192.png`}
-        />
       </Head>
     </Layout>
   );

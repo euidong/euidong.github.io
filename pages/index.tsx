@@ -1,3 +1,4 @@
+import Head from "next/head";
 import ColumnCardList from "../components/Card/Column/List";
 import { getAllCategories, getAllPosts } from "../lib/api";
 import { Post } from "../types/posts";
@@ -10,18 +11,30 @@ interface Props {
 
 const Home = ({ recentPosts, categorizedPosts }: Props) => {
   return (
-    <div className={styles.home__wrapper}>
-      <ColumnCardList posts={recentPosts} title="Recent Post" />
-      {Object.keys(categorizedPosts).map((category) => {
-        return (
-          <ColumnCardList
-            title={category}
-            posts={categorizedPosts[category]}
-            key={category}
-          />
-        );
-      })}
-    </div>
+    <>
+      <Head>
+        <title>JustLog</title>
+        <meta property="og:title" content="JustLog" />
+        <meta property="og:description" content="Just Tech Blog" />
+        <meta property="og:url" content={process.env.PUBLIC_URL} />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/logo192.png`}
+        />
+      </Head>
+      <div className={styles.home__wrapper}>
+        <ColumnCardList posts={recentPosts} title="Recent Post" />
+        {Object.keys(categorizedPosts).map((category) => {
+          return (
+            <ColumnCardList
+              title={category}
+              posts={categorizedPosts[category]}
+              key={category}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };
 

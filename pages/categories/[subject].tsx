@@ -3,6 +3,7 @@ import ErrorPage from "next/error";
 import { Post } from "../../types/posts";
 import { getAllCategories, getPostsByCategory } from "../../lib/api";
 import RowCardList from "../../components/Card/Row/List";
+import Head from "next/head";
 
 interface Props {
   posts: Post[];
@@ -16,7 +17,21 @@ const Category = ({ posts, params }: Props) => {
   if (!router.isFallback && posts.length === 0) {
     return <ErrorPage statusCode={404} />;
   }
-  return <RowCardList subject={params.subject} posts={posts} />;
+  return (
+    <>
+      <Head>
+        <title>{params.subject} | JustLog</title>
+        <meta property="og:title" content="JustLog" />
+        <meta property="og:description" content="Just Tech Blog" />
+        <meta property="og:url" content={process.env.PUBLIC_URL} />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/logo192.png`}
+        />
+      </Head>
+      <RowCardList subject={params.subject} posts={posts} />;
+    </>
+  );
 };
 
 export default Category;

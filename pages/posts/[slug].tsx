@@ -7,6 +7,7 @@ import styles from "./Post.module.scss";
 import { DEFAULT_THUMBNAIL_SOURCE } from "../../lib/constants";
 import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
+import Script from "next/script";
 
 interface Props {
   post: Post;
@@ -27,11 +28,17 @@ const Post = ({ post, relatedPosts }: Props) => {
           content={`${process.env.PUBLIC_URL}/posts/${post.slug}`}
         />
         <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={"Just Tech Posting"} />
         <meta
           property="og:image"
           content={post.thumbnailSrc || DEFAULT_THUMBNAIL_SOURCE}
         />
       </Head>
+      <Script
+        strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
+        crossOrigin="anonymous"
+      />
       <div className={styles.post__wrapper}>
         <h1 className={styles.post__title}>{post.title}</h1>
         <p className={styles.post__date}>{post.date}</p>
