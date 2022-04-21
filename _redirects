@@ -1,0 +1,4 @@
+# Next Export API redirects
+/api/categories /.netlify/functions/__api__categories 200
+/api/posts /.netlify/functions/__api__posts 200
+/api/tags /.netlify/functions/__api__tags 200
