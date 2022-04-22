@@ -8,8 +8,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Head>
-        <meta name="descripton" content="Just Tech Blog" />
         <meta charSet="utf-8" />
+        <meta name="description" content="Just Tech Blog" />
         <link rel="icon" href={`${process.env.PUBLIC_URL}/favicon.png`} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link

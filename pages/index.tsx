@@ -14,6 +14,7 @@ const Home = ({ recentPosts, categorizedPosts }: Props) => {
     <>
       <Head>
         <title>JustLog</title>
+        <link rel="canonical" href={process.env.PUBLIC_URL} />
         <meta property="og:title" content="JustLog" />
         <meta property="og:description" content="Just Tech Blog" />
         <meta property="og:url" content={process.env.PUBLIC_URL} />
