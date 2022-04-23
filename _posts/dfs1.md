@@ -1,8 +1,8 @@
 ---
-slug: "dfs"
+slug: "dfs1"
 date: "2022-02-03"
-title: "DFS"
-tags: ["Graph", "Tree"]
+title: "DFS(1)-기본"
+tags: ["DFS", "Graph", "Tree"]
 category: "Algorithm"
 thumbnailSrc: "/images/algorithm.png"
 ---
