@@ -31,6 +31,7 @@ const RowCard = ({
         setThumbSize(styles.thumbnailSize);
       }
     };
+    onResize();
     window.addEventListener("resize", onResize);
     return () => {
       window.removeEventListener("resize", onResize);
@@ -46,6 +47,7 @@ const RowCard = ({
             alt="thumbnail"
             width={thumbSize}
             height={thumbSize}
+            layout="fixed"
             objectFit="cover"
           />
         </a>
