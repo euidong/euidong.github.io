@@ -93,11 +93,17 @@ $mobile-thumbnail-size: 100px;
       align-items: center;
     }
     &__title {
+      display: flex;
+      text-align: center;
       color: $palette1;
       font-size: 3rem;
       line-height: 4rem;
       font-weight: 700;
       margin-bottom: 20px;
+      @media screen and (max-width: $mobile-width) {
+        font-size: 2rem;
+        line-height: 2.5rem;
+      }
     }
     &__wrapper {
       max-width: 90vw;
