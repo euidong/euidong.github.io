@@ -7,7 +7,7 @@ import styles from "./Post.module.scss";
 import { DEFAULT_THUMBNAIL_SOURCE } from "../../lib/constants";
 import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
-import Script from "next/script";
+import GoogleAds from "../../components/GoogleAds";
 
 interface Props {
   post: Post;
@@ -41,6 +41,7 @@ const Post = ({ post, relatedPosts }: Props) => {
         {relatedPosts.length > 0 && (
           <ColumnCardList title="Related Posts" posts={relatedPosts} />
         )}
+        <GoogleAds type="banner" />
       </div>
     </>
   );

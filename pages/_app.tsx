@@ -20,12 +20,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:site_name" content="JustLog" />
       </Head>
       <Script
-        strategy="afterInteractive"
+        async
         src={"https://www.googletagmanager.com/gtag/js?id=G-RHJVZCZ2GL"}
       />
       <Script
         id="gtag-init"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -36,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       />
       <Script
-        strategy="afterInteractive"
+        async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
         crossOrigin="anonymous"
       />
