@@ -10,12 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="description" content="Just Tech Blog" />
-        <link rel="icon" href={`${process.env.PUBLIC_URL}/favicon.png`} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          rel="apple-touch-icon"
-          href={`${process.env.PUBLIC_URL}/logo192.png`}
-        />
         <meta property="og:type" content="blog" />
         <meta property="og:site_name" content="JustLog" />
       </Head>
@@ -33,11 +28,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             gtag('config', 'G-RHJVZCZ2GL');
           `,
         }}
-      />
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
-        crossOrigin="anonymous"
       />
       <Component {...pageProps} />
     </Layout>

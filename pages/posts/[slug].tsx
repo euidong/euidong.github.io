@@ -38,10 +38,10 @@ const Post = ({ post, relatedPosts }: Props) => {
         <h1 className={styles.post__title}>{post.title}</h1>
         <p className={styles.post__date}>{post.date}</p>
         <MarkDown content={post.content} />
+        <GoogleAds type="banner" />
         {relatedPosts.length > 0 && (
           <ColumnCardList title="Related Posts" posts={relatedPosts} />
         )}
-        <GoogleAds type="banner" />
       </div>
     </>
   );
