@@ -28,6 +28,9 @@ $mobile-thumbnail-size: 100px;
       overflow: hidden;
       flex-shrink: 0;
       height: $thumbnail-size;
+      @media screen and (max-width: $mobile-width) {
+        height: $mobile-thumbnail-size;
+      }
       &:focus {
         outline: 2px solid $palette1;
       }
