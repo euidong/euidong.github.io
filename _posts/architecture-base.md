@@ -1,13 +1,13 @@
 ---
 slug: "architecture-base"
 date: "2022-04-12"
-title: "01-Base"
+title: "Base"
 tags: ["ComputerOrganizationAndDesign", "ISA"]
 category: "Computer Architecture"
 thumbnailSrc: "/images/cs-arch-book-cover.jpeg"
 ---
 
-### **Reference**
+## **Reference**
 
 ![<img src="/images/cs-arch-book-cover.jpeg" width="190" />](/images/cs-arch-book-cover.jpeg)
 

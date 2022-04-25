@@ -1,13 +1,13 @@
 ---
 slug: "architecture-instruction"
 date: "2022-04-14"
-title: "02-Instruction"
+title: "Instruction"
 tags: ["ComputerOrganizationAndDesign", "Instruction", "ISA"]
 category: "Computer Architecture"
 thumbnailSrc: "/images/cs-arch-book-cover.jpeg"
 ---
 
-### **Reference**
+## **Reference**
 
 ![<img src="/images/cs-arch-book-cover.jpeg" width="190" />](/images/cs-arch-book-cover.jpeg)
 
