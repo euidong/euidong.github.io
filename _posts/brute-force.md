@@ -30,7 +30,7 @@ Brute Force를 직접적으로 번역하면, 이는 "무차별  대입"정도�
 
 ### **1\. 순열(Permutation)**
 
-```
+```python
 def permutation_helper(k, arr=[], prev=[]):
     if len(prev) == k:
         return [prev]
@@ -50,7 +50,7 @@ print(permutation_helper(2, [1,2,3,4,5], []))
 
 ### **2\. 조합(Combination)**
 
-```
+```python
 def combination_helper(k, arr=[], prev=[]):
     if len(prev) == k:
         return [prev]
@@ -70,7 +70,7 @@ print(combination_helper(2, [1,2,3,4,5], []))
 
 ### **3\. 부분집합(Subset)**
 
-```
+```python
 def subset_helper(k, arr=[], prev=[]):
     if len(prev) == k:
         return []

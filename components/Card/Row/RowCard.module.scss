@@ -27,8 +27,9 @@ $mobile-thumbnail-size: 100px;
     &__wrapper {
       overflow: hidden;
       flex-shrink: 0;
+      height: $thumbnail-size;
       &:focus {
-        border: 2px solid $palette1;
+        outline: 2px solid $palette1;
       }
     }
   }
