@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "edit": "next-remote-watch ./_posts",
+    "edit": "next-remote-watch ./_*",
     "resize": "node lib/resizer.js"
   },
   "dependencies": {
