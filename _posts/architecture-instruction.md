@@ -2,14 +2,14 @@
 slug: "architecture-instruction"
 date: "2022-04-14"
 title: "Instruction"
-tags: ["ComputerOrganizationAndDesign", "Instruction", "ISA"]
+tags: ["Computer Organization And Design", "Instruction", "ISA"]
 category: "Computer Architecture"
-thumbnailSrc: "/images/cs-arch-book-cover.jpeg"
+thumbnailSrc: "/images/default.jpg"
 ---
 
 ## **Reference**
 
-![<img src="/images/cs-arch-book-cover.jpeg" width="190" />](/images/cs-arch-book-cover.jpeg)
+![<img src="/images/default.jpg" width="190" />](/images/default.jpg)
 
 David A. Patterson, John L. Hennessy, Computer Organization and Design
 

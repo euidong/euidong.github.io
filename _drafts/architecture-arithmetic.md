@@ -4,11 +4,11 @@ date: "2022-04-25"
 title: "Arithmetic"
 tags: ["ComputerOrganizationAndDesign", "Arithmetic"]
 category: "Computer Architecture"
-thumbnailSrc: "/images/cs-arch-book-cover.jpeg"
+thumbnailSrc: "/images/default.jpg"
 ---
 ## **Reference**
 
-![<img src="/images/cs-arch-book-cover.jpeg" width="190" />](/images/cs-arch-book-cover.jpeg)
+![<img src="/images/default.jpg" width="190" />](/images/default.jpg)
 
 David A. Patterson, John L. Hennessy, Computer Organization and Design
 
