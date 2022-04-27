@@ -1,7 +1,7 @@
 ---
 slug: "gatsby"
 title: "Gatsby"
-date: "2022-04-20 12:00"
+date: "2020-04-10 12:00"
 category: "Web"
 tags: ["Gatsby", "MDX", "Blog"]
 thumbnailSrc: "/images/gatsby.png"

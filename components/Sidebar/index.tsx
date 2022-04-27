@@ -41,6 +41,9 @@ const SideBar = ({ isOpen, setIsOpen }: Props) => {
             tabIndex={isOpen ? 1 : -1}
           >
             {category.name}
+            <span className={styles.side_bar__li__cnt}>
+              ({category.post_cnt})
+            </span>
           </a>
         </Link>
       ))}

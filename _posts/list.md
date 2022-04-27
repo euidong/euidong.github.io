@@ -4,6 +4,7 @@ title: "List 갖고 놀기"
 date: "2022-04-26 21:10"
 category: "Algorithm"
 tags: ["List", "Python", "순환", "복사", "자르기", "반전", "회전"]
+thumbnailSrc: "/images/algorithm.png"
 ---
 
 list를 갖고 놀 수 있는 능력은 python으로 알고리즘을 풀기 위해서 굉장히 중요한 기술이다.

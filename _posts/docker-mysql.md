@@ -1,7 +1,7 @@
 ---
 slug: "docker-mysql"
 title: "Docker Mysql"
-date: "2022-04-20 12:00"
+date: "2020-04-11 12:00"
 category: "Docker"
 tags: ["virtualEnv", "mysql"]
 thumbnailSrc: "/images/hero.png"
