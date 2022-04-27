@@ -1,7 +1,7 @@
 ---
 slug: "architecture-base"
 date: "2022-04-12"
-title: "Base"
+title: "1. Base"
 tags: ["Computer Organization And Design", "ISA"]
 category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
