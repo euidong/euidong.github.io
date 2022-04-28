@@ -2,7 +2,7 @@
 slug: "architecture-arithmetic"
 date: "2022-04-27 20:50"
 title: "3. Arithmetic"
-tags: ["ComputerOrganizationAndDesign", "Arithmetic"]
+tags: ["Computer Organization And Design", "Arithmetic"]
 category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
@@ -13,6 +13,8 @@ thumbnailSrc: "/images/default.jpg"
 David A. Patterson, John L. Hennessy, Computer Organization and Design
 
 본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
+
+- Full Adder 이미지는 WIKIPEDIA full adder의 발췌이다. (https://upload.wikimedia.org/wikipedia/commons/5/57/Fulladder.gif)
 
 ---
 

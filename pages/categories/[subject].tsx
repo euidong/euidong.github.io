@@ -41,7 +41,10 @@ export const getStaticProps = async ({
 }: {
   params: { [key: string]: string };
 }) => {
-  const posts = getPostsByCategory(params.subject);
+  const posts = getPostsByCategory(params.subject).sort((a: Post, b: Post) => {
+    if (a.title > b.title) return 1;
+    return a.title === b.title ? 0 : -1;
+  });
   return {
     props: {
       posts,

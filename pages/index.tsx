@@ -29,7 +29,9 @@ const Home = ({ recentPosts, categorizedPosts }: Props) => {
           return (
             <ColumnCardList
               title={category}
-              posts={categorizedPosts[category]}
+              posts={categorizedPosts[category].sort((a, b) =>
+                a.title > b.title ? 1 : a.title === b.title ? 0 : -1
+              )}
               key={category}
             />
           );
