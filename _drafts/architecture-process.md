@@ -1,5 +1,5 @@
 ---
-slug: "architecture-arithmetic"
+slug: "architecture-process"
 date: "2022-04-28"
 title: "4. Processing"
 tags: ["ComputerOrganizationAndDesign", "Processing"]
