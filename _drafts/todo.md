@@ -14,4 +14,7 @@ title: ToDo
 - [ ] background 없으면 넣는 로직 추가
 - [ ] post에서 tags 보여주기
 - [ ] markdown 이미지 보여주기 방식 개선 => github 처럼 image tag 이용하는 방식 고려해보기
-
+- [ ] 조회수 로직 추가
+- [ ] 이미지 많아지면 어떻게 할지 대책 세우기
+- [ ] 모바일 헤더사이즈 고민
+- [ ] header 접혔다 펴지는 방식 고려
