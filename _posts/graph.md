@@ -3,7 +3,7 @@ slug: "graph"
 date: "2022-04-20 12:00"
 title: "Graph"
 category: "Algorithm"
-tags: ["Graph"]
+tags: ["자료구조", "Graph"]
 thumbnailSrc: "/images/algorithm.png"
 ---
 여러 개의 Vertex(정점)와 그를 잇는 Edge(간선)로 이루어진 형태의 자료 구조를 의미한다. 
