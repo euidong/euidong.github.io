@@ -1,0 +1,52 @@
+---
+slug: "find-prime"
+title: "소수찾기"
+date: "2022-05-01 14:23"
+category: "Algorithm"
+tags: ["소수찾기", "에라토스테네스의 체"]
+thumbnailSrc: "/images/algorithm.png"
+---
+
+소수찾기는 굉장히 많은 프로그래밍 책에서 for문 입문 시에 사용하는 예제로 많이 사용된다.
+여기서는 소수를 찾기 위한 알고리즘으로 에라토스테네스의 체를 제시한다.
+
+만약 이를 사용하지 않고, 소수를 찾기 위해서는 다음과 같은 식으로 작성하는 것이 일반적이다.
+
+```python
+primes = [2]
+
+max_num = 100_000
+for num in range(3, max_num+1):
+  is_prime = True
+  max_prime = inr(num ** 0.5)
+  for prime in primes:
+    if num % prime == 0:
+      is_prime = False
+      break
+    if prime > max_prime:
+      break
+  if is_prime:
+    primes.append(num)
+```
+
+이는 아래의 수부터 소수를 찾으면서 진행하고, 소수가 있다면 다음에 수를 찾을 때, 이를 이용해서 소수 여부를 확인하는 방식이다.
+(여기서 sqrt를 이용한 이유는 소수가 아니라면 약수는 두 수의 곱으로 나타낼 수 있어야 하므로, 제곱수까지만 확인해도 충분하다.)
+하지만, 이 방식은 소수를 매 반복문마다 반복해서 사용하는 것을 볼 수 있다. 따라서, 이러한 불필요한 동작을 최소화하기 위해서 범위가 정해져 있는 소수를 찾을 경우에는 에라토스테네서의 체를 이용할 수 있다.
+
+에라토스테네스의 체는 배열의 index를 수의 값으로 하고, value를 소수 여부로 나타내는 비트마스크 형태이다. (*비트 마스크 : 0과 1로 이루어진 체로, index를 통해서 무언가를 검색할 때, O(1)로 연산할 수 있는 자료구조)
+
+여기서, 소수를 찾을 때마다 이를 약수로 갖는 모든 수들을 소수가 아니라고 마킹하여 쉽게 O($N^{1\over{2}}$)만에 해당 범위안의 모든 소수를 판별할 수 있는 알고리즘이다.
+
+```python
+N = 100_000
+is_primes = [True] * (N+1)
+
+for num in range(2, int(N ** 0.5) +1):
+    if not is_primes[num]:
+        continue
+    for j in range(2 * num, N+1, num):
+        is_primes[j] = False
+
+primes = [i for i in range(2, n) if is_primes[i] == True]
+```
+
