@@ -7,6 +7,16 @@ category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
 
+## **Reference**
+
+![<img src="/images/default.jpg" width="190" />](/images/default.jpg)
+
+David A. Patterson, John L. Hennessy, Computer Organization and Design
+
+본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
+
+---
+
 컴퓨터를 사용할 때, 우리는 기본적으로 Memory가 무한한 크기를 가지고 있기를 바란다. 하지만, 이를 실제로 구현하는 것은 비용적으로도, 기술적으로도 불가능하다. 따라서, 이를 마치 존재하는 것처럼 느끼도록 하는 기술을 사용한다.
 
 이를 위한 핵심은 `Locality`를 활용하는 것이다. 동작에는 인과가 존재하고, 그렇기에 직전에 자신이 했던 행동 그리고 근처의 대상들이 했던 행동이 지금의 자신이 할 행동에 영향을 주는 것은 어찌보면 당연한 사실이다. 이러한 특징이 `Locality`이다. 이를 이용해서 우리는 Memory를 마치 무한인 것처럼 느낄 수 있게 할 수 있다.
@@ -115,7 +125,7 @@ Block 단위를 4Bytes로 했다면, 하나의 word 단위가 Block의 단위가
 
 `Directed Mapping`을 통해서 Cache에 데이터를 저장하게 되면, 특정 Block이 위치할 수 있는 장소가 고정되어 버린다. 만약, index가 겹치는 값이 동시에 여러 번 사용된다면, miss rate가 크게 증가할 수 밖에 없다. 여기서, cache의 위치를 고정하지 않고, 자유롭게 하여 이러한 문제는 크게 줄일려고 하는 방법이 있다.
 
-tag에 모든 address 값을 저장하고, index를 address의 값으로 전혀 사용하지 않는 방식이 있다. 이것을 `full-associative cache`라고 한다. 이 경우에는 해당하는 index 범위에서 tag가 존재하는지를 확인하기 위해서 추가적인 연산이 필요하지만, hardware 장치를 추가적으로 배치하여 이를 동시에 실행시켜 성능을 향상시키는 방식을 택한다. 이 방식은 결론적으로 많은 hardware 장비를 추가적으로 요구하기 때문에 매우 비싸진다. 따라서, 적당한 합의점을 찾는 것이 `set-associative cache`이다. 이는 index 값을 일부만 이용하는 방식이라고 할 수 있다. 즉, 3bits를 index로 사용하는 cache에서 상위 n개의 bit만 실제로 사용하여 표현하는 것이다. 동일한 index를 가진 block은 $2^{전체 bit 수 - n}$ 존재하게 된다. 여기서, 이제부터 tag를 통해서 사용해서 검색을 수행하느 것이다. 따라서, 만약 n이 전체 bit 수와 같아 진다면, 이것이 `full-associative cache`가 되는 것이고, n = 0이라면, 일반적인 `Directed Mapping`이 되는 것이다.
+tag에 모든 address 값을 저장하고, index를 address의 값으로 전혀 사용하지 않는 방식이 있다. 이것을 `full-associative cache`라고 한다. 이 경우에는 해당하는 index 범위에서 tag가 존재하는지를 확인하기 위해서 추가적인 연산이 필요하지만, hardware 장치를 추가적으로 배치하여 이를 동시에 실행시켜 성능을 향상시키는 방식을 택한다. 이 방식은 결론적으로 많은 hardware 장비를 추가적으로 요구하기 때문에 매우 비싸진다. 따라서, 적당한 합의점을 찾는 것이 `set-associative cache`이다. 이는 index 값을 일부만 이용하는 방식이라고 할 수 있다. 즉, 3bits를 index로 사용하는 cache에서 상위 n개의 bit만 실제로 사용하여 표현하는 것이다. 동일한 index를 가진 block은 $2^{전체 bit 수 - n}$ 존재하게 된다. 여기서, 이제부터 tag를 통해서 사용해서 검색을 수행하는 것이다. 따라서, 만약 n이 전체 bit 수와 같아 진다면, 이것이 `full-associative cache`가 되는 것이고, n = 0이라면, 일반적인 `Directed Mapping`이 되는 것이다.
 
 ![set-associative](/images/set-associative.png)
 
