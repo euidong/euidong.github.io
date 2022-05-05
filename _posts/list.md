@@ -50,7 +50,7 @@ for idx in range(len(arr)):
 
 # (2)
 while len(arr) > 0:
-  element = arr.pop()
+  element = arr.pop(0)
   print(element)
 
 # (3)

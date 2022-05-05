@@ -4,9 +4,9 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     PUBLIC_URL:
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : require("./package.json").homepage,
+      process.env.NODE_ENV === "production"
+        ? require("./package.json").homepage
+        : "http://localhost:3000",
   },
   images: {
     loader: "akamai",
