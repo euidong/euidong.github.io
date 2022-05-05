@@ -128,9 +128,9 @@ segment tree와 동일하게 fenwick tree도 list를 통해서 tree를 표현한
 
 $$ 
 \begin{align} 
-  h &= origin[8] \\
-  &= sum(8) - sum(7) \\
-  &= fenwick[8] - (fenwick[4] + fenwick[6] + fenwick[7]) 
+    &= origin[8] \notag \\
+    &= sum(8) - sum(7) \notag \\
+    &= fenwick[8] - (fenwick[4 to 7]) \notag
 \end{align} 
 $$
 
@@ -138,9 +138,9 @@ $$
 
 $$ 
 \begin{align} 
-  e + f + g &= origin[5] + origin[6] + origin[7] \\
-  &= sum(7) - sum(4) \\
-  &= (fenwick[4] + fenwick[6] + fenwick[7]) - fenwick[4]
+    &= origin[5to7] \notag \\
+    &= sum(7) - sum(4) \notag \\
+    &= (fenwick[4 to 7]) - fenwick[4] \notag
 \end{align} 
 $$
 
