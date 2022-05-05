@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./SideBar.module.scss";
 import categoryJson from "../../public/exts/categories.json";
+import { useEffect } from "react";
 
 interface Props {
   isOpen: boolean;
@@ -11,6 +12,7 @@ const SideBar = ({ isOpen, setIsOpen }: Props) => {
   const close = () => {
     setIsOpen(false);
   };
+
   return (
     <nav
       className={styles[`side_bar__wrapper${isOpen ? "--open" : "--close"}`]}

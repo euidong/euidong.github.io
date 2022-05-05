@@ -2,12 +2,20 @@
 @import "../../styles/variables.scss";
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
   align-items: center;
   min-height: 150px;
+  padding: 0px 55px;
   background-color: $palette4;
   border-bottom: 1px solid $palette3;
+  @media screen and (max-width: $mobile-width) {
+    min-height: 100px;
+    padding: 0px 10px;
+  }
 }
 
 .footer {
@@ -72,6 +80,7 @@
     }
     a {
       text-decoration: underline;
+      color: $palette1;
     }
   }
 }

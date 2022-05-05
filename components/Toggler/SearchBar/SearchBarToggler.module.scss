@@ -9,11 +9,6 @@
   &:focus {
     outline: 2px solid $palette1;
   }
-  position: fixed;
+  position:relative;
   z-index: 3;
-  top: 47px;
-  right: 60px;
-  @media screen and (max-width: $mobile-width) {
-    right: 20px;
-  }
 }

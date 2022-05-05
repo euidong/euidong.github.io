@@ -1,14 +1,15 @@
 import styles from "./SearchBarToggler.module.scss";
 import { BsSearch, BsXLg } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import SearchBar from "../../SearchBar";
 
 interface Props {
   className?: string;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const SearchBarToggler = ({ className }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const SearchBarToggler = ({ className, isOpen, setIsOpen }: Props) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const open = (e: KeyboardEvent) => {

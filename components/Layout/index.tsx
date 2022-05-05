@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { BsFillPersonLinesFill, BsGithub } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
 import Logo from "../Logo";
@@ -10,12 +11,51 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
+  const [openHeader, setOpenHeader] = useState(true);
+  useEffect(() => {
+    let prev = window.scrollY;
+    const onScroll = () => {
+      const now = window.scrollY;
+      if (prev > now) {
+        setOpenHeader(true);
+      } else {
+        setOpenHeader(false);
+      }
+      prev = now;
+    };
+    document.addEventListener("scroll", onScroll);
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+
   return (
     <div className={`${styles.wrapper} root`}>
-      <header className={styles.header}>
-        <SideBarToggler />
+      <header
+        className={styles.header}
+        style={{
+          position:
+            isSearchBarOpen || isSidebarOpen
+              ? "sticky"
+              : openHeader
+              ? "sticky"
+              : "static",
+        }}
+      >
+        <SideBarToggler
+          className={styles.header__toggle}
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
         <Logo />
-        <SearchBarToggler />
+        <SearchBarToggler
+          className={styles.header__toggle}
+          isOpen={isSearchBarOpen}
+          setIsOpen={setIsSearchBarOpen}
+        />
       </header>
       <section>{children}</section>
       <footer className={styles.footer}>

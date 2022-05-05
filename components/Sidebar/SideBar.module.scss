@@ -20,6 +20,7 @@
       overflow: hidden;
       border-radius: 0px 25px 0px 0px;
       border-right: 1px solid $palette3;
+      border-top: 1px solid $palette3;
     }
     &--open {
       @include side_bar__wrapper();

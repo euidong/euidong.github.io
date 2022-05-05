@@ -23,15 +23,17 @@ const MarkDown = ({ content }: Props) => {
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
-              <SyntaxHighlighter
-                showLineNumbers
-                style={twilight}
-                language={match[1]}
-                PreTag="div"
-                {...props}
-              >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
+              <>
+                <SyntaxHighlighter
+                  showLineNumbers
+                  style={twilight}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              </>
             ) : (
               <code className={className} {...props}>
                 {children}
