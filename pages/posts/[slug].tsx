@@ -37,6 +37,11 @@ const Post = ({ post, relatedPosts }: Props) => {
       <div className={styles.post__wrapper}>
         <h1 className={styles.post__title}>{post.title}</h1>
         <p className={styles.post__date}>{post.date}</p>
+        <ul className={styles.post__tags}>
+          {post.tags?.map((e) => (
+            <li className={styles.post__tags__element} key={e}>{`# ${e}`}</li>
+          ))}
+        </ul>
         <MarkDown content={post.content} />
         <GoogleAds type="banner" />
         {relatedPosts.length > 0 && (

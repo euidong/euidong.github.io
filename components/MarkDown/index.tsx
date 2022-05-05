@@ -2,12 +2,16 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { twilight } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import "katex/dist/katex.min.css";
 import "github-markdown-css/github-markdown.css";
 import styles from "./MarkDown.module.scss";
+import { RiFileCopyLine } from "react-icons/ri";
+
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 interface Props {
   content: string;
@@ -18,22 +22,45 @@ const MarkDown = ({ content }: Props) => {
     <article className={`markdown-body ${styles["markdown-body"]}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeKatex]}
+        rehypePlugins={[rehypeKatex, rehypeRaw]}
         components={{
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
-              <>
+              <div className={styles.codeblock__wrapper}>
+                <div className={styles.codeblock__header}>
+                  <span className={styles.codeblock__header__circle} />
+                  <span className={styles.codeblock__header__circle} />
+                  <span className={styles.codeblock__header__circle} />
+                  <CopyToClipboard text={String(children)}>
+                    <span
+                      className={styles.codeblock__header__button}
+                      onClick={(e) => {
+                        const target = e.currentTarget;
+                        const notify = document.createElement("div");
+                        notify.innerHTML = "복사됨";
+                        notify.className =
+                          styles.codeblock__header__button__notify;
+                        target.appendChild(notify);
+                        setTimeout(() => {
+                          target.removeChild(notify);
+                        }, 1000);
+                      }}
+                    >
+                      <RiFileCopyLine size="25px" />
+                    </span>
+                  </CopyToClipboard>
+                </div>
                 <SyntaxHighlighter
                   showLineNumbers
-                  style={twilight}
+                  style={dracula}
                   language={match[1]}
                   PreTag="div"
                   {...props}
                 >
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
-              </>
+              </div>
             ) : (
               <code className={className} {...props}>
                 {children}
