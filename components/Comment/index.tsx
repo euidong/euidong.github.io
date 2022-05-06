@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./Comment.module.scss";
 
 interface Props {
@@ -6,26 +5,27 @@ interface Props {
 }
 const Comments = ({ children }: Props) => {
   return (
-    <section
-      className={styles.comment__wrapper}
-      ref={(elem) => {
-        if (!elem) {
-          return;
-        }
-        const scriptElem = document.createElement("script");
-        scriptElem.src = "https://utteranc.es/client.js";
-        scriptElem.async = true;
-        scriptElem.setAttribute("repo", "euidong/euidong.github.io");
-        scriptElem.setAttribute("issue-term", "pathname");
-        scriptElem.setAttribute("theme", "preferred-color-scheme");
-        scriptElem.setAttribute("label", "blog");
-        scriptElem.crossOrigin = "anonymous";
-        elem.replaceChildren(scriptElem);
-      }}
-    >
+    <div className={styles.comment__wrapper}>
       <h2 className={styles.comment__title}>Comments</h2>
+      <section
+        className={styles.comment}
+        ref={(elem) => {
+          if (!elem) {
+            return;
+          }
+          const scriptElem = document.createElement("script");
+          scriptElem.src = "https://utteranc.es/client.js";
+          scriptElem.async = true;
+          scriptElem.setAttribute("repo", "euidong/euidong.github.io");
+          scriptElem.setAttribute("issue-term", "pathname");
+          scriptElem.setAttribute("theme", "preferred-color-scheme");
+          scriptElem.setAttribute("label", "blog");
+          scriptElem.crossOrigin = "anonymous";
+          elem.replaceChildren(scriptElem);
+        }}
+      />
       {children}
-    </section>
+    </div>
   );
 };
 
