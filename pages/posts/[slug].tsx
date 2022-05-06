@@ -8,6 +8,7 @@ import { DEFAULT_THUMBNAIL_SOURCE } from "../../lib/constants";
 import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
 import GoogleAds from "../../components/GoogleAds";
+import Comment from "../../components/Comment";
 
 interface Props {
   post: Post;
@@ -43,9 +44,15 @@ const Post = ({ post, relatedPosts }: Props) => {
           ))}
         </ul>
         <MarkDown content={post.content} />
-        <GoogleAds type="banner" />
+        {/* <GoogleAds type="banner" /> */}
+        <Comment />
         {relatedPosts.length > 0 && (
-          <ColumnCardList title="Related Posts" posts={relatedPosts} />
+          <ColumnCardList
+            title="Related Posts"
+            posts={relatedPosts.sort((a, b) =>
+              a.title > b.title ? 1 : a.title === b.title ? 0 : -1
+            )}
+          />
         )}
       </div>
     </>
