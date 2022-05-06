@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Comment.module.scss";
 
 interface Props {
@@ -19,7 +20,7 @@ const Comments = ({ children }: Props) => {
         scriptElem.setAttribute("theme", "preferred-color-scheme");
         scriptElem.setAttribute("label", "blog");
         scriptElem.crossOrigin = "anonymous";
-        elem.appendChild(scriptElem);
+        elem.replaceChildren(scriptElem);
       }}
     >
       <h2 className={styles.comment__title}>Comments</h2>
