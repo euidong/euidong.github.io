@@ -1,0 +1,178 @@
+---
+slug: "mininet"
+title: "Mininet"
+date: "2022-05-24 12:58"
+category: "Network"
+tags: ["Emulator", "Tool"]
+thumbnailSrc: "/images/switch-with-cable.jpg"
+---
+
+### Reference
+
+- Thumbnail : Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network-cable?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- mininet : <https://github.com/mininet/mininet/wiki/Introduction-to-Mininet>
+
+mininet은 현실적인 가상 네트워크 환경을 구축해주는 `Network Emulator`, 더 정확히는 `NETOWKR Emulation Orchestration System`이다.  
+이를 통해서, 가상의 End Device(Host), 각종 Switch, Router, 그리고 이를 연결하는 Link를 단 하나의 Linux Kernel로 만들 수 있다. 여기서 그치지 않고, 각 Host에 `ssh` 접근을 수행하여 기본 Linux Kernel 동작을 수행하거나 ethernet을 이용해서 각 device로 packet을 전송하는 것과 같은 효과를 볼 수 있다. (실제 speed와 delay에 기반한 속도를 볼 수 있다.) 또한, SDN과 같은 환경에 필요한 Controller 역시 구성하는 것이 가능하다. 그렇기에 실제로 SDN Network를 Test하고 연구하는 목적으로 많이 사용되고 있다.
+
+## 장점
+
+1. Fast - 가상 네트워크의 구성이 굉장히 빠른 시간 내에 구성된다. 실제로 동작해보면, 이를 알 수 있다.
+2. Customize Topology - 간단한 네트워크에서부터 시작해서, Backborn, Datacenter, Internet 등 모든 네트워크 구성이 가능하다.
+3. Can run every programs in Linux - 간단한 Web Server에서부터 시작하여 Mornitoring Service인 Wireshark 등의 활용이 가능하다.
+4. Progammable - 각 Switch의 동작도 programming이 가능하기에 OpenFlow Protocol을 기반으로 packet forwarding 역시 customizing이 가능하다.
+5. LightWeight - Labtop에서 돌아갈 정도로 가볍다.
+6. Can share results - 각 Topology와 같은 구성은 python code로 구성되고, test code 등도 쉽게 공유가 가능하다.
+7. Easy - Mininet 실행과 구축 그리고 운영이 매우 간단한 CLI, Python code로 작성이 가능하기 때문에 매우 쉽다.
+8. OpenSource - 쉽게 커뮤니케이션이 가능하고, 누구나 해당 프로젝트에 참여가 가능하다.
+
+## 주의사항
+
+1. 만약 10Gbps 이상의 traffic을 처리하기를 원하는 경우, 부하를 적절히 분배하기 위한 구조를 실행자 측에서 구성할 필요가 있다.
+2. Mininet은 하나의 Linux Kernel을 통해 모든 Virtual Host를 제어한다. (다른 Platform, Window 등은 지원하지 않는다. VM 필요)
+3. Mininet에서는 OpenFlow Controller를 사용할 수는 있지만, 이를 직접 제어할 방법은 제공하지 않는다.
+4. 기본적으로는 Host LAN과는 분리되어 있다. (물론 `NAT`를 통해서 연결도 가능하다.)
+5. 기본적으로 Mininet에 의해 생성된 Host는 PID와 file system을 공유한다. (물론 바꿀 수는 있지만, 유의하자.)
+6. Simulator가 아니기 때문에, Virtual Time에 대한 매우 정확한 지표를 제시할 수는 없다.
+
+> Mininet 활용
+
+Mininet을 제대로 활용하기 위해서는 다음과 같은 사항을 숙지해야 한다.
+
+0. 설치
+1. Topology 생성
+2. Performance 측정
+3. OpenFlow를 이용해서 Custom Routing
+
+이제부터 위의 내용을 하나하나 수행해 볼 것이다.
+
+## 0. 설치
+
+[Mininet Repo](https://github.com/mininet/mininet)
+
+위의 링크에서 INSTALL이라는 파일에 따라서 설치를 진행해보자. 역시 제일 쉬운 것은 제작자가 직접 만들어놓은 Virtual Machine 이미지를 활용하여 실행하는 것이다.
+
+## 1. Topology 생성
+
+아래의 형태가 가장 기본적인 형태의 Topology이다. 이를 실행시키면, 기본적으로 두 개의 Host가 하나의 Switch에 각 각 연결된 형태로 구성되어진다.
+
+![one-switch-topology](/images/one-switch-topo.jpeg)
+
+```python
+from mininet.topo import Topo
+
+class SingleSwitchTopo(Topo):
+  "Single switch connected to n Hosts."
+  # build function 내부에서 topology를 구성하는 요소에 대해 정의
+  # self.__init__의 parameter가 해당 함수로 그대로 전달된다.
+  def build(self, n=2):
+    # s1이라는 이름으로 Switch 생성
+    switch = self.addSwitch('s1')
+    for h in range(n):
+      # h1, h2, ... 이라는 이름으로 Host 생성
+      host = self.addHost('h%s' % (h+1))
+      # h1, h2, ... 을 s1과 연결
+      self.addLink(host, switch)
+
+# 후에 topology를 생성할 때, 아래 이름을 통해서 지정이 가능
+topos = { 'singleSwitch': (lambda: SingleSwitchTopo())}
+```
+
+이를 파일로 생성하고, 다음과 같이 실행시키면 된다.
+
+```bash
+$ sudo mn --custom [file명.py] --topo [topology 이름],[build function parameters]
+
+# example
+$ sudo mn --custom mytopo.py --topo singleSwitch,3
+```
+
+하지만, 위와 같이 mininet command를 통해서 실행시키는 것은 자동화에는 적절하지 않을 수 있다.  
+만약, 부가적인 설정을 해주고 싶거나 실행 후에 test 및 실험하고자 하는 상황을 만들고자 한다면 추가적인 programming이 필요하다.  
+아래 코드를 추가적으로 살펴보자.
+
+```python
+from mininet.topo import Topo
+from mininet.net import Mininet
+from mininet.util import dumpNodeConnections
+from mininet.log import setLogLevel
+
+class SingleSwitchTopo(Topo):
+  "Single switch connected to n Hosts."
+  def build(self, n=2):
+    switch = self.addSwitch('s1')
+    for h in range(n):
+      host = self.addHost('h%s' % (h+1))
+      self.addLink(host, switch)
+
+def simpleTest():
+    "Create and test a simple network"
+    topo = SingleSwitchTopo(n=4)
+    # Mininet 생성
+    # 이때, Topology, Host, Switch, Controller, Link 등에 대한 Customizing이 가능하다.
+    net = Mininet(topo)
+    # mininet 실행
+    net.start()
+    print( "Host의 연결 상태를 출력" )
+    dumpNodeConnections(net.hosts)
+    print( "Netowork 연결 상태를 체크" )
+    # ping to every node with each node.
+    net.pingAll()
+    # mininet 정지
+    net.stop()
+
+if __name__ == '__main__':
+    # Tell mininet to print useful information
+    setLogLevel('info')
+    simpleTest()
+```
+
+```bash
+python [file명.py]
+```
+
+이를 통해서, Mininet를 우리가 정의한 Topology에 따라서 실행하고 테스트를 수행하는 code이다.  
+이러한 기능 뿐만 아니라 host의 성능을 제한하거나 Link 용량을 제어할 수도 있고, Switch를 제어할 수도 있고, 특정 Host에서 Command를 실행시키도록 할 수도 있다.  
+더 자세한 사항은 아래 링크를 통해서 확인해보자.
+[More Example](https://github.com/mininet/mininet/tree/master/examples)
+
+위에서 살펴본 사항은 가장 기본적인 Mininet에서 제공하는 Template에 기반하여 programming을 수행하는 것이다. 만약, 직접적으로 제어를 원하는 경우 더 하위 단계의 API를 활용하여 구현하는 것도 가능하다. [API Doc](http://api.mininet.org)
+
+### 추가 참고사항
+
+code convention이 후에 버전에서는 좀 변경되었다.
+
+- camelCase 표기가 snake_case형태로 변경되었다. example. `addHost -> add_host`.
+- `build`가 `__init__`으로 바뀌어, 나의 기준에서는 이해하기 쉬워졌다.
+
+변경되었지만, 여전히 기존 버전 표기도 지원하기 때문에 사용하는데는 문제가 없다.
+
+
+## 2. Performance 측정
+
+해당 사항은 Mininet에서 권장하는 방법이다.
+
+1. Bandwidth - `bwm-ng`, `ethstats`
+2. Latency - `ping`
+3. Queues - `tc`
+4. TCP Congestion Window statistics - `tcp_probe`
+5. CPU usage - for all: `top`, per host: `cpuacct`
+
+## 3. OpenFlow를 이용해서 Custom Routing
+
+Mininet 자체만으로도 값지지만 SDN을 구축하기 위한 OpenFlow Protocol을 이용한 Routing을 Emulating할 때에 굉장한 효과를 얻을 수 있다.  
+Mininet을 실행시킬 때에 아무 설정을 하지 않으면 기본 Ethernet switch를 사용하는 기본 Controller를 사용한다. 하지만, Open vSwitch(ovs)와 같은 OpenFlow Protocol을 지원하는 Controller를 활용할 수도 있다.  
+기본적인 Switch(대략 4096개)는 이미 지원을 하고 있다. 이를 불러와서 사용하거나 원하는 경우에는 python을 통해서 직접 구현하여도 무방하다. 심지어는 원격에 있는 controller를 사용할 수도 있다. 
+
+이렇게 Controller를 정의하고, 외부에서 해당 Controller의 동작을 정의해주면, Mininet에 의해서 정의된 Network가 의도대로 동작하는지를 계속해서 확인할 수 있다.
+
+## NutShell
+
+Mininet에서 어떻게 이렇게 빠르게 가상 Network System을 가볍게 구현할 수 있는가에 대한 열쇠는 `container`이다. 이를 통해서, 서로 완전 분리된 Host를 기본적으로 구성하는 Container이기에 이를 쉽게 구현할 수 있을 뿐만 아니라 Virtual Machine을 직접적으로 구현하지 않기 때문에 가볍고 빠를 수 있는 것이다. 또한, Virtual Link 같은 경우에는 Linux Traffic Control(`tc`)를 활용하여, Virtual Ethernet이 각 Virtual Switch와 Interface들을 통해서 전달되는 것을 제어할 수 있다. 마지막으로, Switch는 기본적인 Linux Bridge를 활요하거나 Open vSwitch를 활용하여 구성하여 가상화가 가능하다.
+
+
+## 결론
+
+Mininet은 가상 Network를 Emulating 할 수 있는 Tool이기에 실제로 SDN을 테스트하기 이전에 각종 기능을 체크하기에 용이하다.  
+또한, Network에서 핵심적인 Forwarding에 관한 기술은 다른 기술에게 맡겨서 더 안정적인 구조를 가지고 있다.  
+이에 따라 Open vSwitch를 이용해서 자유롭게 시스템을 제어할 수 있을 뿐만 아니라 ONOS와 같은 도구를 통해서 Network를 구성하는 과정을 테스트하기에 굉장히 유용하다.
