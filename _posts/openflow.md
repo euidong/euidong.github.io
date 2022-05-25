@@ -1,9 +1,9 @@
 ---
 slug: "openflow"
 title: "OpenFlow"
-date: "2022-05-25 14:27"
+date: "2022-05-25 22:23"
 category: "Network"
-tags: ["SDN", "ONF", "Virtual Network"]
+tags: ["SDN", "ONF"]
 thumbnailSrc: "/images/switch-with-cable.jpg"
 ---
 
@@ -16,7 +16,7 @@ thumbnailSrc: "/images/switch-with-cable.jpg"
 
 따라서, OpenFlow Switch는 다음과 같은 형태로 구성되어진다.
 
-[OpenFlow Switch 내부 모습 그림 삽입]
+![OpenFlow Switch](/images/openflow-switch.jpeg)
 
 ## OpenFlow Protocol
 
@@ -50,7 +50,89 @@ OpenFlow Switch 내부에서 Controller를 연결하는 Interface로 Switch의 �
 
 ### Pipeline
 
-Switch 내부에는 여러 개의 Table이 존재하는데, Packet이 Switch의 특정 Port로 들어오면, 먼저 Flow Table을 거치게 된다. Switch 내부의 여러 Flow Table 중에서 index($\ge 0$)가 작은 값부터 시작하여 Flow Table에서 일치하는 pattern의 Flow Entry를 찾게 된다(Flow Table의 하나의 열). 해당 Entry에 적힌 Instruction에 따라 action을 바로 수행하거나 Action Set에 추가한 후에 다으 Table 또는 Port를 통해서 다음 Switch로 이동하게 된다.
+Switch 내부에는 여러 개의 Table이 존재하는데, Packet이 Switch의 특정 Port로 들어오면, 먼저 Flow Table을 거치게 된다. Switch 내부의 여러 Flow Table 중에서 index($\ge 0$)가 작은 값부터 시작하여 Flow Table에서 일치하는 pattern의 Flow Entry를 찾게 된다(Flow Table의 하나의 열). 해당 Entry에 적힌 `Instruction`에 따라 `Action`을 바로 수행하거나 `Action Set`에 추가한 후에 다음 Table 또는 Port를 통해서 다음 Switch로 이동하게 된다. 이때 Port 밖으로 나가기 이전에 Action Set에 모아둔 Action을 한 번에 수행한다.  
+만약, Flow Table의 어떤 pattern과도 일치하지 않는다면, 이를 `Table Miss`라고 하고, 미리 지정해둔 miss flow entry에 따라 Action을 수행한다. 아무 설정도 하지 않았다면 default로 해당 packet을 drop한다.
+
+그렇다면, 각 Table을 구성하는 요소(entry)들이 어떻게 구성되는지를 확인해보자.
+
+> **1. Flow Entry**
+
+- Match Field : 일치하는 Packet을 찾기 위하여 Ingress Port / Egress Port / Packet Header / 다른 Table에서 생성된  Metadata 등을 사용한다.
+- Priority : 일치하는 대상이 많을 경우, 높을 수록 조회 시에 우선시 되어진다.
+- Counters : match가 수행된 횟수를 마킹한다.
+- Instructions : packet에 대해서 특정 Action을 수행시키거나 Action Set을 변경한다.
+- Timeout : 최대 처리 시간 또는 남은 시간 등을 표시한다.
+- Cookie : Controller에 의해 설정된 데이터로 대게 해쉬 / 암호화 되어진다. 이는 Controller에서 Flow 관측 및 조절 시에 사용한다.
+
+
+> **2. Group Entry**
+
+- Group Identifier : Group 식별자
+- Action Buckets : 여러 개의 action과 이에 해당하는 parameter를 담은 bucket들을 정렬 후 보관
+- Group Type : Group의 동장 방식을 선택
+  - all :  모든 bucket을 실행
+  - select : bucket을 번갈아가면서 실행하여 Load Balancing을 실행
+  - indirect : bucket 하나만 실행하며, bucket을 여러 개 두는 것을 허락하지 않는다.
+  - fast failover : 가장 먼저 켜져있다고 판단되는 port를 가진 bucket 하나만 실행
+- Counters : Group에 의해 처리된 packet의 수
+
+> **3. Meter Entry**
+
+- Meter Identifier : Meter 식별자
+- Meter Bands : packet rate와 이에 따른 packet 처리 방법을 가진 여러 meter band를 순서없이 저장. band를 선택할 때에는 측정된 rate보다 작으면서 가장 큰 rate를 가진 band를 선택한다. 각 band는 아래와 같이 구성된다.
+  - Band Type : rate를 넘긴 후의 packet 처리 방식을 선택
+    - drop : packet을 버린다.
+    - dscp remark : IP header에 drop 우선순위를 높인다.
+  - Rate : packet rate의 하한선
+  - Couter : 처리된 packet의 수
+  - Type Specific Arguments : 부가 정보
+- Counters : Meter에 의해 처리된 packet의 수
+
+---
+
+마지막으로, Instruction과 Action 그리고 Action Set의 구성을 살펴보자.
+
+> **1. Instruction**
+
+Instruction은 다음과 같은 종류가 있다. 이를 통해서 명령을 적용하거나 Table을 이동하고, ActionSet을 변경하는 것이 가능하다.
+
+1. `meter meter_id` : packet에 특정 meter를 적용
+2. `apply-actions action(s)` : packet에 해당 action(s)를 즉각적으로 수행
+3. `clear-actions` : `Action set`을 바로 비우기
+4. `write-actions action(s)` : Action Set에 해당 action(s)를 추가
+5. `write-metadata metadata/mask` : metadata를 추가
+6. `goto-table next-table-id` : 특정 table로 이동. 단, 반드시 현재 Table index보다 더 큰 index로 이동해야 한다.
+
+> **2. Action Set**
+
+pipeline이 종료 된 후에 실행되는 action이 저장되어 있다.
+
+action은 기본적으로 아래 순서대로 실행되지만, 동일한 action은 들어온대로 실행되는 것이 아닌 임의로 실행된다.
+
+1. `copy TTL inwards` : TTL을 체크하는 action을 실행
+2. `pop` : 만약, packet에 tag가 존재한다면, 모두 제거한
+3. `push MPLS` : MPLS tag(=label)을 추가
+4. `push PBB` : PBB tag를 추가
+5. `push VLAN` : VLAN tag를 추가
+6. `copy TTL outwards` : TTL을 체크하는 action을 실행
+7. `decrement TTL` : TTL을 감소시키는 action을 실행
+8. `set` : `set-field`에 해당하는 action을 실행
+9. `qos` : `qos` 관련 action을 실행
+10. `group` : 연관된 group bucket의 action을 실행
+11. `output` : `output` action으로 명시된 port로 packet을 forwarding
+
+> **3. Action**
+
+실제로 packet을 처리하는 방법에 대한 방법이다.
+
+1. `output` : OpenFlow port 중 어디로 forwarding할지를 지정
+2. `set-queue` : QoS 지원을 위해 packet을 내보낼 Switch의 queue Id를 지정
+3. `drop` : 직접 호출할 수는 없지만, output이 없거나 `clean-actions` 수행 시에 내부적으로 수행한다.
+4. `group` : group을 통해 packet을 처리하도록 group table로 packet 전달
+5. `push-tag` : MPLS / VLAN 등의 tag를 추가
+6. `pop-tag` : MPLS / VLAN 등의 tag를 삭제
+7. `set-field` : header의 가장 끝에 특정 값을 추가
+8. `change-ttl` : ttl값을 수정
 
 ## 표준화 현황
 
