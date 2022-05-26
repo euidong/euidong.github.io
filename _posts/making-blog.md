@@ -33,10 +33,11 @@ github : [euidong/euidong.github.io/dev@deprecated](https://github.com/euidong/e
 2021년도 3월에 결국 직접 제작을 하는 것을 포기하고, Tistory를 이용해서 블로그에 포스팅을 시작한다. 해당 시기부터 시작해서 몇 개의 포스팅을 작성하였다. 대략 35개 정도의 포스팅을 작성했고, 최근에 이르러서 작성의 한계를 느끼며 갈아타야겠다고 생각했다.
 
 다음은 직접 커스텀을 해야겠다고 생각했던 이유이다.
+
 1. 호환성이 떨어진다. => Markdown으로 변환도 가능하지만, Github와 완벽한 호환이 안된다.
 2. 가끔 모바일에서 문자가 깨진다. => 아마 MAC으로 작성하는 경우 문자가 깨지는 것 같다. 근데, 이를 매번 모바일로 켜서 확인하기에는 너무 번거롭다.
 3. 커스텀을 할 때 다른 Library를 맘대로 가져와서 쓸 수 있지만, pure js, jquery 기반으로만 가능하고, 유지보수가 쉽지 않다.
-4. 가끔 작성 결과가 너무 예측 불가능하다. 
+4. 가끔 작성 결과가 너무 예측 불가능하다.
 5. tag 관리가 불편하다.
 6. 기본 UI가 안이쁘다.
 
@@ -48,9 +49,10 @@ tistory: [justlog](https://justlog.tistory.com)
 
 ### 생 React
 
-처음에는 생 React를 통해서 Blog를 만들어야겠다고 생각했다. 가장 일반적으로 할 수 있는 작업이고, 다른 static page generating 기능을 수행하는 react framework를 다시 공부하는 workload를 지고 싶지 않았고, 굳이 필요하지 않은 의존성을 만들고 싶지 않아서 결국 생 React로 바로 작업을 시작한다. 
+처음에는 생 React를 통해서 Blog를 만들어야겠다고 생각했다. 가장 일반적으로 할 수 있는 작업이고, 다른 static page generating 기능을 수행하는 react framework를 다시 공부하는 workload를 지고 싶지 않았고, 굳이 필요하지 않은 의존성을 만들고 싶지 않아서 결국 생 React로 바로 작업을 시작한다.
 
 당시에는 Tistory에서 한계를 느꼈던 부분을 고치면서, Tistory에서 갖고 싶었던 장점을 가져가고자 했다.
+
 1. 호환성이 떨어지던 점은 Markdown을 이용해서 작성하고, Github viewer style(GFM, Github Flavor Markdown)을 사용하기로 한다. 따라서, 해당 블로그의 모든 글을 Github에 올려도 이미지 경로 빼고는 매우 잘 작동할 것이다. (이는 후에 이미지 호스팅 CDN을 따로 설정하면 해결됨.)
 2. Tistory에서 장점이라고 생각했던, Category로 작성글을 묶고, Tag들로 다시 한 번 더 분류한다.
 3. Posting을 보기 쉽게 정리되어있어야 한다.
@@ -64,18 +66,18 @@ tistory: [justlog](https://justlog.tistory.com)
 
 따라서, 모든 Button 부터 모든 UI를 직접 제작(여타 디자인 사용 x - material, ant 등)하고, Routing 설정하고, 작업을 모두 마무리한다.
 
-여기까지는 모든 작업이 순조롭게 진행되고, 마무리가 되었다. 하지만, SEO(검색 엔진 최적화) 작업을 진행하면서, 결국 static page가 필요함을 깨닫는다. 왜냐하면, 기존의 React Router를 사용하게 되면, https://euidong.github.io/posts/dfs1 를 찾을 수가 없다. 왜냐하면, github에서는 page를 직접 접근할 때에는 배포 branch에서 해당 파일을 찾게 되는데 해당 파일이 없으면 결국 404 Not Found를 노출하게 된다. 이를 해결하기 위해서, dummy redirect로 root로 돌려보내줄 수도 있지만, 결코 좋은 방법은 아니다. 검색엔진 최적화에도 좋지 못하다. 따라서, static file을 각 각의 url마다 생성해주는 Static Page Generating이 필요하다고 느낀다. 따라서, Gatsby와 NextJS 중에서 선택을 하기로 한다.
+여기까지는 모든 작업이 순조롭게 진행되고, 마무리가 되었다. 하지만, SEO(검색 엔진 최적화) 작업을 진행하면서, 결국 static page가 필요함을 깨닫는다. 왜냐하면, 기존의 React Router를 사용하게 되면, <https://euidong.github.io/posts/dfs1> 를 찾을 수가 없다. 왜냐하면, github에서는 page를 직접 접근할 때에는 배포 branch에서 해당 파일을 찾게 되는데 해당 파일이 없으면 결국 404 Not Found를 노출하게 된다. 이를 해결하기 위해서, dummy redirect로 root로 돌려보내줄 수도 있지만, 결코 좋은 방법은 아니다. 검색엔진 최적화에도 좋지 못하다. 따라서, static file을 각 각의 url마다 생성해주는 Static Page Generating이 필요하다고 느낀다. 따라서, Gatsby와 NextJS 중에서 선택을 하기로 한다.
 
 이제 추가된 요구사항은 다음과 같다.
 
-1. 기존 코드를 그대로 활용할 수 있어야 한다. 
+1. 기존 코드를 그대로 활용할 수 있어야 한다.
 2. Static Page Generating을 지원해야 한다.
 
 github : [euidong/euidong.github.io/dev@pure-react](https://github.com/euidong/euidong.github.io/tree/dev%40pure-react)
 
-### Gatsby
+### 다시 Gatsby
 
-다시 돌아와 Gatsby를 시도하기로 한다. 애초에 GraphQL과 React 모두 경험이 있기 때문에 쉽게 할 수 있을 거라고 생각했다. 하지만, 생각보다 GraphQL Query의 제한점이 많아서 결국 Gatsby는 포기하기로 한다. 물론 Gatsby의 확장 도구들은 유용했지만 위에서 제시한 9번을 구현하기에 한계를 느꼈다. (내 딴에는 GraphQL로 만들고 싶었는데 사실 포기하고 JSON으로 만들었으면 가능했을 듯하다.) 
+다시 돌아와 Gatsby를 시도하기로 한다. 애초에 GraphQL과 React 모두 경험이 있기 때문에 쉽게 할 수 있을 거라고 생각했다. 하지만, 생각보다 GraphQL Query의 제한점이 많아서 결국 Gatsby는 포기하기로 한다. 물론 Gatsby의 확장 도구들은 유용했지만 위에서 제시한 9번을 구현하기에 한계를 느꼈다. (내 딴에는 GraphQL로 만들고 싶었는데 사실 포기하고 JSON으로 만들었으면 가능했을 듯하다.)
 
 ### NextJS
 
@@ -99,4 +101,4 @@ github : [euidong/euidong.github.io/dev](https://github.com/euidong/euidong.gith
 - [x] Build 시에 SEO에 필요한 sitemap을 자동 생성한다.
 - [x] Theme는 Github의 color palette에 기반하여 설정하여, 친숙하다.
 - [x] 모바일을 지원한다.
-- [x] 이미지 크기를 재설정할 수 있는 command를 포함한다. 
+- [x] 이미지 크기를 재설정할 수 있는 command를 포함한다.

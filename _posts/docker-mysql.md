@@ -6,7 +6,7 @@ category: "Docker"
 tags: ["virtualEnv", "mysql"]
 thumbnailSrc: "/images/hero.png"
 ---
-# Mysql
+## Mysql
 
 Mysql is a basic Database to store countless data. It is RDMS(This think that Relation is very very very important than any other things). You can Read, Create, Update, Delete data with it faster, managable (like transaction) than FileSystem.
 It is manage by Oracle. And It can get good performance in read.
@@ -17,7 +17,7 @@ Espectially 5.7 version is stable version. So industry use this version for deve
 
 If you want get more information [click this](https://mysql.com)
 
-# Docker
+## Docker
 
 Docker is a virtualization application.
 It is usally show more performance than any other virtualization machine program.
@@ -32,11 +32,11 @@ If you want get more information [click this](https://www.docker.com/)
 ### Install
 
 Following That
-https://www.docker.com/get-started
+<https://www.docker.com/get-started>
 
-# Mysql with Docker
+## Mysql with Docker
 
-### Just Run script.
+### Just Run script
 
 ```bash
 sudo docker run \ # run container
@@ -80,6 +80,6 @@ services:
 docker-compose up --build
 ```
 
-more information => https://docs.docker.com/get-started/
+more information => <https://docs.docker.com/get-started/>
 
-more infomation => https://docs.docker.com/compose/
+more infomation => <https://docs.docker.com/compose/>

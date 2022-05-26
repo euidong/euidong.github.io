@@ -6,9 +6,9 @@ category: "Web"
 tags: ["Gatsby", "MDX", "Blog"]
 thumbnailSrc: "/images/gatsby.png"
 ---
-# Gatsby
+## Gatsby
 
-Link : https://www.gatsbyjs.com
+Link : <https://www.gatsbyjs.com>
 
 > Gatsby is a React-based open-source framework for creating websites and apps.
 > It's great whether you're building a portfolio site or blog,
@@ -19,7 +19,7 @@ That is gatsby's advantage. they can make high performance feature more faster.
 
 ### Why?
 
-##### First. Bigger and Faster
+#### First. Bigger and Faster
 
 It uses React And GraphQL feature.
 So, it can make better performance than other static web site platform. ex) jk ...
@@ -28,30 +28,30 @@ So, it can make better performance than other static web site platform. ex) jk .
 
 - It can do many thing in framework.
 
-https://www.gatsbyjs.com/docs/conceptual/
+<https://www.gatsbyjs.com/docs/conceptual/>
 
 ##### Third. Showcase
 
 - gatsby Showcase
 
-https://themejam.gatsbyjs.org/showcase
+<https://themejam.gatsbyjs.org/showcase>
 
 ### This Blog's feature
 
 - novela Theme
 
-https://github.com/narative/gatsby-theme-novela
+<https://github.com/narative/gatsby-theme-novela>
 
 ### SetUp
 
-=> github : https://github.com/euidong/euidong.github.io
+=> github : <https://github.com/euidong/euidong.github.io>
 
-##### 1. Install
+#### 1. Install
 
 ```shell
-$ mkdir blog
-$ yarn add react react-dom gatsby @narative/gatsby-theme-novela
-$ yarn install
+mkdir blog
+yarn add react react-dom gatsby @narative/gatsby-theme-novela
+yarn install
 ```
 
 ##### 2. set script
@@ -161,7 +161,7 @@ export default function Logo({ fill }) {
 ##### 5. testing
 
 ```shell
-$ yarn dev  # testing
+yarn dev  # testing
 ```
 
 ##### 6. deployment
@@ -169,7 +169,7 @@ $ yarn dev  # testing
 Select static web site deploy platform.(ex. gh-page / aws s3 / heroku ...)
 
 ```shell
-$ yarn deploy # deploying to gh-page
+yarn deploy # deploying to gh-page
 ```
 
 If you want deploy instantly when push to branch. You can use github action. (It is simple CI/CD)

@@ -49,4 +49,3 @@ for num in range(2, int(N ** 0.5) +1):
 
 primes = [i for i in range(2, n) if is_primes[i] == True]
 ```
-

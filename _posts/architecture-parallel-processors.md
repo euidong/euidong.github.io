@@ -9,7 +9,7 @@ thumbnailSrc: "/images/default.jpg"
 
 ## **Reference**
 
-![<img src="/images/default.jpg" width="190" />](/images/default.jpg)
+![default](/images/default.jpg)
 
 David A. Patterson, John L. Hennessy, Computer Organization and Design
 
@@ -22,7 +22,7 @@ David A. Patterson, John L. Hennessy, Computer Organization and Design
 - 하나의 장치를 동작시키는 방식보다 적은 에너지로 같은 작업을 수행할 수 있다. (동시에 실행시키기 때문에 더 짧은 시간 사용할 수 있다.)
 - n개의 processor에서 하나가 실패하여도 n-1개는 정상 작동하기 때문에 전체 시스템은 문제 없이 동작한다. (Redundant, 추가자원을 통해서 가용성을 향상시킴)
 
-이에 따라 우리는 multi-processor를 사용한다. 
+이에 따라 우리는 multi-processor를 사용한다.
 이는 multi-processor가 어떻게 존재하느냐에 따라서 다음과 같은 형태로 나눈다.
 
 1. **Multicore Microprocessor** : 하나의 IC(집적 회로) 칩에 여러 개의 processor(core)가 존재한다.
@@ -31,7 +31,7 @@ David A. Patterson, John L. Hennessy, Computer Organization and Design
 
 따라서, 개인 PC에서는 Multiple Multicore Microprocessor를 지원하고, 있는 상황이고, Datacenter와 같은 환경에서는 이러한 Machine들이 여러 개 존재하는 Cluster System이라고 생각하면 되겠다.
 
-또한, 이용하는 방식에 따라 크게 두 가지로 나눌 수 있다. 
+또한, 이용하는 방식에 따라 크게 두 가지로 나눌 수 있다.
 
 1. Task Level Parallelism(=Process Level Parallelism) : 동시에 독립된 여러 program을 실행시키는 방식
 2. Parallel Processing Program : 동시에 여러 개의 processor를 이용하여 하나의 program을 실행시키는 방식
@@ -57,15 +57,15 @@ processor들로 들어오는 data의 양을 의미하는 **Data Stream**과 inst
 1. **SISD**(Single Instruction Stream, Single Data Stream) : 대게 single processor일 경우 이와 같은 형태를 채택한다.
 2. **MIMD**(Multiple Instrunction Stream, Multiple Data Stream) : Multiple Processor System에서는 당연히 이와 같은 시스템을 채택한다.
 3. **MISD**(Multiple Instrunction Stream, Single Data Stream) : 잘 사용하지 않는 형태이다. 대게는 Data의 처리가 더 많이 발생하기 때문이다.
-4. **SIMD**(Single Instruction Stream, Multiple Data Stream) : 하나의 Instruction을 이용하여 복합적인 여러 개의 데이터를 한 번에 처리하는 vector 연산 등을 빠르게 처리할 수 있다.   
+4. **SIMD**(Single Instruction Stream, Multiple Data Stream) : 하나의 Instruction을 이용하여 복합적인 여러 개의 데이터를 한 번에 처리하는 vector 연산 등을 빠르게 처리할 수 있다.
    1. vector 연산 하나가 for loop 하나를 의미할 수 있다. 이는 processor part의 각 pipeline 단계에서 fetch와 decode에 의한 비용을 크게 감소시킬 수 있다.
    2. 하나의 vector 연산은 내부에서 각각이 독립적으로 수행되기 때문에, data hazard를 check하는 비용이 발생하지 않는다. 👉 따라서, vector의 각 요소를 모두 검사하는 것이 아닌 vector 외부 간의 data hazard 유무만 확인하면 된다.
    3. Main Memory에서 데이터를 불러올 경우에도 각 요소를 불러오는 것이 아닌 한 번에 가져올 수 있기 때문에 매우 빠르다.
-   4. Loop를 표현이 vector 연산으로 대체되기 때문에, Loop Branch가 줄어든다.   
+   4. Loop를 표현이 vector 연산으로 대체되기 때문에, Loop Branch가 줄어든다.
 
 ## Hardware Multithreading
 
-programmer의 입장에서 MIMD는 hardware multithreading처럼 동작한다고 생각하게 한다. 이는 processor의 사용성을 최대화하기 위해서, 특정 thread가 stall 되었을 때, 다른 thread를 수행하도록 하는 방식이다. 즉, 하나의 processor에서 여러 개의 thread를 실행시킨다는 것이다. 그러기 위해 사실상 여러 processor가 존재하는 multiprocessor 환경에서 서로간 실행 환경을 서로 공유해야 한다. 이를 실현하려면, 각 thread의 독립된 상태를 복사할 수 있어야 한다. 즉, 각 각의 register file과 PC가 존재해야 한다. 이들 간의 Memory 공유 같은 경우는 이전에 보았던 Virtual Memory 정보를 공유하여 수행하게 된다. 그리고 무엇보다 중요한 것은 이 실행하는 thread를 바꾸는 시간적 비용이 작아야 한다. 이를 위해서, process가 아닌 thread를 바꾸는 것이다. process를 바꾸는 것보다는 비용이 훨씬 적기 때문이다. 
+programmer의 입장에서 MIMD는 hardware multithreading처럼 동작한다고 생각하게 한다. 이는 processor의 사용성을 최대화하기 위해서, 특정 thread가 stall 되었을 때, 다른 thread를 수행하도록 하는 방식이다. 즉, 하나의 processor에서 여러 개의 thread를 실행시킨다는 것이다. 그러기 위해 사실상 여러 processor가 존재하는 multiprocessor 환경에서 서로간 실행 환경을 서로 공유해야 한다. 이를 실현하려면, 각 thread의 독립된 상태를 복사할 수 있어야 한다. 즉, 각 각의 register file과 PC가 존재해야 한다. 이들 간의 Memory 공유 같은 경우는 이전에 보았던 Virtual Memory 정보를 공유하여 수행하게 된다. 그리고 무엇보다 중요한 것은 이 실행하는 thread를 바꾸는 시간적 비용이 작아야 한다. 이를 위해서, process가 아닌 thread를 바꾸는 것이다. process를 바꾸는 것보다는 비용이 훨씬 적기 때문이다.
 
 thread를 변경 시에 어떤 방법을 택할 것인가 역시 중요한데, 아래와 같은 방법론이 존재한다.
 

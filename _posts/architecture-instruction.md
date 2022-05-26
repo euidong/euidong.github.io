@@ -9,7 +9,7 @@ thumbnailSrc: "/images/default.jpg"
 
 ## **Reference**
 
-![<img src="/images/default.jpg" width="190" />](/images/default.jpg)
+![default](/images/default.jpg)
 
 David A. Patterson, John L. Hennessy, Computer Organization and Design
 
@@ -25,27 +25,27 @@ David A. Patterson, John L. Hennessy, Computer Organization and Design
 
 ## **Assembly Instruction의 구성요소**
 
-기본적으로 MIPS는 32bit(=4Bytes) 시스템을 사용한다. 따라서, 하나의 Instruction은 4 Bytes로 표현된다. 이를 하나의 가장 단위라고 여겨서 word라고도 부른다. 따라서, 64bit(=8Bytes) CPU에서는 1 word가 8 Bytes가 될 수도 있다. 결국 모든 Instruction이 0과 1로 이루어진다. 하지만, 이는 너무 읽기 어렵기 때문에 우선 Assembly(기계어보다는 사람의 언어에 가깝지만 아주 원초적인 형태의 언어) Instruction을 알아볼 것이다. 이를 기계어로 바꾸는 것은 해당 포스팅의 밑에서 다룬다. 
+기본적으로 MIPS는 32bit(=4Bytes) 시스템을 사용한다. 따라서, 하나의 Instruction은 4 Bytes로 표현된다. 이를 하나의 가장 단위라고 여겨서 word라고도 부른다. 따라서, 64bit(=8Bytes) CPU에서는 1 word가 8 Bytes가 될 수도 있다. 결국 모든 Instruction이 0과 1로 이루어진다. 하지만, 이는 너무 읽기 어렵기 때문에 우선 Assembly(기계어보다는 사람의 언어에 가깝지만 아주 원초적인 형태의 언어) Instruction을 알아볼 것이다. 이를 기계어로 바꾸는 것은 해당 포스팅의 밑에서 다룬다.
 
-#### **1\. Operand**
+### **1\. Operand**
 
 연산을 위해서 필요한 것은 연산자와 피연산자이다. 보통의 programming 언어에서는 이를 변수라고 한다.
 
 MIPS에서는 총 두 가지의 변수 type이 존재한다.
 
-1.  **Constant**  
+1. **Constant**  
     하나의 상수로써 동작하는 변수이다. 주어진 범위 내에서 자유롭게 상수로 사용가능하다.
-2.  **Register No**  
+2. **Register No**  
     하드웨어 상의 register들과 programming에서의 변수와 차이점이 있다면, 바로 갯수의 제한이 있다는 것이다. 보통은 갯수를 32개로 제한한다. 그렇게 하는 것이 효율적이라고 찾아냈다고 한다. 더 많이 써도 Clock Cycle이 더 소모될 뿐이고, 적다면 표현력이 부족해지 수도 있다. 또한, 하나의 register의 크기 또한 우리는 대게 32bit(1 word)로 제한한다. 이를 표현할 때에는 보통 \$ 표시를 활용하고, register는 특정 목적을 위해서 지정되어 있다. (밑에 표를 참고)  
     Instruction에서는 Register를 가르키기 위해서 5bit를 사용한다. $2^5$이면 모든 Register를 구분할 수 있기 때문이다.
-3.  **Memory Address**  
+3. **Memory Address**  
     해당 공간에는 기본적으로 register에 담기진 못한 모든 정보가 저장된다. 왜냐하면, register 가 하나의 변수를 표현할 수 있는데 만약, 변수가 32개를 넘어간다면, 이를 처리하는 것이 매우 버거워진다. 따라서, 이를 임시로 저장해두어야 한다. 따라서, 이를 memory에 잠깐 저장하는데 이를 **spilling register**라고 부른다.  
     좀 더 복잡한 데이터 구조를 가지는 경우에도 이를 모두 register에 담는 것은 불가능하다. 따라서, 우리는 Memory라는 것을 활용한다. Memory는 8bit 단위로 한 칸으로 나누어 4개의 칸을 합친 것을 하나의 단위로 봅니다. (왜냐하면 이것이 4x8bit = 32bit = 1word가 되기 때문이다.) 따라서, 우리가 특정 값에 접근할 때에는 4의 배수로 접근하는 것이 올바른 접근이다. 또한, 하나의 데이터가 4개의 칸으로 쪼개지기 때문에 저장 방법에 차이가 있을 수 있다. 어떤 사람들은 앞 자리부터 차곡차곡 넣을 수도 있지만, 누구는 역순으로도 넣을 수 있기 때문에 이를 유의해야 한다. MIPS에서는 앞에서붙터 차곡차곡 넣는 Big Endian 방식을 사용한다. (즉, 4개 중 가장 낮은 주소값에 높은 값을 의미하는 값(MSB)이 쓰인다.)  
     하나의 Memory address를 가르키기 위해서는 32bit가 필요하다. 이렇게 하여 $2^{32}$ = 4GB 이하까지의 Memory는 가르킬 수 있는 것이다. Instruction 자체가 32bit인데, 이를 Instruction에 바로 넣을 수는 없기 때문에 특정 Memory address를 가르키기 위해서 별도의 register에 해당 Memory의 address를 저장해두고 해당 지점부터 offset을 constant로 전달하는 식으로 표기한다.(여기서 4의 배수로 memory가 표현되므로, 2bit를 뺀다고 해도 30bit로 여전히 많다.)
 
 다음은 MIPS의 Register와 Memory를 나타낸 것이다.
 
-![<img src="/images/registers.png" width="190" />](/images/registers.png)
+![registers](/images/registers.png)
 
 상식적으로 알아두고 갈 부분은 reigster는 직접적으로 연산이 이루어지는 곳이기 때문에, register에 접근하는 비용이 memory에 접근하는 부분보다 확연하게 비용이 싸다.(시간이 짧게 걸린다.) 따라서, 이를 효율적으로 다루어주는 것이 효율 향상에 도움이 된다.
 
@@ -53,7 +53,7 @@ MIPS에서는 총 두 가지의 변수 type이 존재한다.
 
 모든 computer는 기본적인 연산을 수행할 수 있어야 한다. MIPS에서는 다음과 같은 표기법을 사용한다.
 
-```
+```plaintext
 1. <명령어(operation)> <연산자(operand) 1> <연산자(operand) 2> <연산자(operand) 3>
 
 2. <명령어(operation)> <연산자(operand) 1> <연산자(operand) 2>
@@ -103,7 +103,7 @@ register1과 2가 서로 동일하다면, 해당 instruction offset으로 이동
 
 > **기타 주요 명령어**
 
-![<img src="/images/instruction.png" width="190" />](/images/instruction.png)
+![instruction](/images/instruction.png)
 
 \* PC : Program Counter의 줄임말로 현재 실행하고 있는 Program에서 어느 위치의 Instruction을 실행시키고 있는지를 나타낸다. 이를 이용해서 CPU는 다음 Instruction을 불러온다.
 
@@ -111,20 +111,20 @@ register1과 2가 서로 동일하다면, 해당 instruction offset으로 이동
 
 ---
 
-## **Instruction를 이용한 Programming 언어 기본 요소 구현**
+## **Instruction를 이용한 Programming 언어 기본 요소 구현**
 
-#### **1\. 조건문 (if / else)**
+### **1\. 조건문 (if / else)**
 
-```
+```pseudo
 if (i == j) 
-	f = g + h;
+ f = g + h;
 else
-	f = g - h;
+ f = g - h;
 ```
 
-다음과 같은 c의 조건문 코드를 아래와 같은 Instruction들로 변환이 가능하다. 
+다음과 같은 c의 조건문 코드를 아래와 같은 Instruction들로 변환이 가능하다.
 
-```
+```pseudo
 bne $s3, $s4, Else # go to Else if i != j
 add $s0, $s1, $s2 # f = g + h (skipped if i != j)
 j Exit # go to Exit
@@ -139,16 +139,16 @@ Exit:
 
 Switch/Case 문 같은 경우는 if/else로 변환해서 나타내기도 하고, 아니면 Switching 위치를 적어놓은 Table을 만들어서 해당 위치로 바로 이동하는 식으로 구현하기도 한다.
 
-#### **2\. 반복문 (while)**
+### **2\. 반복문 (while)**
 
-```
+```pseudo
 while(save[i] == k)
-	i += 1;
+ i += 1;
 ```
 
 다음과 같은 c의 반복문을 아래와 같은 Instruction들로 변환이 가능하다.
 
-```
+```pseudo
 # $t1 : save[i] address pointer
 # $t0 : save[i] value
 # $s3 : i
@@ -168,7 +168,7 @@ j Loop # go to Loop
 Exit:
 ```
 
-#### **3\. 함수 (function)**
+### **3\. 함수 (function)**
 
 procedure는 대게 function(함수)이라고도 불린다. 함수를 우리는 하나의 예시를 통해서 설명할 수 있다.
 
@@ -176,18 +176,18 @@ procedure를 비밀 작전을 맡고 떠난 spy라고 하자. 작전은 자원�
 
 이러한 과정이 똑같이 함수의 호출마다 발생한다. 아래는 이를 다소 축약한 형태입니다.
 
-1.  parameter를 procedure가 접근할 수 있는 곳에 위치시킵니다.
-2.  control을 procedure(callee)로 옮깁니다.
-3.  procedure는 해당하는 자원(parameter)을 습득합니다.
-4.  목표한 바를 수행합니다.
-5.  결과값을 자신을 호출한 program(caller)이 접근할 수 있는 곳에 위치시킵니다.
-6.  control을 호출한 곳(caller)으로 넘깁니다.
+1. parameter를 procedure가 접근할 수 있는 곳에 위치시킵니다.
+2. control을 procedure(callee)로 옮깁니다.
+3. procedure는 해당하는 자원(parameter)을 습득합니다.
+4. 목표한 바를 수행합니다.
+5. 결과값을 자신을 호출한 program(caller)이 접근할 수 있는 곳에 위치시킵니다.
+6. control을 호출한 곳(caller)으로 넘깁니다.
 
 \* 여기서 control이 이동했다는 것은 PC값이 PC+4가 아닌 함수의 주소로 이동했다는 것을 의미합니다.
 
 이를 구현하기 위해서 우리는 다음과 같은 별도의 register를 사용합니다.
 
-```
+```pseudo
 $a0 - $a3 : 4 argument(=parameter) registers.
 $v0 - $v1 : 2 return value registers.
 $ra : 1 return address register. 원래 위치를 기억하기 위한 register.
@@ -197,18 +197,18 @@ $ra : 1 return address register. 원래 위치를 기억하기 위한 register.
 
 만약, 더 많은 변수를 return value, argument로 쓰고 싶다면 우리는 이를 memory로 옮기는 과정을 수행해야 한다. 이때, computer 에서는 stack이라는 구조를 사용한다. (실제로 구현하는 것은 아니고, 마치 stack 처럼 사용하기에 이렇게 부른다.) Stack pointer라는 register(\$sp)를 이용하여 현재 사용하고자 하는 data가 stack의 어디를 가르키고 있는지를 저장한다.
 
-> **실제 예제**   
+> **실제 예제**
 
-```
+```c
 int leaf_example (int g, int h, int i, int j) {
-	int f;
-	
-	f = (g + h) - (i + j);
-	return f;
+ int f;
+ 
+ f = (g + h) - (i + j);
+ return f;
 }
 ```
 
-```
+```c
 leaf_example:
 addi $sp, $sp, –12 # adjust stack to make room for 3 items
 sw $t1, 8($sp) # save register $t1 for use afterwards
@@ -233,20 +233,20 @@ jr $ra # jump back to calling routine
 
 하지만, 더 고민해야 하는 경우가 있다. 바로 함수 안에서 또 함수를 호출하는 경우이다.
 
-> **Nested Function call(Function 내부에서 Function의 호출)**   
+> **Nested Function call(Function 내부에서 Function의 호출)**
 
 procedure가 또 procedure를 호출하는 경우에는 어떻게 해야할까? 이 때에는 간단한게 stack의 retuern address를 저장해놓고, \$ra를 덮어씌우는 식으로 작동한다. 아래는 recursive call을 수행한 경우를 담은 내용이다.
 
-```
+```c
 int fact (int n) {
-	if (n < 1) 
-		return 1;
-	else
-		return n * fact(n-1); 
+ if (n < 1) 
+  return 1;
+ else
+  return n * fact(n-1); 
 }
 ```
 
-```
+```pseudo
 fact:
 addi  $sp, $sp, –8    # adjust stack for 2 items
 sw    $ra, 4($sp)     # save the return address
@@ -277,13 +277,13 @@ jr   $ra              # return to the caller
 
 ## **여러 변수 형태 표현법**
 
-#### **Signed Numbers**
+### **Signed Numbers**
 
 일반적으로 unsigned number라고 하면, 0과 양수를 포함하는 범위이다. 하지만, signed number는 음수까지 포함한다. 그렇다면, 컴퓨터에서는 음수를 어떻게 표현할 수 있을까?
 
 사람의 머리로 가장 쉽게 생각할 수 있는 방법은 부호를 나타내기 위한 별도의 표시 bit를 하나 넣어주면 될 거 같다는 생각을 할 것이다. 이것이 정확하다. 바로 오른쪽 끝에 있는 bit가 1이면 음수 0이면 양수로 보는 방식이다. 1이 맨 앞에 올 때는 0이 원래 1의 역할을 대신한다. 그리고 0이 앞에 올 때는 원래 계산하던대로 수행하면 된다. 그러면 놀랍게도 우리가 생각하는 것처럼 덧셈 뺄셈 연산이 동작한다. 그리고 오른쪽 끝에 있는 수를 우리는 MST 라고 하고, 이를 sign bit라고 부른다.
 
-```
+```pseudo
 0000 0000 0000 0000 0000 0000 0000 0000(two) = 0(ten) 
 0000 0000 0000 0000 0000 0000 0000 0001(two) = 1(ten)
 0000 0000 0000 0000 0000 0000 0000 0010(two) = 2(ten)
@@ -300,10 +300,9 @@ jr   $ra              # return to the caller
 1111 1111 1111 1111 1111 1111 1111 1111(two) = –1(ten) 
 ```
 
-> **Proof  
-> **
+> **Proof**
 
-```
+```pseudo
 # 덧셈
   1111 1111 1111 1110 (-2)
 +                   1 (+1)
@@ -336,13 +335,13 @@ jr   $ra              # return to the caller
 
 연산을 하다보면, 당연히 너무 큰 양수를 더하게 되면 overflow가 발생할 수 있는데 이 경우 운영체제마다 compiler마다 처리 방식이 상이하다. C에서는 overflow가 되면 그대로 값을 내놓기 때문에, 대게 굉장히 큰 음수가 나오게 된다.
 
-#### **Character**
+### **Character**
 
 computer에서 수가 아닌 값을 어떻게 표현할 수 있는가는 ASCII code 표가 답해줄 수 있을 것이다. 하나의 문자를 우리는 character라고 부르고, ASCII code 표와 같은 방식을 통해서 수를 글자로 변환하여 표현한다. 또한, 하나의 문자가 아닌 단어, 문장에 이르게 되면 이를 우리는 string이라고 하며, 이는 이 데이터의 길이를 표기하기 위해서 다음 3가지 중 하나를 선택하게 된다.
 
-1.  string의 가장 앞에 길이를 나타내는 값을 넣어준다.
-2.  string을 구조체로 만들어서 길이를 나타내는 값을 따로 넣는다.
-3.  string의 가장 끝 문자를 구분자로 채워서 구분할 수 있도록 한다. ⇒ C에서는 \\0 을 사용하여 구분한다.
+1. string의 가장 앞에 길이를 나타내는 값을 넣어준다.
+2. string을 구조체로 만들어서 길이를 나타내는 값을 따로 넣는다.
+3. string의 가장 끝 문자를 구분자로 채워서 구분할 수 있도록 한다. ⇒ C에서는 \\0 을 사용하여 구분한다.
 
 ---
 
@@ -356,30 +355,30 @@ computer에서 수가 아닌 값을 어떻게 표현할 수 있는가는 ASCII c
 
 > **R-Type**
 
-![<img src="/images/r-type.png" width="190" />](/images/r-type.png)
+![r-type](/images/r-type.png)
 
--   op : opcode라고 불리며, instruction의 동작이 무엇인지를 정의한다. (ex. add, jump, ...)
--   rs : first source register
--   rt : second source register
--   rd : destination register. 연산의 결과값이 저장되는 위치를 의미한다.
--   shamt : shift amount라는 의미로 shift 연산을 사용할 때 이용된다.
--   funct : op field에서 구체적인 동작을 정의할 때 사용한다.
+- op : opcode라고 불리며, instruction의 동작이 무엇인지를 정의한다. (ex. add, jump, ...)
+- rs : first source register
+- rt : second source register
+- rd : destination register. 연산의 결과값이 저장되는 위치를 의미한다.
+- shamt : shift amount라는 의미로 shift 연산을 사용할 때 이용된다.
+- funct : op field에서 구체적인 동작을 정의할 때 사용한다.
 
 > **I-Type**
 
-![<img src="/images/i-type.png" width="190" />](/images/i-type.png)
+![i-type](/images/i-type.png)
 
--   op : opcode라고 불리며, instruction의 동작이 무엇인지를 정의한다. (ex. addi, jump, ...)
--   rs : first source register
--   rt : second source register
--   constraint or address : 긴 값이 필요한 연산에서는 다음과 같은 형태로 표현한다.
+- op : opcode라고 불리며, instruction의 동작이 무엇인지를 정의한다. (ex. addi, jump, ...)
+- rs : first source register
+- rt : second source register
+- constraint or address : 긴 값이 필요한 연산에서는 다음과 같은 형태로 표현한다.
 
 ## **Addressing**
 
 MIPS는 여러가지 instruction을 가지고 있기 때문에, 주소를 targeting하는 방식도 여러가지이다. 또한, 따른 instruction set architecture에서도 다양한 방법을 통해서 memory의 주소를 가르킨다.
 
-1.  Immediate addressing : 상수를 통해 직접 address를 지정하는 방식이다.
-2.  Register addressing : register로 address를 지정하는 방식이다.
-3.  Base addressing : 상수에 특정 register값을 더해서 구하는 방식이다.(MIPS → Load Word, Save Word)
-4.  PC-relative addressing : PC 값에 상수 값을 더해서 구하는 방식이다. (MIPS → Branch)
-5.  Psedodirect addressing : PC의 맨앞 내자리를 가져와서 쓰는 방식이다. (MIPS → Jump)
+1. Immediate addressing : 상수를 통해 직접 address를 지정하는 방식이다.
+2. Register addressing : register로 address를 지정하는 방식이다.
+3. Base addressing : 상수에 특정 register값을 더해서 구하는 방식이다.(MIPS → Load Word, Save Word)
+4. PC-relative addressing : PC 값에 상수 값을 더해서 구하는 방식이다. (MIPS → Branch)
+5. Psedodirect addressing : PC의 맨앞 내자리를 가져와서 쓰는 방식이다. (MIPS → Jump)

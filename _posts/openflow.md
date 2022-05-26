@@ -12,9 +12,6 @@ thumbnailSrc: "/images/flow.jpg"
 - [Openflow specification](https://opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.3.1.pdf), ONF, 2012
 - Thumbnail: Photo by [Maksym Tymchyk 🇺🇦](https://unsplash.com/@maksym_tymchyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/flow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-
-
-
 이전 Posting인 SDN의 본격적인 시작이 OpenFlow라고 보아도 무방하다. OpenFlow는 2007년 Stanford 대학에서 개발이 시작되었고, 지금도 de facto standard(사실상의 표준)으로 받아들여지고 있는 Protocol이다. 해당 Protocol의 핵심은 기존 Switch/Router를 data plane(데이터 평면)과 control plane(제어 평면)으로 나누고, 제어 평면을 OpenFlow Protocol에 따르는 Controler로 대체하면서, OpenFlow Protocol을 따르는 Switch는 data plane만을 포함하여, 둘 간의 통신을 통해서 제어 평면을 구성하자는 것이다. 여기서 데이터 평면은 실제로 interface로 packet이 들어오고, 내보내는 역할을 하는 계층이라고 보면 되고, 제어 평면은 packet에 어떤 동작을 수행시킬지 그리고 어느 interface로 내보낼지를 결정하는 역할을 하는 계층이라고 보면 된다. 이러한 구성을 통해서, 결국 SDN을 구축할 수 있는 토대를 제공하게 된 것이다.
 
 따라서, OpenFlow Switch는 다음과 같은 형태로 구성되어진다.
@@ -66,7 +63,6 @@ Switch 내부에는 여러 개의 Table이 존재하는데, Packet이 Switch의 
 - Instructions : packet에 대해서 특정 Action을 수행시키거나 Action Set을 변경한다.
 - Timeout : 최대 처리 시간 또는 남은 시간 등을 표시한다.
 - Cookie : Controller에 의해 설정된 데이터로 대게 해쉬 / 암호화 되어진다. 이는 Controller에서 Flow 관측 및 조절 시에 사용한다.
-
 
 > **2. Group Entry**
 

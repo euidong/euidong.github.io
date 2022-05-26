@@ -15,10 +15,11 @@ thumbnailSrc: "/images/default.jpg"
 
 만약, 이를 삼진수 이상으로 표현할 수 있다면, 더 획기전 연산이 가능하겠지만, 비용적인 측면과 물리적인 측면에서 아직은 한계가 있다. (양자 컴퓨터 역시 이와 유사한 원리이다.)
 
-해당 분야에서는 0->1로 바뀌는 것을 active(활성화)시켰다고 한다.   
-또한, 0인 상태를 deasserted signal, 1인 상태를 asserted signal이라고 한다.   
+해당 분야에서는 0->1로 바뀌는 것을 active(활성화)시켰다고 한다.
+또한, 0인 상태를 deasserted signal, 1인 상태를 asserted signal이라고 한다.
 
 ### Truth Table(진리표)
+
 이진수로 표현되는 값의 input과 이를 통한 output을 나타내기 위해서 우리는 진리표를 활요한다. 여기서는 A,B가 input, C가 output이 된다. C는 A와 B를 OR 연산한 결과이다.
 
 | A    | B    | C    |
@@ -46,7 +47,7 @@ thumbnailSrc: "/images/default.jpg"
 
 각 Gate는 다음과 같은 연산을 출력한다.
 
-**1. AND**   
+**1. AND**
    2 inputs / 1 output
    | A    | B    | C    |
    | :--- | :--- | :--- |
@@ -60,7 +61,7 @@ $0 \cdot0 = 0 \\
 1 \cdot0 = 0 \\
 1 \cdot1 = 1$
 
-**2. OR**    
+**2. OR**
    2 inputs / 1 output
    | A    | B    | C    |
    | :--- | :--- | :--- |
@@ -74,7 +75,7 @@ $0 + 0 = 0 \\
 1 + 0 = 1 \\
 1 + 1 = 1$
 
-**3. NOR**   
+**3. NOR**
    2 inputs / 1 output
    | A    | B    | C    |
    | :--- | :--- | :--- |
@@ -88,7 +89,7 @@ $\overline{(0 + 0)} = 1 \\
 \overline{(1 + 0)} = 0 \\
 \overline{(1 + 1)} = 0$
 
-**4. NAND**   
+**4. NAND**
    2 inputs / 1 output
    | A    | B    | C    |
    | :--- | :--- | :--- |
@@ -102,7 +103,7 @@ $\overline{(0 \cdot0)} = 1 \\
 \overline{(1 \cdot0)} = 1 \\
 \overline{(1 \cdot1)} = 0$
 
-**5. Inversion(=NOT)**   
+**5. Inversion(=NOT)**
    1 inputs / 1 output
    | A    | C    |
    | :--- | :--- |
@@ -116,7 +117,7 @@ $\overline{1} = 0 \\
 
 ![NAND complete](/images/complete-1.png)
 
-그리고, {NOR}만 가지고도 똑같이 표현가능하다. 
+그리고, {NOR}만 가지고도 똑같이 표현가능하다.
 
 ![NOR complete](/images/complete-2.png)
 
@@ -155,13 +156,13 @@ n bit로 표현할 수 있는 $2^{n}$개의 값을 회선을 통해서 표현하
 ---
 
 ### Multiplexor(=Selector)
+
 Control에 의해서 선택되어진 Input을 Output으로 내보낸다. 이를 위해서 Input 여러 개와 이 중에 무엇을 선택할지를 의미하는 Selector(=Control) Value을 입력한다.
 형태는 input의 갯수만큼의 AND Gate와 Output Gate, 그리고 Decoder로 이루어진다.
 
 1. Decoder를 통해서 Signal Bit를 나눈다.
 2. 각 Input의 크기만큼 Decoder의 각 Input의 크기를 확장하여 AND 연산을 취한다.
 3. 나온 모든 결과를 OR로 연산한다.
-
 
 | Input1 | Input2 | Signal | Output |
 | :----- | :----- | :----- | :----- |
@@ -174,7 +175,7 @@ Control에 의해서 선택되어진 Input을 Output으로 내보낸다. 이를 
 
 ### Clock
 
-Clock이란 고정된 Cycle time을 주기로 하여 발생하는 신호를 의미한다. 여기서 고정된 Cycle Time은 Clock이 높은 시점과 낮은 시점으로 구분할 수 있다. 우리의 모든 연산은 Clock이 감소하거나 증가하는 그 시점에 동작한다. 이를 `Edge Triggered Clocking`이라고 부른다. 따라서, 우리는 정확히 상태값이 변하는 `edge`에서를 active 상태라고 부르는데 이를 오르는 `edge`로 할지 내려가는 `edge`로 할지는 설계자의 몫이다. 
+Clock이란 고정된 Cycle time을 주기로 하여 발생하는 신호를 의미한다. 여기서 고정된 Cycle Time은 Clock이 높은 시점과 낮은 시점으로 구분할 수 있다. 우리의 모든 연산은 Clock이 감소하거나 증가하는 그 시점에 동작한다. 이를 `Edge Triggered Clocking`이라고 부른다. 따라서, 우리는 정확히 상태값이 변하는 `edge`에서를 active 상태라고 부르는데 이를 오르는 `edge`로 할지 내려가는 `edge`로 할지는 설계자의 몫이다.
 
 하나의 Clock이 의미하는 것은 특정 상태에서 연산이 이루어져서 다음 단계로 넘어간다는 의미이다. 따라서, Clock Period가 짧을 수록, 다음 상태로 빠르게 넘어갈 수 있다. 하지만, 이를 무한정으로 올리는 것은 불가능하며, 열이 너무 증가하여 회로 전체에 악영향을 줄 수도 있다.
 
@@ -185,14 +186,15 @@ Clock이란 고정된 Cycle time을 주기로 하여 발생하는 신호를 의�
 ---
 
 ### Latches
+
 걸쇠를 의미하며, 값을 저장해놓는다는 의미를 가진다. 이를 이용해서 Memory와 같은 저장장치를 만들 때 사용한다. 두 가지 형태가 존재하니 하나씩 알아보자. (물론 자세히 알면 좋겠지만 필자는 이정도 개념이 있다는 정도로만 기억한다.)
 
 > **S-R Latch(Set Reset Latch)**
 
-S와 R이 모두 0이면 값이 변하지 않고, Cross되는 위치에 데이터가 저장되게 된다.   
-R(Reset)만 1로 하면, 데이터 값이 0으로 초기화된다.   
-S(Set)만 1로 하면, 데이터 값이 1로 세팅된다.   
-R과 S를 모두 1로 하면 해당 값은 저장이라는 의미를 갖지 못한다.   
+S와 R이 모두 0이면 값이 변하지 않고, Cross되는 위치에 데이터가 저장되게 된다.
+R(Reset)만 1로 하면, 데이터 값이 0으로 초기화된다.
+S(Set)만 1로 하면, 데이터 값이 1로 세팅된다.
+R과 S를 모두 1로 하면 해당 값은 저장이라는 의미를 갖지 못한다.
 
 | S    | R    | Q    |
 | :--- | :--- | :--- |
@@ -212,6 +214,7 @@ Clock단위로 데이터를 저장하기 위해서 이와 같은 장치를 이�
 ---
 
 ## Flip-Flop
+
 Clock단위로 데이터를 저장하기 위해서 이와 같은 장치를 이용한다. 하지만, 이는 Clock이 변화하는 edge에서만 상태가 변한다는 특징을 갖고 있다. Output은 저장되어있는 값과 동일하다. 아래는 대표적인 D Flip-Flop이다.
 
 ![flip-flop](/images/flip-flop.png)
@@ -230,4 +233,3 @@ $t_\text{prop} + t_\text{combinational} + t_\text{setup} + t_\text{skew}$
 4. $t_\text{skew}$ : 공정과정에서 완벽하게 만들더라도 각 소자마다 어느정도 차이가 발생하게 되는데 이를 의미한다.
 
 이처럼 이 시간동안 우리는 다른 처리를 수행할 수 없다. 따라서, 이것을 처리하는 동안의 시간을 확보하기 위해서 우리는 Edge에서만 수행하는 방식을 사용하고 있다. 또한, Clock Cycle Time 또한 이보다는 크게 setting하는 것이 일반적이다.
-

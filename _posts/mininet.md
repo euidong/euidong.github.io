@@ -147,7 +147,6 @@ code convention이 후에 버전에서는 좀 변경되었다.
 
 변경되었지만, 여전히 기존 버전 표기도 지원하기 때문에 사용하는데는 문제가 없다.
 
-
 ## 2. Performance 측정
 
 해당 사항은 Mininet에서 권장하는 방법이다.
@@ -162,14 +161,13 @@ code convention이 후에 버전에서는 좀 변경되었다.
 
 Mininet 자체만으로도 값지지만 SDN을 구축하기 위한 OpenFlow Protocol을 이용한 Routing을 Emulating할 때에 굉장한 효과를 얻을 수 있다.  
 Mininet을 실행시킬 때에 아무 설정을 하지 않으면 기본 Ethernet switch를 사용하는 기본 Controller를 사용한다. 하지만, Open vSwitch(ovs)와 같은 OpenFlow Protocol을 지원하는 Controller를 활용할 수도 있다.  
-기본적인 Switch(대략 4096개)는 이미 지원을 하고 있다. 이를 불러와서 사용하거나 원하는 경우에는 python을 통해서 직접 구현하여도 무방하다. 심지어는 원격에 있는 controller를 사용할 수도 있다. 
+기본적인 Switch(대략 4096개)는 이미 지원을 하고 있다. 이를 불러와서 사용하거나 원하는 경우에는 python을 통해서 직접 구현하여도 무방하다. 심지어는 원격에 있는 controller를 사용할 수도 있다.
 
 이렇게 Controller를 정의하고, 외부에서 해당 Controller의 동작을 정의해주면, Mininet에 의해서 정의된 Network가 의도대로 동작하는지를 계속해서 확인할 수 있다.
 
 ## NutShell
 
 Mininet에서 어떻게 이렇게 빠르게 가상 Network System을 가볍게 구현할 수 있는가에 대한 열쇠는 `container`이다. 이를 통해서, 서로 완전 분리된 Host를 기본적으로 구성하는 Container이기에 이를 쉽게 구현할 수 있을 뿐만 아니라 Virtual Machine을 직접적으로 구현하지 않기 때문에 가볍고 빠를 수 있는 것이다. 또한, Virtual Link 같은 경우에는 Linux Traffic Control(`tc`)를 활용하여, Virtual Ethernet이 각 Virtual Switch와 Interface들을 통해서 전달되는 것을 제어할 수 있다. 마지막으로, Switch는 기본적인 Linux Bridge를 활요하거나 Open vSwitch를 활용하여 구성하여 가상화가 가능하다.
-
 
 ## 결론
 
