@@ -4,13 +4,16 @@ title: "OpenFlow"
 date: "2022-05-25 22:23"
 category: "Network"
 tags: ["SDN", "ONF"]
-thumbnailSrc: "/images/switch-with-cable.jpg"
+thumbnailSrc: "/images/flow.jpg"
 ---
 
 ## Reference
 
 - [Openflow specification](https://opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.3.1.pdf), ONF, 2012
-- Thumbnail: Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- Thumbnail: Photo by [Maksym Tymchyk 🇺🇦](https://unsplash.com/@maksym_tymchyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/flow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+
+
 
 이전 Posting인 SDN의 본격적인 시작이 OpenFlow라고 보아도 무방하다. OpenFlow는 2007년 Stanford 대학에서 개발이 시작되었고, 지금도 de facto standard(사실상의 표준)으로 받아들여지고 있는 Protocol이다. 해당 Protocol의 핵심은 기존 Switch/Router를 data plane(데이터 평면)과 control plane(제어 평면)으로 나누고, 제어 평면을 OpenFlow Protocol에 따르는 Controler로 대체하면서, OpenFlow Protocol을 따르는 Switch는 data plane만을 포함하여, 둘 간의 통신을 통해서 제어 평면을 구성하자는 것이다. 여기서 데이터 평면은 실제로 interface로 packet이 들어오고, 내보내는 역할을 하는 계층이라고 보면 되고, 제어 평면은 packet에 어떤 동작을 수행시킬지 그리고 어느 interface로 내보낼지를 결정하는 역할을 하는 계층이라고 보면 된다. 이러한 구성을 통해서, 결국 SDN을 구축할 수 있는 토대를 제공하게 된 것이다.
 

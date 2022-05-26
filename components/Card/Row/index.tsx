@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./RowCard.module.scss";
 import { DEFAULT_THUMBNAIL_SOURCE } from "../../../lib/constants";
 import { useEffect, useState } from "react";
+import { formateDate } from "../../../lib/utils";
 
 interface Props {
   thumbnailSrc?: string;
@@ -58,7 +59,7 @@ const RowCard = ({
             {title}
           </a>
         </Link>
-        <div className={styles.row_card__tray__date}>{time}</div>
+        <div className={styles.row_card__tray__date}>{formateDate(time)}</div>
         <ul className={styles.row_card__tray__tag}>
           {tags?.map((tag) => (
             <Link key={tag} href={`/tags/${tag}`}>

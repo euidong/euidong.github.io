@@ -43,10 +43,13 @@ const Home = ({ recentPosts, categorizedPosts }: Props) => {
 
 export const getStaticProps = async () => {
   const recentPosts = getAllPosts().sort((a, b) => {
-    if (a.date < b.date) return 1;
-    else if (a.date > b.date) return -1;
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
+    if (aDate < bDate) return 1;
+    else if (aDate > bDate) return -1;
     else return 0;
   });
+
   const categorizedPosts = getAllCategories();
 
   return {

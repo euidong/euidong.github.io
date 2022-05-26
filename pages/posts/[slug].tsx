@@ -9,6 +9,7 @@ import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
 import GoogleAds from "../../components/GoogleAds";
 import Comment from "../../components/Comment";
+import { formateDate } from "../../lib/utils";
 
 interface Props {
   post: Post;
@@ -37,7 +38,7 @@ const Post = ({ post, relatedPosts }: Props) => {
       </Head>
       <div className={styles.post__wrapper}>
         <h1 className={styles.post__title}>{post.title}</h1>
-        <p className={styles.post__date}>{post.date}</p>
+        <p className={styles.post__date}>{formateDate(post.date)}</p>
         <ul className={styles.post__tags}>
           {post.tags?.map((e) => (
             <li className={styles.post__tags__element} key={e}>{`# ${e}`}</li>

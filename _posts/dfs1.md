@@ -1,6 +1,6 @@
 ---
 slug: "dfs1"
-date: "2022-02-03"
+date: "2022-02-03 09:00"
 title: "DFS(1)-기본"
 tags: ["DFS", "Graph", "Tree"]
 category: "Algorithm"

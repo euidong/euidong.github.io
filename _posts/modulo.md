@@ -1,6 +1,6 @@
 ---
 slug: "modulo"
-date: "2022-04-01"
+date: "2022-04-01 09:00"
 title: "modulo"
 tags: ["Modulo", "나머지"]
 category: "Algorithm"

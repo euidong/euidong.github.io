@@ -1,6 +1,6 @@
 ---
 slug: "architecture-instruction"
-date: "2022-04-14"
+date: "2022-04-14 09:00"
 title: "2. Instruction"
 tags: ["Computer Organization And Design", "Instruction", "ISA"]
 category: "Computer Architecture"
