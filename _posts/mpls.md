@@ -19,6 +19,8 @@ thumbnailSrc: "/images/routing.jpg"
 
 또한, **MPLS**에서는 사전에 고효율 경로를 설정하고, 이를 통해서 통신하도록 하여 성능 문제를 해결한다. 예를 들어, Packet이 들어오면, 진입점에 있는 Router(Ingress Router)가 해당 Packet에 Label을 표기하고 내부 Network로 전송하게 된다. 이제 내부 Router에서는 Packet을 모두 확인하지 않고, 해당 Label만을 이용하여 Forwarding을 수행한다. 그렇기에 더 빠른 Routing이 가능해지는 것이다.
 
+![MPLS packet](/images/mpls-label.jpeg)
+
 하지만, 그 외에도 추가로 더 많은 장점을 보유하고 있다.
 
 1. 여러 Protocol과 호환이 가능하도록 overlay로 개발되었다. (2.5 Layer라고도 불리는 이유이다.)
@@ -34,9 +36,13 @@ thumbnailSrc: "/images/routing.jpg"
   - Egress Router : packet이 Network를 탈출하는 Router로 Packet의 남아있는 Label을 삭제한다.
 - LSR(Label Switched Router) : MPLS Network 내부에 존재하는 LER이 아닌 Router들로 이들은 Packet의 Label을 Switching하고, Forwarding하는 역할을 수행한다.
 
+![mpls-example](/images/mpls-example.jpeg)
+
 ## 동작 원리
 
 `LSP(Label Switched Path)라는 최단 경로를 찾고, 이를 통해서 Packet을 전달시킨다.`가 Protocol의 핵심적인 전략이다. 형성된 LSP에 따라서 labe들을 설정해두면, 이제 내부 Router에서는 자신에게 해당하는 Label을 교환하여 다시 Forwarding을 수행하면 되는 것이다. 따라서, 3계층을 거치지 않고 Routing이 가능하다. 위에서 나온 용어로 정리하자면, Ingress LER에서는 packet의 목적지와 요청지 정보 등을 활용하여 LSP을 구성하고, 이에 알맞는 Label을 packet에 추가한다. 이제 이 packet을 받은 LSR에서는 Label을 하나 빼고, 다음 LSR을 찾아가기를 반복하며, egress LER에 도달한다. egress에서는 Label이 남아있다면, 모두 제거하고, 원래 사용 중이던 Protocol에 맞게 다시 Routing을 수행한다.
+
+![mpls-example](/images/mpls-example-2.jpeg)
 
 ### LSP 구성
 

@@ -3,7 +3,7 @@ slug: "sdn"
 title: "SDN"
 date: "2022-05-25 09:00"
 category: "Network"
-tags: ["SDN", "NFV"]
+tags: ["SDN", "NFV", "OpenFlow", "ONOS", "OpenDayLight", "P4", "DPDK", "FD.io", "OpenStack", "CORD"]
 thumbnailSrc: "/images/network-background.jpg"
 ---
 
@@ -77,6 +77,118 @@ Google에서는 매년 40\~45%의 Traffic의 증가가 발생하였다. 이를 �
 - Datacenter간 상태 동기화
 
 해당 service에서 발생하는 traffic을 적절하게 weight를 부과하여 SDN을 활용하여 분배하여 결국 Datacenter간의 통신에서 광케이블 활용률이 90%까지 상승했다.
+
+### 주요 OpenSource
+
+SDN 구축에 많이 활용되는 주요 OpenSource를 정리한다. 그전에, OpenSource의 구성 형태를 알아볼 필요가 있다. 아래와 같은 형태로 각 OpenSource를 구분하여 살펴볼 수 있다.
+
+![SDN Architecture](/images/sdn-arch.jpeg)
+
+- North : 실제 SDN Controller와 communication을 통해 SDN configuration을 변경한다던가 GUI로 현재 상태를 체크하는 등의 동작을 수행할 수 있다.
+- North Bound Interface : SDN Controller와 communication을 가능하게 하는 Protocol이다.
+- SDN Controller : 실제 SDN에서 Routing을 제어할 Controller
+- South Bound Interface : SDN Controller와 Network Node들(실제 또는 가상 Switch)과의 communication을 가능하게 하는 Protocol이다.
+- South : Physical / Virtual Switch
+
+각 OpenSource에 대해서는 자세히 다루지 않는다. 세부적으로는 시간이 주어지면 하나씩 해나갈 생각이다.
+
+> **ONOS**
+
+위에서 설명한 영역에서 North, North Bound Interface, SDN Controller의 역할을 모두 수행할 수 있는 Open Source이다.
+
+Open Network Operating System의 약자로, ONF에서 관리하며 SDN Controller를 구성하는 방법을 제시한다. 이를 통해서, 유연하고 안정적인 Network Service를 구축하는 것을 목표로 한다. 유연하다는 것은 간단한 program을 구현할 수 있는 interface를 제공하며, 네트워크 상태를 정의하고, 이를 실시간으로 업데이트할 수 있는 환경을 제공한다. 안정적이다의 기준을 ONOS에서는 99.999 % Availability를 제공하는 것을 목표로 한다.
+
+본 목적은 Controller를 구성하는 것이지만, REST API(NIB)에서부터 Web을 통한 Dashboard GUI(North)와 CLI(North)를 제공하고 있다. 또한, 내부적으로 OpenFlow의 동작을 추상화하여
+
+[🔗 공식 사이트](https://wiki.onosproject.org/display/ONOS/ONOS)
+
+> **Open DayLight**
+
+ONOS와 가장 많이 비교되어지는 OpenSource로 마찬가지로 North, North Bound Interface, Controller 기능을 제공한다.
+
+Cisco와 Network Vender를 모아서, ONOS를 견제하기 위해서 초기에 시작된 Project로 ONOS는 SDN Controller에 좀 더 집중하는 한편, Open DayLight는 SDN 시스템을 구축하는 환경을 제공하는 것을 강조한다. 또한, Vender에 의해서 관리되기 때문에 ONOS와 비교하였을 때, SBI가 케이블tv 및 IoT Protocol까지 확장되었다. 자세히는 아래 표를 통해서 살펴보도록 하자.
+
+|                 | ONOS                    | Open DayLight            | 비고                    |
+| :-------------- | :---------------------- | :----------------------- | :---------------------- |
+| 라이선스        | Apache 2.0              | Eclipse Public License   |                         |
+| 개발자          | 제한 없음               | Vender                   |                         |
+| SBI 지원        | 여러 SBI 지원           | ONOS보다 다양한 SBI 지원 |                         |
+| 주요 고객       | 통신 및 클라우드 사업자 | 데이터 센터              |                         |
+| 보안성          | 약함                    | 중간                     | 아직 모두 보완성이 낮음 |
+| OpenFlow 호환성 | 1.0 ~ 1.5               | 1.0 ~ 1.3                | ONF 표준                |
+| P4              | 지원                    | 지원                     |                         |
+| Network 가상화  | 지원                    | 지원                     |                         |
+
+[🔗 공식 사이트](https://www.opendaylight.org)
+
+> **ONAP**
+
+ONAP은 Open Network Automation Platform의 약자로 SDN의 Life Cycle을 관리하는 도구로 이해하면 쉽다. 위의 제시한 Controller로 부터 각 각의 Switch에 이르는 장치들의 상태를 확인하고, 적절하게 orchestration하는 도구이다. 이는 AT&T의 ECOMP project와 중국 네트워크를 위한 Open-O가 결합하여 Opensource화를 진행한 프로젝트이다.
+
+[🔗 공식 사이트](https://www.onap.org)
+
+> **P4**
+
+Programmable, Protocol-Independant Packet Processor의 약자로 기존의 제한된 기능만 수행하던 Fixed Function Switch를 필요에 따라 기능을 다르게 구현할 수 있는 Programmable Switch로 대체하고, P4를 이용하여 programming할 수 있는 환경을 제공하는 것을 목표로 한다. 현재에는 Switch 내부의 Packet Forwarding과 Access Control 기능 개발용으로 특화된 상태이다. 아직까지는 Queue의 Scheduling과 같은 기능은 제공하지 않는다.
+
+[🔗 공식 사이트](https://p4.org)
+
+> **DPDK**
+
+고성능 packet 처리를 위한 Library와 Driver의 집합이다. Virtual Switch의 가장 큰 문제는 OS Kernel을 통과하면서 발생하는 Overhead이다. 이를 해결하기 위해서, DPDK에서는 Kernel을 통과하여 수행하는 Kernel bypass라는 기능을 제공한다. 이를 통해서 Packet 처리를 가속화하였다.
+
+[🔗 공식 사이트](https://www.dpdk.org)
+
+> **FD.io**
+
+DPDK와 마찬가지로 packet 전송의 가속화를 목표로 한다. 기존 하나의 Packet을 보낼 때, 그래프 연산이 끝날 때까지 다음 packet이 무기한 기다리는 것을 방지하고자 병렬 또는 동일 목적지 packet을 빠르게 식별하여 packet 전송을 최적화하는 것을 목표로 한다.
+
+[🔗 공식 사이트](https://fd.io)
+
+> **OpenStack**
+
+OpenStack은 범용 Cloud를 구축하는 Solution을 제공한다. 즉, 여러 Node를 가진 사용자라면, 여타 Vender(AWS, GCP)를 이용하지 않고, Cloud 환경을 구축하는 것이 가능하다. 이를 통해서 구축한 Cloud에 Controller를 구성하고 SDN를 제공하는 경우도 많다.
+
+[🔗 공식 사이트](https://openstack.org)
+
+### 주요 SBI
+
+South Bound Interface란 실제로 Switch와 Controller가 어떻게 communication을 수행할 것인지에 대한 Protocol을 의미한다. 현재 사실상 표준이라고 여겨지는 Protocol은 다음과 같다.
+
+> **OpenFlow**
+
+앞 서 계속해서 설명해왔기에 생략한다.
+
+> **NetConf**
+
+Network 장비(Switch, Router)의 Configuration을 위한 Protocol로 기존 Vender마다 다르던 Configuration 과정을 이를 통해서 간략화하고, 기초적인 Programming을 통해서 이 과정을 자동화하는 것도 가능하다.
+
+> **I2RS**
+
+OpenFlow를 통해서 기존 Network 장비의 데이터 평면과 제어 평면의 완전 제거에 대한 반발로 인해 생겨나 Protocol이다. 이는 Cisco에서 만들어졌으며, 기존 Switch/Router의 제어 평면을 그대로 유지하면서 외부 Controller로부터의 제어를 일부 수용하는 형태의 Protocol이다.
+
+> **BGP-LS / PCE-P**
+
+SDN Controller와 Network 상태 정보를 공유하기 위해 개발된 Protocol이다.
+
+> **LISP**
+
+IP에 의한 네트워크 주소와 단말기 주소가 완벽하게 구분되지 않는 문제에 의해서 만들어졌다. 즉, 단말이 이동 시에 네트워크 주소를 재설정해주는 등의 번거로움이 발생할 수 있다.따라서, IP header에 LISP header를 추가하여 실제 기기 주소와 네트워크 주소를 식별하는 정보를 추가하는 것이 핵심 아이디어인 Protocol이다.
+
+### 주요 연구 동향
+
+> **1. CORD**
+
+현재까지는 DataCenter, Cloud에 한정되어 있는 SDN의 적용을 실제 전화국 및 가입자 통신 시설의 가상화까지 이어가고자 하는 것이 목표이다. 현재 프로젝트는 총 4개의 세부 프로젝트로 나뉘어져서 진행중이다.
+
+1. E-CORD : 기업용 최적 인터넷 구성 시간 단축
+2. R-CORD : 광가입자 서비스 장치의 가상화
+3. A-CORD : 데이터 수집 기능을 프로그래밍 가능하게 구현하여 이를 통한 제어를 목표
+4. M-CORD : 4G/5G 장치의 가상화
+
+> **2. Pronto Project**
+
+네트워크의 모든 동작을 Monitoring하고, 제어하는 Deep Programmable Platform을 구현하여 네트워크 사업자가 제어권을 확보하도록 하는 것을 목표로 한다.
 
 ## NFV
 
