@@ -17,7 +17,12 @@ thumbnailSrc: "/images/base-station.jpg"
 
 ## BackBorn Network
 
-BackBorn은 등뼈, 중추를 의미한다. 즉, 네트워크의 중추라는 것이다. 해당 네트워크는 각 Node와 Node를 직접적으로 연결하기 보다는 이미 구성되어있는 LAN 간의 연결을 수행하는 네트워크이다. 작은 범위에서는 특정 건물 내에서의 LAN간을 연결하는 Network를 의미하기도 하지만 대게의 경우 LAN과 Internet을 연결하는 Internet BackBorn Network를 의미한다.
+BackBorn은 등뼈, 중추를 의미한다. 즉, 네트워크의 중추라는 것이다. 해당 네트워크는 각 Node와 Node를 직접적으로 연결하기 보다는 이미 구성되어있는 LAN 간의 연결을 수행하는 네트워크이다. 작은 범위에서는 특정 건물 내에서의 LAN간을 연결하는 Network를 의미하기도 하지만 대게의 경우 LAN과 Internet을 연결하는 Internet BackBorn Network를 의미한다. 이러한 BackBorn Network는 앞 서 살펴본 LAN과의 연결 뿐만 아니라 대게 4가지의 역할을 할 수 있어야 한다.
+
+1. 서비스 서버 및 국내 외 타 사업자 연결
+2. 고가용도 스위치 및 라우터를 사용하며, 이중화를 구성
+3. 타 통신사업자와의 연동을 위한 IX(Inter Exchange)를 구성
+4. 데이터센터와 연결되는 Switch를 제공
 
 우리가 Ethernet을 통해서 공유기에 packet을 전달하면, 공유기는 건물 내 Switch로 연결되고, 이것이 BackBorn Network로 packet을 보내면 BackBorn에서 이를 올바른 Network로 다시 옮기는 역할을 수행한다.
 
@@ -25,11 +30,15 @@ BackBorn은 등뼈, 중추를 의미한다. 즉, 네트워크의 중추라는 �
 
 ![backborn network](/images/backborn-network.jpeg)
 
-### Topology
+### Topology in Backborn Network
 
 이러한 BackBorn Network를 구성할 때에 주로 사용되는 것은 Star topology이다. 이는 Star topology는 하나 이상의 중심 node로 traffic이 몰리게 되는데 이러한 구조는 관리 및 요금 측정 등과 같은 과정을 쉽게 처리하는 것이 가능하기 때문이다. 하지만, 중심으로 traffic이 집중되는 만큼 재난 발생에 취약할 수 있고, 이로 인한 지연으로 인해 전송 효율이 감소할 수도 있다.
 
 미국의 통신사업자 AT&T는 Mesh Topology를 활용하는데 이는 중앙에 모든 Traffic이 집중되지 않기 때문에 가용성이 높고, 국제적인 Traffic이 많고, 이로 인한 traffic이 많기에 토지가 큰 미국의 특성을 이용해 다른 지역에서 사용하지 않는 장비를 우회해서 traffic을 처리할 수 있다는 장점이 있다. 하지만, 유지 관리 과정이 다소 난해하고 이로 인한 비용이 Star Topology보다 크다고 할 수 있다.
+
+## Internet
+
+Internet은 서로 다른 Network를 연결하는 또 하나의 Network이다. 대게 필연적으로 Internet 통신이라고 하면, BackBorn을 거쳐서 통신하는 것을 Internet이라고 하는 경향이 있다.
 
 ### 이동통신
 
@@ -39,6 +48,40 @@ BackBorn은 등뼈, 중추를 의미한다. 즉, 네트워크의 중추라는 �
 
 BackBorn Network의 가장 중요한 특징 중 하나가 고가용성을 제공해야 한다는 것이다. 즉, 끊기지 않는 Network를 지향한다는 것이다. 이를 위해서 망 자체를 이중화하고, BackBorn과 연결되는 Router에서의 Link 사용률을 40%로 제한함으로써 일부 장애시에도 문제가 발생하지 않도록 하는 것이다. 또한 Star Topology의 경우 Core Router로 향하는 Link를 삼중화하여 특정 Link에 에러가 발생하여도 최대한 통신이 가능하게 하고자 노력하고 있다.
 
-## Internet
-
 ## Datacenter Network
+
+Datacenter는 Service를 제공하는 업체들에서 다양한 Application을 제공하기 위해서 여러 machine을 모아두고 저장해놓은 기관이다. 이러한 Datacenter Network의 규모가 Backborn Network의 규모를 넘어서고 있는 시점에서 중요성이 더 커지고 있다.
+
+### Term
+
+- Rack : 수 많은 machine을 효율적으로 저장하기 위해서 층별로 machine을 저장하여 보관하는 수납 공간 또는 수납된 모든 machine을 의미한다.
+- ToR Switch : Top of Rack Switch의 약어로 Rack의 machine에게 Network를 제공하기 위해서 Rack의 최상단에 존재하는 Switch를 말한다.
+
+### Topology in Datacenter Network
+
+- Tree : 매우 직관적인 구조의 Topology이다. 각 ToR Switch가 더 상위 Switch인 Access(=Edge) Switch에 연결되고, 해당 Access Switch가 Aggregation Switch/Router로 연결되고, 최종에는 Core Router에 연결되어 해당 Core Router를 통해서 Internet에 연결되는 형태를 가지고 있다. 이와 같은 경우 3가지 큰 특징을 가진다.
+  - 특징
+    - Over Subscription : 상위 Switch/Router/Link의 bandwidth가 하위 Switch/Router의 bandwidth보다 크도록 설계하는 것
+    - Same Distance with Core : Core와의 거리가 모든 rack에서 동일하기 때문에 효율적인 Networking이 가능하다. 이러한 Traffic을 North-South Traffic이라고 한다.
+    - No Loop : Tree 구조 자체가 Loop가 없는 형태이기 때문에 Loop로 인한 Traffic 혼잡을 막을 수 있다. 만약, East-West Traffic을 위해서 link를 중간에 증설하였다면, 이를 해결하기 위하여 Spanning Tree Protocol을 활용하여, Loop를 없애기 위한 설정을 한다.
+  - 단점
+    - East-West Traffic의 낮은 효율 : 좌우 Traffic이 빈번하게 발생한다면, 이로 인한 비효율이 크게 발생할 수 있다. Virtual Machine이 굉장히 많이 사용되고 있는 상황에서 어느 Physical Machine에 Virtual Machine이 존재하더라도 동일한 IP를 유지한다거나 동일한 수준의 가상화를 제공하기 위해서 이러한 East-West Traffic이 많아지고 있다(80% 이상을 차지하고 있다). 따라서, 현재에 사용이 많이 줄었다.
+    - 확장이 어려움 : 상위 계층이 하위 계층의 BandWidth에 의존하기 때문에 초과량을 넘은 경우 확장이 모든 구간에서 수행되어야 한다.
+- Spine-Leaf(=Clos, Leaf-Spine) : 상위 Spine Switch/Router에 모든 하위 Leaf Switch/Router가 연결되어 있고, 이 Leaf Switch/Router에 ToR Switch가 연결되어 있는 구조이다. 이러한 구성을 갖추게 되면, East-West Traffic의 처리가 매우 용이하다.
+- Fat-tree : Tree의 Edge/Aggregation Switch/Router의 수를 k개로 Group을 만들고, 해당 Group을 k개 만들어서 여러 개의 Core를 두어 구성하는 형태이다. 마찬가지로 East-West Traffic의 처리 역시 매우 용이하다.
+
+## Edge Computing Network
+
+통신 사업자 입장에서 가입자와 인접한 전화국에 서버 pool(소규모 datacenter)을 구축하고, 이를 통해서 보안 또는 요금 측정 등과 같은 Network 기능을 구현하고자 하는 네트워크를 구축하고 있다.
+
+## Optical Transport Network(광통신망)
+
+광케이블을 이용하여 구축한 Physical Network로 고속 통신을 지원하기 위해서 고안되었다. 이는 후에 Posting에서 자세히 다룰 예정이다.
+
+[🔗 광통신망](/posts/optical-transport-network)
+
+## Digital Subscriber Line(DSL)
+
+ADSL부터 시작되어 여러가지 형태로 변화되어온 Network 형태이다. 종류는 다양하게 ADSL/HDSL/SDSL/RADSL/VDSL 등으로 존재한다.
+
+ADSL은 Asymmetric Digital Subscriber Line의 약자로 전화선을 이용한 upstream은 1Mbps 통신 방식이다. 1988년 미국에서 최초 개발되었고, 현재에도 저가형 인터넷 서비스에 사용 중이다. 또한, VDSL은 주파수 대역을 확장하여 속도 향상을 꾀하였다.

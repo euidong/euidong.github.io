@@ -9,12 +9,11 @@ thumbnailSrc: "/images/onos-logo.png"
 
 해당 Posting은 해당 [wiki](https://wiki.onosproject.org/)에 기반한 내용 정리임을 밝힌다.
 
-ONOS는 Open Network Operating System의 약자로, 이름 뜻 그대로 공공 네트워크를 위한 운영 환경을 제공하겠다는 목표를 갖고 있다. 
+ONOS는 Open Network Operating System의 약자로, 이름 뜻 그대로 공공 네트워크를 위한 운영 환경을 제공하겠다는 목표를 갖고 있다.
 
 ONOS는 SDN(Software Defined Network)를 위한 control plane을 제공하고, 네트워크 구성요소 관리와 이웃간 네트워크 또는 종단간 연결을 위한 프로그램들을 실행시킨다.
 
 ONOS에서 중요한 점은 Operating System처럼 특정 목표를 위해 디자인된 소프트웨어의 플랫폼(기반시스템)으로써 사용될 수 있는 환경을 제공한다는 점이다.
-
 
 ## 관리자 측면
 
@@ -40,4 +39,3 @@ ONOS는 어느 실행환경에서도 실행 가능하다. (Docker, Vargrant, Pup
 4. JAVA
    - version 8 : ~ Ubuntu 16
    - version 11 : Ubuntu 18 ~
-
