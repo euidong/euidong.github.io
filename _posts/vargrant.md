@@ -1,6 +1,6 @@
 ---
 slug: "vargrant"
-title: "VAGRANT"
+title: "Vagrant"
 date: "2022-06-01 12:39"
 category: "Tech"
 tags: ["VirtualEnvironment", "VirtualBox"]

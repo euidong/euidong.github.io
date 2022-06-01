@@ -1,0 +1,157 @@
+---
+slug: "design-pattern-3"
+title: "[Design Pattern] 3. Structural Pattern"
+date: "2022-03-09 15:12"
+category: "Tech"
+tags: ["DesignPattern", "AdapterPattern", "BridgePattern", "CompositePattern", "DecoratorPattern", "FacadePattern", "FlyweightPattern", "ProxyPattern"]
+thumbnailSrc: "/images/design-pattern.jpg"
+---
+
+중간에 좋은 reference를 찾았기 때문에 여기서부터는 출처가 바뀝니다. 저도 해당 사이트의 도움을 많이 받았기 때문에 해당 사이트 한 번 직접 가보는 것을 추천드립니다.
+
+## Reference
+
+- Design Patterns: Elements of reusable object oriented software.
+- Refactoring GURU : [https://refactoring.guru/design-patterns/structural-patterns](https://refactoring.guru/design-patterns/structural-patterns)
+- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+## Structural Pattern
+
+앞 서 살펴본 creational pattern이 object의 생성에 대한 방법들을 제공하였다면, 해당 object들의 관계를 어떻게 연결할 것인가에 대한 고민에서 만들어진 pattern이라고 생각하시면 됩니다.
+
+예를 들어서, 외부 라이브러리와 내부 모듈 간의 상호작용이나 이들을 연결하는 방식을 정의하는 것이 일반적으로 가장 많이 사용되는 경우라고 볼 수 있습니다.
+
+### 1. Adapter
+
+![adapter](/images/adapter.jpeg)
+
+object와 object간의 상호작용을 돕는 가장 기본적인 방법입니다. 제 생각에는 **Converter로** 표현할 수 있을 거 같습니다. 예를 들어, pdf를 필요로 하는 module이 있다고 했을 때, 우리가 가진 것이 이미지밖에 없다면, 우리는 이를 변환해줄 수 있는 converter를 중간에 설치함으로써 이들을 수정해주지 않고, 합칠 수 있을 것입니다. 이러한 방식이 바로 Adapter pattern의 핵심이라고 할 수 있습니다.
+
+일반적인 구현은 adapter라는 class를 변환 결과물의 class의 확장(상속)으로 둡니다. 이렇게 하면, 해당 class의 속성을 모두 가집니다. 여기서 adapter의 생성 시에 변환 전의 class를 전달하여, 내부 구현을 overriding 하는 방식을 취하도록 하는 방법입니다. **즉, adapter 자체가 원하는 제품의 변환 완료 상태라고 보시면 됩니다.**
+
+refactoring.guru 사이트에서 예시를 든 상황을 봅시다.
+
+원형 구멍에 원기둥을 넣으면서, 원형 구멍보다 반지름이 큰 원기둥은 filtering하는 코드가 있었다고 합시다. 이때, 원기둥이 아닌 직육면체를 넣고 싶다면, 어떻게 해야 할까요? 직육면체를 마치 원기둥처럼 받아들일 수 있도록 직육면체의 밑변의 변의 길이를 통해서 반지름을 생성해내는 로직을 가진 adapter를 만들어내면 될 것입니다.
+
+---
+
+여기서 adapter의 특징을 살펴보고 갑시다.
+
+- 기존의 변환 결과물로 돌아가는 코드를 그대로 사용하는 것이 가능합니다.
+- 대게 data의 변환 시에 많이 사용됩니다. (ex. XML -> JSON)
+- 사실 임시 방편이라고 볼 수도 있습니다. 위에 원형 구멍에 넣을 수 있는 것을 원형기둥으로 제한한 상황에서 직육면체를 넣었다는 것에서부터 가독성이 떨어지고, 복잡도가 높아질 수 있는 것입니다.
+
+### 2. Bridge
+
+> before
+
+![bridge-1](/images/bridge-1.jpeg)
+
+> after
+
+![bridge-2](/images/bridge-1.jpeg)
+
+하나의 class의 크기가 너무 비대해지거나 각 class들 간의 의존성이 높아지는 경우에 이를 두 개의 계층 구조로 나누어 의존성을 제거하면서 개별적으로 개발하는 환경을 만드는 방식입니다.
+
+개발을 진행하다 보면, 하나의 class의 크기가 굉장히 비대해지는  경험을 할 수 밖에 없습니다. 예를 들어서 처음에는 단순히 버튼이라는 class를 만들었었는데, 디자인의 detail을 위한 내용에 의해서 코드가 굉장히 비대해지고, 이를 click 했을 때, hover 했을 때와 같은 로직도 계속해서 추가되면서 class가 비대해지는 것을 볼 수 있습니다. 따라서, 여기서 design 부분을 별도의 class로 분리시키고 이를 기존 button class가 변수로 포함하는 방식이라고 생각할 수 있습니다.
+
+**즉, 여러 구현 method, attribute를 하나의 attribute type으로 통합하고, 이를 interface로 만들어 사용하는 것입니다.** 이렇게 함으로써 좀 더 유연한 구조를 가질 수 있습니다. 사실 우리의 main application이 module을 직접 구현하지 않고, 여타 module을 install하여 사용하는 것도 이와 유사하다고 할 수 있겠습니다.
+
+---
+
+여기서 bridge의 특징을 살펴보고 갑시다.
+
+- 대게 design(css style)/platform(ios, android, web)과 logic을 분리하여 서로간 의존성을 분리할 때, 유용합니다.
+
+### 3. Composite
+
+![composite](/images/composite.jpeg)
+
+**object들을 tree 구조로 만들어**서 마치 하나의 object 인 것처럼 동작시키는 방법입니다. 그렇기에 만들고자 하는 구현 목표 자체가 tree 구조로 표현 가능할 때에만 사용 가능합니다. tree는 자신의 기능을 담는 root와 다른 subtree들로 이루어지며, 이들을 가리키는 pointer를 가진다.(subtree는 없을 수도 있다.)
+
+대게 구현을 위해서, 가장 기반이 되는 기능을 interface type으로 생성하면, leaf처럼 사용될 class와 이를 담을 수 있는 형태의 class로 나누어 구현합니다.
+
+예를 들면, file system을 예로 들 수 있습니다. file system은 크게 file과 folder로 나뉘어집니다. folder는 마치 하나의 subtree가 되는 것이고, file은 하나의 leaf가 되는 것이라고 생각할 수 있습니다. 각 leaf마다 알맞은 구현을 할 수 있고, folder에도 알맞은 구현을 쉽게 구현하는 것이 가능합니다.
+
+---
+
+여기서 composite의 특징을 살펴보고 갑시다.
+
+- 계층으로 이루어지는 복잡한 구조를 쉽게 구조화할 수 있습니다.
+- 새로운 요소를 추가할 때에도, 기존 코드에 영향을 주지 않습니다.
+- 그러나, 억지로 도입하기 위해서, 과도하게 일반화한 구조를 가지게 되면, 이해하기 어려운 구조가 될 수 있습니다. 즉, tree를 구조를 가진다는 것이 명확할 때에만 사용하는 것이 좋습니다.
+
+### <mark>4. Decorator</mark>
+
+![decorator](/images/decorator.jpeg)
+
+**새로운 기능들을 object에 추가하기 위해서 기존 object는 그대로 두고, 새로운 기능을 포함하는 wrapper로 감싸주는 방식입니다.**
+
+만약, 핸드폰 push 알림 기능을 구현해놓았고, 이를 여러 업체에게 배포하였다고 가정합시다. 그런데, 어떤 업체에서는 Facebook 알림, 또 다른 업체에서는 Slack 알림을 추가로 전송하기를 원한다면, 어떻게 해야 할까요? 가장 쉽게 생각 나는 방법은 각 notification 기능을 수행할 수 있는 class를 생성하고, app에서 여러 개를 생성해서 보내는 방법일 것입니다. 하지만, 단 하나의 object만 받을 수 있도록 구현이 되어 있고, 이를 실행시키는 app code를 변경할 수 없다면, 우리는 결국 3 가지의 알림을 하나의 class로 구현하기 위해서, 7개의 class가 필요합니다.
+
+1. push 알림만 있는 class
+2. facebook 알림만 있는 class
+3. slack 알림만 있는 class
+4. push + facebook 알림 class
+5. push + slack 알림 class
+6. slack + facebook 알림 class
+7. push + slack + facebook 알림 class
+
+이러한 구조를 가지는 거는 굉장한 중복 코드를 만들어낼 가능성이 있습니다. 그래서 나온 pattern이 decorator입니다. 기존 object에 새로운 기능을 하는 object를 감싸는 방법입니다. 실행 시에는 밖 or 안부터 실행을 시키면서 진행합니다.
+
+---
+
+여기서는 decorator의 특징을 살펴봅시다.
+
+- 이 역시 기존 코드의 수정이 필요 없습니다.
+- runtime에 쉽게 새로운 구현을 추가하거나 삭제할 수 있습니다.
+- 각 wrapper가 하나의 기능만 하도록 구현하여, responsibility를 하나만 갖도록 할 수 있습니다.
+- 그러나, 때로는 wrapper간 의존성으로 인해 특정 wrapper를 제거할 수 없는 경우가 생길 수도 있습니다.
+
+### 5. Facade
+
+![facade](/images/facade.jpeg)
+
+**간소화된 interface를 복잡한 class 구조(library, framework)에 간단한 interface를 제공하는 pattern입니다.** 즉, third party를 사용할 때, 직접적으로 호출하는 것이 아닌 facade라는 object를 통해서 추상화한 method를 사용하도록 함으로써 실제 시스템과 third party와의 의존성을 줄이는 방식입니다.
+
+---
+
+facade의 특징은 위에서 말한 바와 같고, 주의사항이 하나 존재합니다.
+
+- facade가 모든 object들의 구현을 아는 a god object가 될 수도 있습니다. 이렇게 되면, 사실상 이를 이용하는 application도 결코 system에 독립적일 수 없습니다.
+
+### 6. Flyweight
+
+> before
+
+![flyweight-before](/images/flyweight-before.jpeg)
+
+> after
+
+![flyweight-after](/images/flyweight-after.jpeg)
+
+object를 유지하는데 비용을 너무 많이 사용하기 때문에, **일반적으로 사용되는 동일한 부분을 별도로 object에 포함시키지 않고 공유하도록 함으로써 object를 경량화하기 위해서 나온 pattern입니다.**
+
+---
+
+Flyweight의 특징은 다음과 같습니다.
+
+- RAM의 사용량을 줄인다는 것은 그만큼 CPU 사용량이 늘어난다는 것을 의미합니다.
+- 또한, Computer를 위한 설계이니 만큼 사람이 이해하기에 가독성이 떨어질 수 있습니다.
+
+### <mark>7. Proxy</mark>
+
+![proxy](/images/proxy.jpeg)
+
+대체 object를 제공하거나 또 다른 object를 위한 placeholder를 제공하는 pattern이다. original object에 접근을 제어하면서, 요청의 처리 전 후로, 특정 동작을 수행하도록 할 수 있습니다.
+
+가장 많이 사용되는 사례는 당연하게도 Database에 접근하는 로직을 정의하는 API를 만드는 경우를 예로 들 수 있습니다. API server는 사실상 database에 접근하기 이전에 수행해야 할 동작들을 미리 정의하고, 요청이 들어오면 이를 처리하여 client에게 전송하는 방식으로 구현되어 있습니다. 이것이 필요한 이유는 민감정보의 보호와 서비스 데이터를 안전하게 보장하기 위함이라고 할 수 있습니다.
+
+따라서, 해당 object만으로도 사용이 가능하지만, 요구에 따라서, object 접근 전후로 처리가 필요한 경우 proxy pattern을 통해서 구현하는 경우가 많습니다.
+
+---
+
+Proxy의 특징은 다음과 같습니다.
+
+- service와 이를 이용하는 client와 독립적으로 구현이 가능합니다.
+- 일반적으로 service에 직접 접근하는 것보다 delay가 발생할 수 밖에 없습니다.
