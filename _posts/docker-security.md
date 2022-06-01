@@ -1,0 +1,80 @@
+---
+slug: "docker-security"
+title: "[Docker] Security"
+date: "2021-07-10 19:52"
+category: "Tech"
+tags: ["Docker", "Container", "Security"]
+thumbnailSrc: "/images/docker-picture.jpg"
+---
+
+## Reference
+
+- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
+
+## Intro
+
+해당 글은 Linux에서 docker를 동작시킨다는 가정하에 작성하였다. (Window도 대부분 동일하다고 한다.)
+
+docker는 여러 개의 보안 정책을 포함한다.
+
+이를 크게 누가 관리하느냐에 따라서 두 개의 부류로 나눌 수 있다.
+
+1. OS system (Linux)
+2. Docker
+
+이전 가상화와 반가상화를 비교한 글에서 보았듯이 Container 기술을 결과적으로 반가상화에 해당하며, 이를 위해서 OS의 지원이 필요하다. 따라서, 이를 Linux 자체에서 구현해주는 것이 존재하고, Docker에서 Application 단에서 구현한 부분으로 나뉘어지는 것이다.
+
+먼저, Linux에서 지원하는 각종 security에 대해서 알아봅시다.
+
+## Linux's Security for Docker
+
+전체적인 디테일 사항은 정리하지 않는다. 해당 내용은 간단히 살펴보는 정도이다.
+
+### Namespaces
+
+namespace는 container 기술에서 매우 핵심적인 위치에 존재한다고 할 수 있다. 이를 통해서, OS를 여러 개로 나누고, 마치 완전히 고립된 형태의 OS처럼 느끼도록 만든다. (키워드는 isolation) 그렇다면 하나의 host 내에서 어떻게 여러 개의 container가 완벽하게 독립되어 있다고 느낄 수 있게 할 수 있을까? 이는 다음과 같은 종류의 namespace를 분리함으로서 가능하다.
+
+- **process ID (pid)** : process는 tree 형태로 이루어지게 된다. 따라서, 하나의 process (즉, PID 1)에 의해서 여러 개의 process가 동작을 시작하는 것이다. 그런데, namespace를 통해서 우리는 여러 개의 완벽하게 독립적인 process tree를 구축하게 된다.
+- **Network (net)** : 각 각의 container마다 network stack을 구현한다. 즉, network interface 부터 시작해서, IP Address, port, routing table 등을 구축하게 되는 것이다.
+- **Filesystem / mount (mnt)** :모든 container가 각자의 root filesystem을 가지고, 다른 모든 container들은 이것에 접근할 수 없다.
+- **Inter process Communication(ipc)** : process간의 통신을 위해서 우리는 shared memory를 사용하게 되는데 이 또한 고립적으로 구현되도록 한다.
+- **User** : 각 container마다 다른 user group을 구축하고 사용할 수 있도록 한다.
+- **Unix Time sharing (uts)** : hostname을 container마다 제공하는 것으로, 이를 통해서 network 상에서 ip가 아닌 hostname으로 접근하는 것이 가능해진다.
+
+즉, 해당 절에서는 이 한 마디를 기억하면 편해집니다. "하나의 Docker의 container는 namespace들의 집합으로 이루어져있다."
+
+### Control Groups(C group)
+
+namespace가 각 container간의 isolation을 보장한다면, cgroup은 한계를 설정하는 것이 역할이다. container들이 하나의 machine에서 동작한다면 어쩔 수 없이 그들이 사용할 수 있는 총 자원의 양은 한정될 수 밖에 없다. 그리고, 자칫 잘못하면 하나의 container가 너무 많은 자원(CPU, Memory, Storage, ...)을 소모하여 다른 container의 동작을 방해할 수 있다. 이를 막기 위한 것이 바로 cgroup이다. 이를 통해서 우리는 각 container에게 자원을 나누어 할당하는 것이 가능하다.
+
+### Capabilities
+
+어떤 작업을 하더라도, Machine을 root 권한으로 작업을 하는 것은 굉장히 위험하다. 따라서, container에서 application을 동작시키기 위한 최소한의 권한만을 부여하여 사용하는 것이 올바르다. 이를 수행할 수 있도록, 권한을 지정하는 것이 가능하다.
+
+### Mandatory Access Control(MAC) system
+
+MAC은 파일이나 특정 데이터에 대한 접근 제어를 수행하는 것을 의미한데, 이는 AppArmor나 SELinux 등에 의해서 구현되어지는데, 기본적으로 Docker는 container에 AppArmor를 각 container에 적용하여 이를 구현한다. customizing이 가능하지만, 이에 대한 이해를 충분히 하기를 권한다.
+
+### seccomp
+
+seccomp의 filter mode를 활용하면, container에서 발생하는 syscall을 제한하는 것이 가능하다. 이는 MAC 처럼 직접 customizing도 가능하지만 이에 대한 깊은 이해가 뒷받침되어야 한다.
+
+## Docker Engine's Security for Docker
+
+### Secure Swarm Mode
+
+기본적으로 Docker Swarm은 manager와 worker로 구분되어 동작한다. manager는 기본적으로 control plane을 제어하고, 전체 적인 cluster 환경을 구성하며, 작업을 적절하게 전달한다. 그리고, 전체적인 application code를 동작시키는 것이 worker들이 수행하는 역할이다. 기본적으로 manager와 worker들은 모두 다른 Node이다. 따라서, 이들간의 통신을 수행할 때에 인증과 같은 작업을 필수적이다. 따라서, Docker Swarm에서는 이를 지원하기 위해서 manager로 임명된 node를 CA로 하여 TLS 인증을 수행한다. 이를 통해서, 서로를 인증하고, 전송 데이터 암호화를 수행한다.  
+  
+\* control plane vs data plane : 통신을 일상에서의 교통흐름이라고 본다면, control plane은 신호등과 같은 규칙을 의미하고, data plane은 실제로 이동하는 차량들로 비유할 수 있다. 즉, control plane은 cluster 환경에서의 제어를 위한 데이터이고, data plane은 실제로 주고 받는 데이터라고 볼 수 있다.
+
+### Image Scanning
+
+Docker는 이미지에서 보안상의 취약점 여부를 scan하는 기능을 기본적으로 탑재하고 있다. 이를 통해서, 이미지가 가진 취약점 등을 파악하는 것이 가능하다.
+
+### Docker Content Trust
+
+Docker는 download 또는 실행할 이미지의 제공자를 식별하고 무결성을 쉽게 체크할 수 있도록 하기 위해서 Docker Content Trust를 제공한다. registry에 이미지를 업로드할 때, 직접 서명이 가능하고, 이를 통해서 특정 사용자에 의해서 생성되었음을 확정할 수 있다. 이렇게 서명이 존재해야만 pull이 가능하도록 설정하는 것 역시 가능하다.
+
+### Docker Secrets
+
+Docker에서 보안 정보를 안전하게 보관하기 위해서 고안된 것으로, 특정 타겟에서 안전하게 SSH key와 같은 정보를 안전하게 전달하는 것 이 가능합니다.

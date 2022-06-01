@@ -1,9 +1,9 @@
 ---
-slug: "vargrant"
+slug: "vagrant"
 title: "Vagrant"
 date: "2022-06-01 12:39"
 category: "Tech"
-tags: ["VirtualEnvironment", "VirtualBox"]
+tags: ["Vagrant", VirtualEnvironment", "VirtualBox"]
 thumbnailSrc: "/images/vagrant.png"
 ---
 
