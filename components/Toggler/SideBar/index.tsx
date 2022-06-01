@@ -34,7 +34,7 @@ const SideBarToggler = ({ className, isOpen, setIsOpen }: Props) => {
     return () => {
       window.removeEventListener("keypress", open);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   return (
     <>

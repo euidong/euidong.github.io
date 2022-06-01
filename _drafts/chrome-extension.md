@@ -339,7 +339,7 @@ chrome.runtime.onInstalled.addListener(function() {
 
 [Design the user interface](https://developer.chrome.com/docs/extensions/mv3/user_interface/)
 
-## 7. Boilerplate 
+## 7. Boilerplate
 
 만약, react, typescript에 익숙하다면, 필자가 만들어놓은 boilerplate를 추천합니다.
 
