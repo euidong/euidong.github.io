@@ -1,10 +1,10 @@
 ---
 slug: "chrome-extension"
 title: "Chrome Extension"
-date: "2022-05-31 16:59"
+date: "2021-04-01 17:27"
 category: "Web"
 tags: ["ChromeExtension"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/chrome-extension.jpeg"
 ---
   
 해당 글은 manifest version 3을 기반으로 작성된 글입니다. 혹여 version 2를 이용하셨다면, version 2에서 version 3로 migration 하면서 제가 적어놓은 글이 있으니 그것을 참고 하시기 바랍니다.
@@ -153,25 +153,25 @@ button을 클릭했을 때, 두 개의 alert 창을 만날 수 있습니다.
 
 content scripts는 3가지의 방법으로 삽입되어질 수 있습니다.
 
-1. statically
+> **1. statically**
 
 manifest.json 파일에 정적으로 선언하면, 자동적으로 page가 setting될 때 실행됩니다. 이는 "content\_scripts"라는 부분에 정의됩니다. 여기에는 javascript, css 등을 포함할 수 있습니다.
 
 ```json
 {
- "manifest_version": 3,
- ...
- "content_scripts": [
-   {
-     "matches": ["http://*.nytimes.com/*"], // 해당 injection을 수행할 URL을 명시합니다. 필수입력입니다.
-     "css": ["myStyles.css"], // 추가할 css파일 입니다.
-     "js": ["contentScript.js"] // 추가할 js파일 입니다.
-   }
- ]
+"manifest_version": 3,
+...
+"content_scripts": [
+  {
+    "matches": ["http://*.nytimes.com/*"], // 해당 injection을 수행할 URL을 명시합니다. 필수입력입니다.
+    "css": ["myStyles.css"], // 추가할 css파일 입니다.
+    "js": ["contentScript.js"] // 추가할 js파일 입니다.
+  }
+]
 }
 ```
 
-1. dynamically
+> **2. dynamically**
 
 2021.04.01 시점에서는 아직 완전 제공하지는 않는 기능입니다.  
 host를 알지 못하거나 아는 host로 부터 script가 추가 또는 삭제될 필요가 있는 경우에 사용합니다.
@@ -182,7 +182,7 @@ or
 
 `chrome.scripting.unregisterContentScript(idArray, callback);`
 
-1. programmatically
+> **3. programmatically**
 
 구체적인 상황 또는 event에 대한 반응으로 실행하기 원할 때 사용합니다.  
 이를 수행하기 위해서는, 해당 페이지에 대한 host의 permission이 필요합니다. 이는 확장앱의 host\_permissions 부분 or 일시적으로 activeTab을 이용해서 승인을 받을 수 있습니다.
