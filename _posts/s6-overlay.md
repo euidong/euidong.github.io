@@ -1,7 +1,7 @@
 ---
 slug: "s6-overlay"
 title: "S6 Overlay"
-date: "2022-06-01 20:19"
+date: "2021-07-11 12:13"
 category: "Tech"
 tags: ["Docker"]
 thumbnailSrc: "/images/docker-picture.jpg"
