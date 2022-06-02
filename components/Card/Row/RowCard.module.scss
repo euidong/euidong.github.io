@@ -110,6 +110,19 @@ $mobile-thumbnail-size: 100px;
         line-height: 2.5rem;
       }
     }
+    &__select {
+      display: flex;
+      outline-color: $palette1;
+      border: none;
+      border-bottom: 1px solid $palette1;
+      font-weight: 600;
+      background-color: $palette2;
+      color: $palette1;
+      &__option {
+        font-weight: inherit;
+        color: inherit;
+      }
+    }
     &__wrapper {
       max-width: 90vw;
       display: flex;
