@@ -4,7 +4,7 @@ title: "[Bitcoin] 4. Blockchain"
 date: "2022-03-25 17:59"
 category: "Tech"
 tags: ["BlockChain", "Bitcoin"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/bitcoin.jpg"
 ---
 
 ## Reference
@@ -173,7 +173,7 @@ Blockchain의 기반은 뿌리 깊은 불신에서부터 시작됩니다. 여기
 
 #### 3-2. 정의
 
-Bloom Filter란 데이터를 hash 하고, 이를 Bit field라는 영역으로 나누어 담는 것입니다. 나누어 담은 데이터는 1개의 Bucket이라는 영역에 담기게 됩니다. 이때 Bucket은 하나의 Bit가 될 수도 있고, 여러 개의 Bits가 될 수도 있습니다. 또한, 동일한 Bucket에 담기는 데이터의 양은 평균적으로 "$ \\text{# of data} \\div \\text{# of bucket} $"가 됩니다.
+Bloom Filter란 데이터를 hash 하고, 이를 Bit field라는 영역으로 나누어 담는 것입니다. 나누어 담은 데이터는 1개의 Bucket이라는 영역에 담기게 됩니다. 이때 Bucket은 하나의 Bit가 될 수도 있고, 여러 개의 Bits가 될 수도 있습니다. 또한, 동일한 Bucket에 담기는 데이터의 양은 평균적으로 "$ \text{# of data} \div \text{# of bucket} $"가 됩니다.
 
 여러 개의 Bits를 하나의 Bucket으로 쓰는 경우에는, 다음과 같이 많은 양의 Bucket이 만들어질 수 있습니다.
 

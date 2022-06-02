@@ -4,7 +4,7 @@ title: "[Bitcoin] 1. ECDSA를 이용한 서명"
 date: "2022-03-16 18:15"
 category: "Tech"
 tags: ["BlockChain", "Bitcoin"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/bitcoin.jpg"
 ---
 
 ## Reference

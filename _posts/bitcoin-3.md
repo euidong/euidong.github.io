@@ -4,7 +4,7 @@ title: "[Bitcoin] 3. Transaction"
 date: "2022-03-22 11:22"
 category: "Tech"
 tags: ["BlockChain", "Bitcoin", "ECC", "ecdsa"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/bitcoin.jpg"
 ---
 
 ## Reference
@@ -136,7 +136,7 @@ Script의 최종 목적은 **Script의 모든 구성요소를 실행시켜서, 
 
 결론상 다음의 조건을 만족하는 h, k를 **ScriptSig**로 넣어주면 됩니다.
 
-1. $h \\ne k$
+1. $h \ne k$
 2. $sha1(h) = sha1(k)$
 
 이는 SHA-1이 collision을 발생하게 하는 두 개의 값을 넣어주면 됩니다. (이를 찾을 수 있는지 없는지가 hash함수의 성능을 표시하는데 가장 큰 지표가 됩니다.)

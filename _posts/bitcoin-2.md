@@ -4,7 +4,7 @@ title: "[Bitcoin] 2. Serialization"
 date: "2022-03-18 14:51"
 category: "Tech"
 tags: ["BlockChain", "Bitcoin"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/bitcoin.jpg"
 ---
 
 ## Reference
