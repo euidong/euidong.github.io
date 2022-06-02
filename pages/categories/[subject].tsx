@@ -29,7 +29,7 @@ const Category = ({ posts, params }: Props) => {
           content={`${process.env.PUBLIC_URL}/logo192.png`}
         />
       </Head>
-      <RowCardList subject={params.subject} posts={posts} />;
+      <RowCardList subject={params.subject} posts={posts} />
     </>
   );
 };

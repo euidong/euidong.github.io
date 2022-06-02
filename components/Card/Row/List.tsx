@@ -35,18 +35,21 @@ const RowCardList = ({ subject, posts }: Props) => {
   return (
     <div className={styles.row_card__list__background}>
       <h1 className={styles.row_card__list__title}>{formatTitle(subject)}</h1>
-      <select
-        className={styles.row_card__list__select}
-        onChange={(e) => {
-          setSort(sorting[e.currentTarget.selectedIndex]);
-        }}
-      >
-        {sorting.map((e, idx) => (
-          <option className={styles.row_card__list__select__option} key={idx}>
-            {e.render}
-          </option>
-        ))}
-      </select>
+      <label className={styles.row_card__list__select__wrapper}>
+        <select
+          className={styles.row_card__list__select}
+          onChange={(e) => {
+            setSort(sorting[e.currentTarget.selectedIndex]);
+          }}
+        >
+          {sorting.map((e, idx) => (
+            <option className={styles.row_card__list__select__option} key={idx}>
+              {e.render}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <ul className={styles.row_card__list__wrapper}>
         {sortedPost.map((post: any, idx: number) => (
           <RowCard
