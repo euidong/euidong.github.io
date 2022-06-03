@@ -23,7 +23,7 @@ const ColumnCard = ({
           <Image
             className={styles.column_card__thumbnail}
             src={thumbnailSrc}
-            alt="thumbnail"
+            alt={title}
             width={styles.cardWidth}
             height={styles.cardWidth}
             objectFit="cover"

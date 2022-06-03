@@ -7,7 +7,6 @@ import styles from "./Post.module.scss";
 import { DEFAULT_THUMBNAIL_SOURCE } from "../../lib/constants";
 import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
-import GoogleAds from "../../components/GoogleAds";
 import Comment from "../../components/Comment";
 import { formatDate } from "../../lib/utils";
 
@@ -28,6 +27,10 @@ const Post = ({ post, relatedPosts }: Props) => {
         <meta
           property="og:url"
           content={`${process.env.PUBLIC_URL}/posts/${post.slug}`}
+        />
+        <link
+          rel="canonical"
+          href={`${process.env.PUBLIC_URL}/posts/${post.slug}`}
         />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={"Just Tech Posting"} />

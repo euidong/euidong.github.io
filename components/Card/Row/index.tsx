@@ -45,7 +45,7 @@ const RowCard = ({
           <Image
             className={styles.row_card__thumbnail}
             src={thumbnailSrc}
-            alt="thumbnail"
+            alt={title}
             width={thumbSize}
             height={thumbSize}
             layout="fixed"
