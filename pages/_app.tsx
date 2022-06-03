@@ -29,11 +29,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           `,
         }}
       />
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
-        crossOrigin="anonymous"
-      ></Script>
       <Component {...pageProps} />
     </Layout>
   );

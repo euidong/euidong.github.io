@@ -9,6 +9,11 @@ const MyDoucment = () => {
           rel="apple-touch-icon"
           href={`${process.env.PUBLIC_URL}/logo192.png`}
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452732177557701"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <body>
         <Main />
