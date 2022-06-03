@@ -2,6 +2,7 @@
 
 module.exports = {
   siteUrl: require("./package.json").homepage,
-  generateRobotsTxt: true, // (optional)
-  // ...other options
+  generateRobotsTxt: true,
+  generateIndexSitemap: false,
+  exclude: ["/tags*", "/categories*", "/drafts/*"],
 };
