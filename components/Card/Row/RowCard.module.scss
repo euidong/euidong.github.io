@@ -143,6 +143,7 @@ $mobile-thumbnail-size: 100px;
         &::after {
           position: absolute;
           right: 0;
+          color: $palette1;
           content: "▼";
           pointer-events: none;
         }
