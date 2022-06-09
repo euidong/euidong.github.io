@@ -24,13 +24,15 @@ const SearchBar = ({ close }: Props) => {
   }>();
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const categoryFilter = categories.filter((category) => {
-      return category.includes(e.currentTarget.value);
+      return category
+        .toLowerCase()
+        .includes(e.currentTarget.value.toLowerCase());
     });
     const tagFilter = tags.filter((tag) => {
-      return tag.includes(e.currentTarget.value);
+      return tag.toLowerCase().includes(e.currentTarget.value.toLowerCase());
     });
     const postFilter = posts.filter((post) => {
-      return post.includes(e.currentTarget.value);
+      return post.toLowerCase().includes(e.currentTarget.value.toLowerCase());
     });
     setBestFit({
       category: categoryFilter.length > 0 ? categoryFilter[0] : null,
