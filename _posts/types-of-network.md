@@ -7,13 +7,9 @@ tags: ["BackbornNetwork", "Internet", "DatacenterNetwork", "EdgecomputingNetwork
 thumbnailSrc: "/images/base-station.jpg"
 ---
 
-### Reference
+## Intro
 
-- Thumbnail: Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/internet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-인터넷이 처음 세상에 등장한 이래로 다양한 종류의 네트워크 구조가 만들어졌다. 작게는 우리가 사용하는 Wifi를 구성하는 LAN 영역에서 부터 전체 세상을 연결하는 Internet와 같은 광범위한 네트워크가 존재한다.
-
-해당 Posting에서는 일반적인 LAN을 제외한 Network의 대표적인 종류를 알아보고 특징을 정리할 것이다.
+Network는 여러가지 종류가 존재한다. 일반적인 LAN을 제외한 Network의 대표적인 종류(BackBorn, Internet, Datacenter, 등)를 알아본다.
 
 ## BackBorn Network
 
@@ -85,3 +81,9 @@ Datacenter는 Service를 제공하는 업체들에서 다양한 Application을 �
 ADSL부터 시작되어 여러가지 형태로 변화되어온 Network 형태이다. 종류는 다양하게 ADSL/HDSL/SDSL/RADSL/VDSL 등으로 존재한다.
 
 ADSL은 Asymmetric Digital Subscriber Line의 약자로 전화선을 이용한 통신 방식이다. 1988년 미국에서 최초 개발되었고, 현재에도 저가형 인터넷 서비스에 사용 중이다. 또한, VDSL은 주파수 대역을 확장하여 속도 향상을 꾀하였다.
+
+## Reference
+
+- Thumbnail: Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/internet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+인터넷이 처음 세상에 등장한 이래로 다양한 종류의 네트워크 구조가 만들어졌다. 작게는 우리가 사용하는 Wifi를 구성하는 LAN 영역에서 부터 전체 세상을 연결하는 Internet와 같은 광범위한 네트워크가 존재한다.

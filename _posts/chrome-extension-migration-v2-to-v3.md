@@ -7,6 +7,8 @@ tags: ["ChromeExtension"]
 thumbnailSrc: "/images/chrome-extension.jpeg"
 ---
 
+## Intro
+
 최근 3일 정도를 chrome extension version 2에서 version3로 migration하면서 보낸 거 같습니다. ㅠㅠ
 
 현재 side project로 진행하고 있는 내용을 chrome extension store에 배포할려고 하는 순간에 경고창이 뜨며, 이제부터는 version 3만 업로드를 지원한다는 경고를 받았습니다.ㅠㅠㅠㅠㅠ
@@ -14,8 +16,6 @@ thumbnailSrc: "/images/chrome-extension.jpeg"
 그래서 이전 셋업을 완전히 뜯어고쳐야 된다는 결론에 도달했고, 이전에 열심히 투닥투닥 만들었던 결과물을 다시 뜯어고쳐야했습니다.
 
 이 내용은 제가 진행하면서 바꾼 내용을 정리한 내용입니다. 저와 같이 version migration을 진행하시는 분들에게 도움이 되었으면 좋겠습니다.
-
----
 
 ## 1. manifest에서 바뀌어야 하는 부분
 

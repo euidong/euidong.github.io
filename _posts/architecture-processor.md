@@ -6,17 +6,10 @@ tags: ["Computer Organization And Design", "Processing", "MIPS Implementation", 
 category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
-## **Reference**
-
-![default](/images/default.jpg)
-
-David A. Patterson, John L. Hennessy, Computer Organization and Design
-
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
----
 
 해당 내용은 이전에 다루었던, [논리회로 리뷰 내용](/posts/digital-logic-circuit)을 보고 보는 것을 추천합니다.
+
+## Intro
 
 우리의 컴퓨터 시스템은 결국 Finite State Machine(유한상태장치)라고 할 수 있다. 즉, 순서에 따라 유한한 상태에서 다음 상태로 넘어가면서, Output을 계속해서 내보내는 장치라는 것이다. 이때 하나의 작업은 하나의 Clock 단위로 수행되며, 연속적은 작업 처리를 통해서 컴퓨터는 사용자가 요구한 명령을 수행하게 된다.
 
@@ -208,3 +201,7 @@ Pipelining을 통해서, Instruction을 동시에 여러 개 실행시킬 수 �
 ### 2. Dynamic Multiple Issue
 
 processor에서 직접 Instruction이 실행되는 동안 이루어진다. 이는 여러 개의 pipeline을 CPU에 두어 이를 SuperScalar 방식이라고도 한다. 이를 효율적으로 수행하기 위해서는 앞 서 보았던 Compiler 단에서의 조율도 필요하며, 실행 중에 Instruction을 어떻게 나눌 것인가에 대한 Dynamic Scheduling 역시 매우 중요하다. 대표적인 예시가 OoO(Out of Order) Execution을 이용하는 것이다. Instruction의 Fetch를 순서대로가 아닌 의존성에 알맞게 실행되도록 조절하는 방식이다.
+
+## Reference
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design

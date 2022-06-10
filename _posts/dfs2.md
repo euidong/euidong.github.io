@@ -7,8 +7,12 @@ category: "Algorithm"
 thumbnailSrc: "/images/algorithm.png"
 ---
 
+## Intro
+
 이전에는 DFS의 기본이 되는 요소에 대해서 알아보았지만, 이제는 좀 더 심화적인 부분을 배워보고자 한다.
 DFS가 그래프를 순회하면서 만드는 DFS Spanning Tree에 대한 내용이다.
+
+## DFS Spanning Tree
 
 우리는 총 4가지로 간선을 분류할 수 있습니다.
 

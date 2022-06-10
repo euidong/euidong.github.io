@@ -7,15 +7,7 @@ tags: ["Computer Organization And Design", "Multi Processors", "Multi Threading"
 thumbnailSrc: "/images/default.jpg"
 ---
 
-## **Reference**
-
-![default](/images/default.jpg)
-
-David A. Patterson, John L. Hennessy, Computer Organization and Design
-
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
----
+## Intro
 
 우리가 원하는 것은 강한 performance를 발휘하면서도, 가용성(availability, 끊김 없이 사용할 수 있는 능력의 정도)가 높은 computer를 만드는 것이다. 이를 위해서, 우리는 단순히 하나의 processor를 정교하게 만들기보다는 동등한 기능을 하는 여러 개의 processor를 연결하여 사용하는 것이 더 효율적이라는 것이라는 것을 알아냈다. (이를 software가 잘 활용할 수만 있다면, 성능이 크게 향상될 것이다.)
 
@@ -96,3 +88,7 @@ game 산업 및 그래픽 분야의 큰 성장에 힘업어 graphic 처리에 �
 GPU는 앞 서 설명한 Multi Threading 기술을 적극 도입했기 때문에 Memory 접근에 따른 Latency가 성능에 큰 영향을 미치지 않는다. 그런 만큼 반대로 높은 Bandwidth를 가진 저장 장치를 필요로 한다.
 
 후에는 이 장치가 수행하는 vector 연산이 여러 용도로 사용됨에 따라 이를 위한 programming language들도 만들어졌다. 대표적인 것이 NVidia가 C를 통해서 만든 CUDA이다.
+
+## Reference
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design

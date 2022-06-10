@@ -7,11 +7,6 @@ tags: ["Docker", "Container", "Network"]
 thumbnailSrc: "/images/docker-picture.jpg"
 ---
 
-## Reference
-
-- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
-- Tumbnail : Photo by [Michael](https://unsplash.com/@michael75?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/cargo-ships?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
 ## Intro
 
 Docker Swarm을 docker stack을 이용하여 실행시키게 된다면, 무엇이 생성되는가? 우리는 서비스가 생성되기도 전에 network가 생성되는 것을 볼 수가 있다. container와 container간 그리고, host를 통해 외부 internet환경에 container를 연결 시키는 모든 과정을 알아보자.
@@ -57,3 +52,8 @@ container간의 network를 구현하기 위한 design을 제시한 내용입니�
 즉, libnetwork가 전체적인 network의 control plane과 management plane 기능을 구현하였다면, driver는 data plane을 구현한다. 즉, 직접적으로 데이터를 전달하는 역할을 수행한다. 이러한 기능들은 docker에서 여러 개의 driver라는 submodule을 통해서 구현하였다. docker pub를 통해서 default보다 나아간 driver 역시 설치가 가능하다. 하지만 기본적으로, host, bridge, overlay, ipvlan, macvlan 등을 포함하고 있다.
 
 여기까지가 docker network에 대한 overview이다. 다음 차시에 계속...
+
+## Reference
+
+- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
+- Tumbnail : Photo by [Michael](https://unsplash.com/@michael75?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/cargo-ships?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

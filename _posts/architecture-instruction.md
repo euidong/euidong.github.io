@@ -7,27 +7,17 @@ category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
 
-## **Reference**
-
-![default](/images/default.jpg)
-
-David A. Patterson, John L. Hennessy, Computer Organization and Design
-
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
----
+## Intro
 
 컴퓨터가 알아들을 수 있는 명령을 우리는 Instruction이라고 한다. 그렇다면, 이들을 모아놓은 단어장(Vocabulary)는 **Instruction set**이 되는 것이다. 이런 의미에서 현대의 computer는 이를 기반으로 동작하도록 설계되었기 때문에, 이를 **Instruction set architecture**라고 부른다. 해당 책에서는 MIPS를 기준으로 하기 때문에 똑같이 MIPS를 기준으로 설명합니다. 이는 다른 processor들과 매우 유사하니 이를 배우면 쉽게 다른 것도 이해할 수 있을 것이다.
 
 그렇다면, Instruction이란 무엇일까? 이는 기계어(0과 1로 이루어진 이진수 체계)의 형태로 표현된다. 따라서, 이를 Assembly Instruction이라고도 한다. 이는 hardware에게 특정 동작을 수행하도록 하는 명령어라고 할 수 있다. 그렇기에 우리가 실행하거나 작성하는 모든 program들은 사실 Instruction들의 집합이라고 볼 수 있다. 실제로 Computer에서 Program이 동작할 때, 이는 Computer는 memory에 program의 내용과 program에서 사용할 data들을 위한 공간을 배정해준다. 그런 후에 실제로 실행될 때에는 program의 Instruction을 차례차례 읽어가면서 실행하는 것이다.
 
----
-
-## **Assembly Instruction의 구성요소**
+## Assembly Instruction의 구성요소
 
 기본적으로 MIPS는 32bit(=4Bytes) 시스템을 사용한다. 따라서, 하나의 Instruction은 4 Bytes로 표현된다. 이를 하나의 가장 단위라고 여겨서 word라고도 부른다. 따라서, 64bit(=8Bytes) CPU에서는 1 word가 8 Bytes가 될 수도 있다. 결국 모든 Instruction이 0과 1로 이루어진다. 하지만, 이는 너무 읽기 어렵기 때문에 우선 Assembly(기계어보다는 사람의 언어에 가깝지만 아주 원초적인 형태의 언어) Instruction을 알아볼 것이다. 이를 기계어로 바꾸는 것은 해당 포스팅의 밑에서 다룬다.
 
-### **1\. Operand**
+### 1\. Operand
 
 연산을 위해서 필요한 것은 연산자와 피연산자이다. 보통의 programming 언어에서는 이를 변수라고 한다.
 
@@ -49,7 +39,7 @@ MIPS에서는 총 두 가지의 변수 type이 존재한다.
 
 상식적으로 알아두고 갈 부분은 reigster는 직접적으로 연산이 이루어지는 곳이기 때문에, register에 접근하는 비용이 memory에 접근하는 부분보다 확연하게 비용이 싸다.(시간이 짧게 걸린다.) 따라서, 이를 효율적으로 다루어주는 것이 효율 향상에 도움이 된다.
 
-#### **2\. Operation**
+#### 2\. Operation
 
 모든 computer는 기본적인 연산을 수행할 수 있어야 한다. MIPS에서는 다음과 같은 표기법을 사용한다.
 
@@ -111,9 +101,9 @@ register1과 2가 서로 동일하다면, 해당 instruction offset으로 이동
 
 ---
 
-## **Instruction를 이용한 Programming 언어 기본 요소 구현**
+## Instruction를 이용한 Programming 언어 기본 요소 구현
 
-### **1\. 조건문 (if / else)**
+### 1\. 조건문 (if / else)
 
 ```pseudo
 if (i == j) 
@@ -139,7 +129,7 @@ Exit:
 
 Switch/Case 문 같은 경우는 if/else로 변환해서 나타내기도 하고, 아니면 Switching 위치를 적어놓은 Table을 만들어서 해당 위치로 바로 이동하는 식으로 구현하기도 한다.
 
-### **2\. 반복문 (while)**
+### 2\. 반복문 (while)
 
 ```pseudo
 while(save[i] == k)
@@ -168,7 +158,7 @@ j Loop # go to Loop
 Exit:
 ```
 
-### **3\. 함수 (function)**
+### 3\. 함수 (function)
 
 procedure는 대게 function(함수)이라고도 불린다. 함수를 우리는 하나의 예시를 통해서 설명할 수 있다.
 
@@ -275,9 +265,9 @@ jr   $ra              # return to the caller
 
 ---
 
-## **여러 변수 형태 표현법**
+## 여러 변수 형태 표현법
 
-### **Signed Numbers**
+### Signed Numbers
 
 일반적으로 unsigned number라고 하면, 0과 양수를 포함하는 범위이다. 하지만, signed number는 음수까지 포함한다. 그렇다면, 컴퓨터에서는 음수를 어떻게 표현할 수 있을까?
 
@@ -335,7 +325,7 @@ jr   $ra              # return to the caller
 
 연산을 하다보면, 당연히 너무 큰 양수를 더하게 되면 overflow가 발생할 수 있는데 이 경우 운영체제마다 compiler마다 처리 방식이 상이하다. C에서는 overflow가 되면 그대로 값을 내놓기 때문에, 대게 굉장히 큰 음수가 나오게 된다.
 
-### **Character**
+### Character
 
 computer에서 수가 아닌 값을 어떻게 표현할 수 있는가는 ASCII code 표가 답해줄 수 있을 것이다. 하나의 문자를 우리는 character라고 부르고, ASCII code 표와 같은 방식을 통해서 수를 글자로 변환하여 표현한다. 또한, 하나의 문자가 아닌 단어, 문장에 이르게 되면 이를 우리는 string이라고 하며, 이는 이 데이터의 길이를 표기하기 위해서 다음 3가지 중 하나를 선택하게 된다.
 
@@ -345,7 +335,7 @@ computer에서 수가 아닌 값을 어떻게 표현할 수 있는가는 ASCII c
 
 ---
 
-## **Representing Instruction with Machine Language**
+## Representing Instruction with Machine Language
 
 위에 나온 MIPS Assembly code를 이제 MIPS의 기계어로 변환하는 과정을 수행할 것이다.
 
@@ -373,7 +363,7 @@ computer에서 수가 아닌 값을 어떻게 표현할 수 있는가는 ASCII c
 - rt : second source register
 - constraint or address : 긴 값이 필요한 연산에서는 다음과 같은 형태로 표현한다.
 
-## **Addressing**
+## Addressing
 
 MIPS는 여러가지 instruction을 가지고 있기 때문에, 주소를 targeting하는 방식도 여러가지이다. 또한, 따른 instruction set architecture에서도 다양한 방법을 통해서 memory의 주소를 가르킨다.
 
@@ -382,3 +372,7 @@ MIPS는 여러가지 instruction을 가지고 있기 때문에, 주소를 target
 3. Base addressing : 상수에 특정 register값을 더해서 구하는 방식이다.(MIPS → Load Word, Save Word)
 4. PC-relative addressing : PC 값에 상수 값을 더해서 구하는 방식이다. (MIPS → Branch)
 5. Psedodirect addressing : PC의 맨앞 내자리를 가져와서 쓰는 방식이다. (MIPS → Jump)
+
+## Reference
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design

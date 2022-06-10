@@ -7,6 +7,8 @@ tags: ["frontend", "react", "gatsby", "nextjs", "github"]
 thumbnailSrc: "/images/blog.png"
 ---
 
+## Intro
+
 해당 포스팅은 블로그를 직접 만드는 과정에서 겪은 시행착오를 정리한 내용이다.
 
 나의 블로그 포스팅을 향한 일대기는 2019년도에서 부터 시작된다.

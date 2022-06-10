@@ -7,11 +7,7 @@ tags: ["P2P", "VPN"]
 thumbnailSrc: "/images/climb-the-rock.jpg"
 ---
 
-## Reference
-
-- Thumbnail : Photo by [Mark McGregor](https://unsplash.com/@mmcgregor?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/peer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-## Overlay Network
+## Intro
 
 Overlay Network란 기존의 Network 위에 만들어진 가상의 Network를 의미한다. 그렇기에 물리적인 광통신 네트워크에 구성된 모든 네트워크를 Overlay Network라고 볼 수도 있지만, 일반적으로는 Public Internet 위에 구성된 가상의 Network라는 의미로 사용된다.
 
@@ -69,3 +65,7 @@ Session Traversal Utilities for NAT 의 약어로 UDP hole punching이라고도 
 ## VPN
 
 Virtual Private Network의 약어로 90년대 말에 기업의 사설망 구축 시에 사용되던 기술이 공용화된 것이다. 이는 OSI 7계층에서 2 계층 이상에서 적용이 가능하며, 어느 계층에서 수행하냐에 따라 목적이 조금씩 다르지만, packet을 Encapsulation하여 도청, 감청, 탈취 등의 작업을 수행할 수 없도록 막는 것이 주 목적이다. 이를 통해서 개인정보를 암호화하고, 인터넷을 사용하는 것이 가능하다. 통신 사업자에 의해서 구성된 VPN이 아닌 경우 대역폭이 보장되지는 않는다. IPSec에서 부터 시작하여, SSL과 같은 기술이 이에 포함되고, 우리가 일반적으로 생각하는 VPN은 응용 계층에서의 활용이다. 이 경우에는 Proxy Server를 먼저 거쳐서 Traffic 자체를 우회시키는 방식이다.
+
+## Reference
+
+- Thumbnail : Photo by [Mark McGregor](https://unsplash.com/@mmcgregor?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/peer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

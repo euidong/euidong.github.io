@@ -6,12 +6,6 @@ category: "Tech"
 tags: ["BlockChain", "Bitcoin"]
 thumbnailSrc: "/images/bitcoin.jpg"
 ---
-
-## Reference
-
-- [🔗 Programming Bitcoin](https://learning.oreilly.com/library/view/programming-bitcoin/9781492031482/)
-- Tumbnail : Photo by [Icons8 Team](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
 ## Intro
 
 Blockchain을 공부하게 되었는데, 이번 기회에 제대로 하자는 생각에서 Bitcoin 구현을 직접 수행해볼 생각입니다. 학습에 사용한 책은 위에 나와있는 책을 활용하였습니다.
@@ -243,3 +237,8 @@ $$ v = r / s $$
 이것이 BitCoin에서 사용하는 서명 방식인 ECDSA입니다. 이에 대한 구현은 github에 올려 두었으니, 확인을 원하시면 체크해보시길 바랍니다.
 
 [🔗 GitHub - euidong/bitcoin](https://github.com/euidong/bitcoin)
+
+## Reference
+
+- [🔗 Programming Bitcoin](https://learning.oreilly.com/library/view/programming-bitcoin/9781492031482/)
+- Tumbnail : Photo by [Icons8 Team](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

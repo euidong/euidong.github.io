@@ -7,9 +7,9 @@ tags: ["Routing", "RIP", "EIGRP", "OSPF", "BGP", "ISIS"]
 thumbnailSrc: "/images/routing-hero.jpg"
 ---
 
-## Reference
+## Intro
 
-- Thumbnail : Photo by [Nick Seagrave](https://unsplash.com/@seagrave?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/route?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Routing은 우리가 주고 받고자 하는 데이터를 전달하기 위해서 목적지를 찾아나가는 과정이다. 어떻게 해서 IP를 통해서 목적지를 찾아 데이터가 이동할 수 있는지를 알아볼 것이다.
 
 ## Routing Vs Switching Vs Forwarding
 
@@ -129,3 +129,7 @@ Router가 실행 중에 계속해서 장애에 대응하면서, 가용성 높은
   나뉘어진 AS 간의 통신을 지원하기 위한 방법이다.
   - **BGP(Border Gateway Protocol)**  
     서로 다른 AS를 연결하는 Protocol로 TCP에 기반하며, IGP와 같이 연동하여 전체 네트워크를 구성할 수도 있고, 자체적으로 정의한 Interior BGP를 활용하여 BGP만으로 네트워크를 구성하는 것도 가능하다. 따라서, BGP는 iBGP(interior BGP), eBGP(exterior BGP)로 나눌 수 있다. BGP는 여타 IGP들과는 다르게 AS간의 Routing을 중계하기 때문에 Routing Table의 크기가 매우 크고, 이에 대한 처리에 특화되어있다. 하지만, 대게 BGP라고 하면 eBGP를 의미한다. 특이하게 BGP는 기존의 Link State나 Hop 수에 기반하지 않고 Attribute(Hop, Bandwidth, ACL, Weight 등)라는 것을 별도로 활용한다. Dynamic Routing 방식이지만, 각 Link에 대한 정보는 앞에서 언급한 Attribute를 이용하여 수동으로 설정해주어야 한다. 하지만, BGP는 Broken Gateway Protocol이라는 별명이 있을 정도로 현재 많은 문제를 야기하고 있다. BGP Table의 크기가 102.4만 개를 초과할 시에 일부 Router의 Memory가 부족해지는 현상이 발생할 수 있다. 현재 해당 크기에 도달 시점을 2023년 말 정도로 예측하고 있다. 또한, 이렇게 커진 Table의 크기로 인해 Convergence Time도 굉장히 많이 소모하고 있다.(완전 수렴까지 15분 소요)
+
+## Reference
+
+- Thumbnail : Photo by [Nick Seagrave](https://unsplash.com/@seagrave?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/route?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

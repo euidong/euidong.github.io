@@ -7,10 +7,7 @@ tags: ["Emulator", "Tool"]
 thumbnailSrc: "/images/switch-with-cable.jpg"
 ---
 
-### Reference
-
-- Thumbnail : Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network-cable?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- mininet : <https://github.com/mininet/mininet/wiki/Introduction-to-Mininet>
+## Intro
 
 mininet은 현실적인 가상 네트워크 환경을 구축해주는 `Network Emulator`, 더 정확히는 `NETOWKR Emulation Orchestration System`이다.  
 이를 통해서, 가상의 End Device(Host), 각종 Switch, Router, 그리고 이를 연결하는 Link를 단 하나의 Linux Kernel로 만들 수 있다. 여기서 그치지 않고, 각 Host에 `ssh` 접근을 수행하여 기본 Linux Kernel 동작을 수행하거나 ethernet을 이용해서 각 device로 packet을 전송하는 것과 같은 효과를 볼 수 있다. (실제 speed와 delay에 기반한 속도를 볼 수 있다.) 또한, SDN과 같은 환경에 필요한 Controller 역시 구성하는 것이 가능하다. 그렇기에 실제로 SDN Network를 Test하고 연구하는 목적으로 많이 사용되고 있다.
@@ -174,3 +171,8 @@ Mininet에서 어떻게 이렇게 빠르게 가상 Network System을 가볍게 �
 Mininet은 가상 Network를 Emulating 할 수 있는 Tool이기에 실제로 SDN을 테스트하기 이전에 각종 기능을 체크하기에 용이하다.  
 또한, Network에서 핵심적인 Forwarding에 관한 기술은 다른 기술에게 맡겨서 더 안정적인 구조를 가지고 있다.  
 이에 따라 Open vSwitch를 이용해서 자유롭게 시스템을 제어할 수 있을 뿐만 아니라 ONOS와 같은 도구를 통해서 Network를 구성하는 과정을 테스트하기에 굉장히 유용하다.
+
+## Reference
+
+- Thumbnail : Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network-cable?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- mininet : <https://github.com/mininet/mininet/wiki/Introduction-to-Mininet>

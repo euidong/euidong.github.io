@@ -20,13 +20,15 @@ const Tag = ({ posts, params }: Props) => {
   return (
     <>
       <Head>
-        <title>{params.subject} | JustLog</title>
-        <meta property="og:title" content="JustLog" />
-        <meta property="og:description" content="Just Tech Blog" />
-        <meta property="og:url" content={process.env.PUBLIC_URL} />
+        <title>{`#${params.subject} | JustLog`}</title>
+        <meta property="og:title" content={`#${params.subject} | JustLog`} />
+        <link
+          rel="canonical"
+          href={`${process.env.PUBLIC_URL}/tags/${params.subject}`}
+        />
         <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/logo192.png`}
+          property="og:url"
+          content={`${process.env.PUBLIC_URL}/tags/${params.subject}`}
         />
       </Head>
       <RowCardList subject={params.subject} posts={posts} />

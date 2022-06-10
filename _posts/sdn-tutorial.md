@@ -7,9 +7,7 @@ tags: ["SDN", "Mininet", "OpenFlow", "ONOS", "OpenVSwitch"]
 thumbnailSrc: "/images/sdn-tuto-hero.jpg"
 ---
 
-## Reference
-
-- Thumbnail : Photo by [Alina Grubnyak](https://unsplash.com/@alinnnaaaa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/virtual-network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+## Intro
 
 SDN을 실제 구현하는 것은 굉장히 어려운 일이다. 따라서, Mininet을 활용하여 가상의 Topology를 통해서 먼저 테스팅을 한 후에 실제로 적용하는 것이 일반적이라고 할 수 있다.
 
@@ -292,3 +290,7 @@ $ sudo ovs-ofctl ad-flow l25 \
 ```
 
 ![sdn-tuto-scenario-4-result](/images/sdn-tuto-scenario-4-result.png)
+
+## Reference
+
+- Thumbnail : Photo by [Alina Grubnyak](https://unsplash.com/@alinnnaaaa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/virtual-network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

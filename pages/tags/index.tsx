@@ -11,13 +11,9 @@ const TagList = ({ tags }: Props) => {
     <>
       <Head>
         <title>Tag List | JustLog</title>
-        <meta property="og:title" content="JustLog" />
-        <meta property="og:description" content="Just Tech Blog" />
-        <meta property="og:url" content={process.env.PUBLIC_URL} />
-        <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/logo192.png`}
-        />
+        <meta property="og:title" content="Tag List | JustLog" />
+        <link rel="canonical" href={`${process.env.PUBLIC_URL}/tags`} />
+        <meta property="og:url" content={`${process.env.PUBLIC_URL}/tags`} />
       </Head>
       <div className={styles.tag_list__wrapper}>
         <div className={styles.tag_list__card}>

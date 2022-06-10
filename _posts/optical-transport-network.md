@@ -7,15 +7,15 @@ tags: ["OpticalTransportNetwork"]
 thumbnailSrc: "/images/optical-network.jpg"
 ---
 
-## Reference
+## Intro
 
-- Thumbnail : Photo by [Compare Fibre](https://unsplash.com/@comparefibre?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/optical-network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+광통신은 빛에 데이터를 저장하여 광섬유를 통해서 데이터를 보내는 방식이다. 그렇다면, 굳이 왜 빛으로 변환하는 과정을 거치면서 까지 광통신을 사용하고자 하는지를 알필요가 있다. **이는 간단하게 빠르고, 멀리 전달할 수 있기 때문이다.** 그리고, 전자파를 이용하는 무선통신과 다르게 빛은 4가지의 특징을 가지기 때문이다(반사, 굴절, 간섭, 편광). 광섬유 내부에서는 여러 원인에 의해서 상쇄(손실)가 발생하기 때문에 이를 증폭해줄 방법이 필요하며, 광섬유를 어떻게 구성할지에서부터 처음에 데이터를 어떻게 빛으로 변환할지에 대한 방법과 받은 빛을 다시 데이터로 변환하는 방법이 굉장히 중요하다.
 
-## Base
-
-광통신은 빛에 데이터를 저장하여 광섬유를 통해서 데이터를 보내는 방식이다. 그렇다면, 굳이 왜 빛으로 변환하는 과정을 거치면서 까지 광통신을 사용하고자 하는지를 알필요가 있다. **이는 간단하게 빠르고, 멀리 전달할 수 있기 때문이다.** 그리고, 전자파를 이용하는 무선통신과 다르게 빛은 4가지의 특징을 가지기 때문이다(반사, 굴절, 간섭, 편광). 광섬유 내부에서는 여러 원인에 의해서 상쇄(손실)가 발생하기 때문에 이를 증폭해줄 방법이 필요하며, 광섬유를 어떻게 구성할지에서부터 처음에 데이터를 어떻게 빛으로 변환할지에 대한 방법과 받은 빛을 다시 데이터로 변환하는 방법이 굉장히 중요하다. 따라서, 이를 위한 기술과 장비들을 먼저 살펴보고 갈 것이다.
+---
 
 ![광통신](/images/optical-transfer.jpeg)
+
+따라서, 이를 위한 기술과 장비들을 먼저 살펴보고 갈 것이다.
 
 ### 광섬유
 
@@ -80,3 +80,7 @@ data를 신호로 변환하는 기술이다. 대표적인 방식은 4가지가 �
    - CWDM-PON : Coarse Wavelength Division Multiplexing 의 약자로 수신 시에 채널을 최대 18개까지로 나누어 각 채널을 통해서 통신을 수행하도록 하는 방식이다. 이때, RN이라는 장치가 Prizm처럼 빛을 분산시키는 역할을 한다.
    - DWDM-PON : 각 광가입자마다 별도의 고유 파장을 부여하는 방식이다. 방식은 CWDM과 매우 유사하다.
    - NG-PON2 : TDM과 WDM을 결합하여 하는 방식이다.
+
+## Reference
+
+- Thumbnail : Photo by [Compare Fibre](https://unsplash.com/@comparefibre?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/optical-network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

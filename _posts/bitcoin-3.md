@@ -7,11 +7,6 @@ tags: ["BlockChain", "Bitcoin", "ECC", "ecdsa"]
 thumbnailSrc: "/images/bitcoin.jpg"
 ---
 
-## Reference
-
-- [🔗 Programming Bitcoin](https://learning.oreilly.com/library/view/programming-bitcoin/9781492031482/)
-- Tumbnail : Photo by [Icons8 Team](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
 ## Intro
 
 **해당 Posting은 Bitcoin이 무엇이고, 이것으로 무엇을 할 수 있는지에 대해서 설명하지 않고 Bitcoin을 구현하는 기술에 대하여 다룹니다.** 또한, 책의 모든 내용을 충실히 번역하는 것이 아닌 작성자의 생각이 많이 담겨 있으니 유의 바랍니다.
@@ -230,3 +225,8 @@ p2psh는 여러 개의 key와 signature를 가지는 경우에 사용할 수 있
 이전 글과 동일하게 구현 사항은 github에 정의해두었습니다.
 
 [🔗 GitHub - euidong/bitcoin](https://github.com/euidong/bitcoin)
+
+## Reference
+
+- [🔗 Programming Bitcoin](https://learning.oreilly.com/library/view/programming-bitcoin/9781492031482/)
+- Tumbnail : Photo by [Icons8 Team](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@icons8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

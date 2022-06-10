@@ -14,14 +14,9 @@ const Home = ({ recentPosts, categorizedPosts }: Props) => {
     <>
       <Head>
         <title>JustLog</title>
-        <link rel="canonical" href={process.env.PUBLIC_URL} />
         <meta property="og:title" content="JustLog" />
-        <meta property="og:description" content="Just Tech Blog" />
+        <link rel="canonical" href={process.env.PUBLIC_URL} />
         <meta property="og:url" content={process.env.PUBLIC_URL} />
-        <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/logo192.png`}
-        />
       </Head>
       <div className={styles.home__wrapper}>
         <ColumnCardList posts={recentPosts} title="Recent Post" />

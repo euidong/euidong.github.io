@@ -7,14 +7,11 @@ tags: ["DesignPattern", "OOP"]
 thumbnailSrc: "/images/design-pattern.jpg"
 ---
 
+## Intro
+
 점점 다양한 언어들이 생겨나고, 객체 지향에 대한 관심이 시들해지고 있는 환경이라고 생각합니다. 하지만, 그럼에도 불구하고, 여러 시스템에서도 거의 고유 명사로 쓰이고 있기에 객체 지향의 대표적인 디자인 패턴을 익혀두는 것은 필수적이라고 생각해서 제가 봤을 때 가장 빈번하게 사용되는 용어에 대해서 정리를 좀 해보고자 합니다.
 
 해당 글에서는 일단 introduction에 대한 내용을 정리합니다.
-
-## Reference
-
-- Design Patterns: Elements of reusable object oriented software.
-- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Design Pattern
 
@@ -180,3 +177,8 @@ delegation은 자신의 operation의 구현을 composition 한 instance에게 �
 이는 굉장히 유용하고, 유연한 개발이 가능하지만, 다른 instance의 요소를 실행시키니 만큼 run-time 중에 비효율적인 동작을 막을 수는 없습니다. 따라서, 이를 유의하고 사용해야 합니다.
 
 실제로도 State, Strategy pattern에서도 사용됩니다.
+
+## Reference
+
+- Design Patterns: Elements of reusable object oriented software.
+- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

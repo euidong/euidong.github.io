@@ -7,10 +7,6 @@ tags: ["Docker", "Container", "Network"]
 thumbnailSrc: "/images/docker-picture.jpg"
 ---
 
-## Reference
-
-- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
-
 ## Intro
 
 여태까지 docker의 driver를 통한 networking 기술을 알아보았고, 이제 libnetwork로 1/3에서 제시했던 기본 routing과 같은 기능 외에 구현되어 있는 기능들에 대해서 알아봅니다.
@@ -18,7 +14,7 @@ thumbnailSrc: "/images/docker-picture.jpg"
 - service discovery
 - load balancing
 
-### Service discovery
+## Service discovery
 
 모든 container들과 swarm의 서비스들이 이름을 통해서 각 각을 찾을 수 있도록 하는 것이다. Docker는 자체적으로 내부의 DNS 서버를 이용하여 이를 수행한다. 과정을 요약하자면 다음과 같다.
 
@@ -29,7 +25,7 @@ thumbnailSrc: "/images/docker-picture.jpg"
 5. 이때, DNS server는 먼저 동일한 network에 해당 container가 존재하는지를 확인한다. -> 없다면, 외부 DNS server로
 6. 존재한다면, 이를 요청을 보낸 resolver에게 전달하고, 이게 다시 container로 전달된다.
 
-### Load balancing
+## Load balancing
 
 docker swarm은 기본적인 load balancer를 지원하여, 아래 그림과 같이 구현되어진다.
 
@@ -48,3 +44,7 @@ $ docker service create \
 만약, 특정 node로 전달된 요청은 해당 node에 있는 container로 전달되기를 바란다면, host모드를 이용하여 진행할 수도 있다.
 
 여기까지가 network에 대한 전반적이 내용입니다.
+
+## Reference
+
+- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton

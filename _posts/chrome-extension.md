@@ -6,12 +6,12 @@ category: "Web"
 tags: ["ChromeExtension"]
 thumbnailSrc: "/images/chrome-extension.jpeg"
 ---
-  
+
+## Intro
+
 해당 글은 manifest version 3을 기반으로 작성된 글입니다. 혹여 version 2를 이용하셨다면, version 2에서 version 3로 migration 하면서 제가 적어놓은 글이 있으니 그것을 참고 하시기 바랍니다.
 
 [Chrome Extension version migration from V2 to V3](/posts/chrome-extension-migration-v2-to-v3)
-
----
 
 ## 1. chrome 확장 앱의 구성
 

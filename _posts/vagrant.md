@@ -7,10 +7,7 @@ tags: ["Vagrant", "VirtualEnvironment", "VirtualBox"]
 thumbnailSrc: "/images/vagrant.png"
 ---
 
-## Reference
-
-- [🔗 Why Vagrant?, Vagrant 공식 사이트](https://www.vagrantup.com/intro)
-- [🔗 Getting Started, Vagrant 공식 사이트](https://learn.hashicorp.com/collections/vagrant/getting-started)
+## Intro
 
 **Vagrant**(베이그런트)는 Virtual Machine의 실행환경을 하나의 workflow 내에 구축하고 관리하는 도구이다. 쉬운 workflow 사용법과 자동화에 초점을 맞추어 **Vagrant**는 setup time이 굉장히 짧다. 또한, production과정과의 동등함을 제공하고, 과거의 시스템을 "나의 machine 내부에서" 동작시키는 것이 가능하다.
 
@@ -267,3 +264,8 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
+
+## Reference
+
+- [🔗 Why Vagrant?, Vagrant 공식 사이트](https://www.vagrantup.com/intro)
+- [🔗 Getting Started, Vagrant 공식 사이트](https://learn.hashicorp.com/collections/vagrant/getting-started)

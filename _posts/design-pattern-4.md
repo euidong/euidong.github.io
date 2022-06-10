@@ -7,17 +7,13 @@ tags: ["DesignPattern", "CommandPattern", "CoRPattern", "MediatorPattern", "Meme
 thumbnailSrc: "/images/design-pattern.jpg"
 ---
 
-## Reference
-
-- Design Patterns: Elements of reusable object oriented software.
-- Refactoring GURU : [https://refactoring.guru/design-patterns/structural-patterns](https://refactoring.guru/design-patterns/structural-patterns)
-- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-## Behavioral Pattern
+## Intro
 
 Algorithm과 object 간의 책임 분배에 관한 pattern입니다.
 
 즉, object의 사용 목적에 따라서 method를 정의할 때, 많이 사용되는 구현 pattern을 의미합니다.
+
+## Behavioral Pattern
 
 ### 1. Chain of Responsibility(CoR)
 
@@ -203,3 +199,9 @@ template method의 특징은 다음과 같습니다.
 - 새로운 algorithm의 추가가 기존 code의 변경없이 가능합니다. (Open/Close)
 - 동일한 class 내부에서 동일한 동작을 여러 version으로 정의할 수 있어 유연합니다. (Single Responsibility)
 - 그러나, visitor의 추가는 기존 algorithm의 수정을 불러올 수 있습니다.
+
+## Reference
+
+- Design Patterns: Elements of reusable object oriented software.
+- Refactoring GURU : [https://refactoring.guru/design-patterns/structural-patterns](https://refactoring.guru/design-patterns/structural-patterns)
+- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

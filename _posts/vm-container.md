@@ -7,12 +7,11 @@ tags: ["VirtualMachine", "Container"]
 thumbnailSrc: "/images/cargo-ship.jpg"
 ---
 
-## Reference
+## Intro
 
-- [🔗 가상화 각 각을 비교](https://tech.cloud.nongshim.co.kr/2018/09/18/%EA%B0%80%EC%83%81%ED%99%94%EC%9D%98-%EC%A2%85%EB%A5%983%EA%B0%80%EC%A7%80/)
-- Thumbnail: Photo by [william william](https://unsplash.com/@william07?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/cargo-ship?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Virtual Machine과 Container는 현재의 여러 Computing 영역에서 빼놓을 수 없는 내용이 되었다. 그렇기에 이들의 발전 역사를 기반으로 하여 이들을 비교하고 정리해보도록 하겠다.
 
-## Virtual의 역사
+## History
 
 Virtual Machine과 Container의 차이점을 이해하기 보다는 서사를 이해하는 것이 편할 것이다.
 
@@ -71,3 +70,8 @@ Container 는 guest OS를 구현하지 않습니다. 각 Container에서 발생�
 Simulator는 특정 목적에 따라 기능을 수행할 수 있도록 임의로 구현하는 것을 의미한다. 즉, 완벽하게 동일할 필요는 없이 원하는 특징을 뽑아내는 것이 중요한 것이다. 반면에, Emulator는 완전 동일한 기기를 software로 구현하는 것을 말한다. 그 과정에서 Emulator는 Smulator보다 무거워질 수 밖에 없고, 그렇기에 low level language에 손이 가게 되고, 느려지게 된다.
 
 이해가 어렵다면, 오락실 게임을 PC에서 하고, 동물의 숲 닌텐도 게임을 핸드폰으로 하는 불법적인 일도 해본 적이 있을 수 있다. 이는 가상으로 해당 기기를 구현하고, 이를 다른 기기에서 구동하는 것의 예이다.
+
+## Reference
+
+- [🔗 가상화 각 각을 비교](https://tech.cloud.nongshim.co.kr/2018/09/18/%EA%B0%80%EC%83%81%ED%99%94%EC%9D%98-%EC%A2%85%EB%A5%983%EA%B0%80%EC%A7%80/)
+- Thumbnail: Photo by [william william](https://unsplash.com/@william07?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/cargo-ship?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

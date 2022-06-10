@@ -7,10 +7,6 @@ tags: ["Docker", "Container", "Network"]
 thumbnailSrc: "/images/docker-picture.jpg"
 ---
 
-## Reference
-
-- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
-
 ## Intro
 
 저번 글에 이어서 이번에는 docker network의 driver들에 대한 자세한 내용을 다루겠다.
@@ -21,7 +17,7 @@ thumbnailSrc: "/images/docker-picture.jpg"
 - IPVlan networks
 - MacVlan networks
 
-### Bridge Network
+## Bridge Network
 
 container간의 통신을 위해서 필요한 것이 bridge 네트워크이다. 하지만, 여기서 주의해야할 것은 오직, single host에서만 동작한다는 점이다. 즉, 다른 docker host에 존재하는 container와는 연결이 불가능하다.
 
@@ -68,7 +64,7 @@ $ docker run -p 5000:80 nginx
 
 이를 통해서 host의 5000번과 container의 80번 port를 연결할 수 있다.
 
-### Overlay Network
+## Overlay Network
 
 위에서 설명한 것이 단일 호스트 내부에서 container 간의 연결이었다면, 여러 host가 존재하는 cluster 환경에서 docker의 container간 통신을 위한 driver가 overlay이다. 현재에는 docker swarm을 통해서 application을 여러 host에서 제공하는 경우에 사용하게 된다.
 
@@ -76,7 +72,7 @@ $ docker run -p 5000:80 nginx
 
 예시를 든다면, docker stack을 통해서 시스템을 구성해본 적이 있다면, container를 생성하는 과정에서 network가 먼저 생성되는 것을 확인할 수 있을 것이다. 이때 생성되는 것이 overlay 네트워크로 이를 통해서 여러 container가 replica가 어느 node에 생길지 확정할 수 없음에도 통신을 자유롭게 하는 것을 볼 수 있다.
 
-### Host Networking
+## Host Networking
 
 해당 방식은 docker를 한 번이라도 써본 사람이라면 다음 명령어는 익숙할 것이다.
 
@@ -88,7 +84,7 @@ nginx image를 기반으로 container를 실행시키고, container 내부의 80
 
 하지만, host networking을 이용하게 되면 container 내부에 network stack이 생성되지 않고, 해당 container의 모든 network 설정이 해당 host의 설정에 그대로 mapping되는 것이다. 이를 이용하면 성능상의 이점은 있겠지만, 상당히 설정이 난잡해질 수 있다.
 
-### IPVlan Network
+## IPVlan Network
 
 MAC address와 IP adress를 부여하여, 실제 네트워크에 container를 직접 연결하는 방식이다.
 
@@ -101,8 +97,12 @@ MAC address와 IP adress를 부여하여, 실제 네트워크에 container를 �
 
 [🔗 IPvlan networks](https://docs.docker.com/network/ipvlan/)
 
-### MacVlan Network
+## MacVlan Network
 
 ipvlan과 동일하지만 차이점은 MAC 주소를 할당한다는 점이다. 그 외에는 다를 것이 없다.
 
 [🔗 macvlan networks](https://docs.docker.com/network/macvlan/)
+
+## Reference
+
+- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton

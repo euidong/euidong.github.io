@@ -23,7 +23,16 @@ const Post = ({ post, relatedPosts }: Props) => {
   return (
     <>
       <Head>
-        <title>{post.title} | JustLog</title>
+        <title>{post.title}</title>
+        <meta property="og:title" content={post.title} />
+        <meta
+          name="description"
+          content={post.desc || post.tags?.join(" ") || "Just Tech Blog"}
+        />
+        <meta
+          property="og:description"
+          content={post.desc || post.tags?.join(" ") || "Just Tech Blog"}
+        />
         <meta
           property="og:url"
           content={`${process.env.PUBLIC_URL}/posts/${post.slug}`}
@@ -32,8 +41,6 @@ const Post = ({ post, relatedPosts }: Props) => {
           rel="canonical"
           href={`${process.env.PUBLIC_URL}/posts/${post.slug}`}
         />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={"Just Tech Posting"} />
         <meta
           property="og:image"
           content={post.thumbnailSrc || DEFAULT_THUMBNAIL_SOURCE}

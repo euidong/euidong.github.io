@@ -7,19 +7,13 @@ category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
 
-## **Reference**
+## Intro
 
-![default](/images/default.jpg)
+컴퓨터를 사용할 때, 우리는 기본적으로 Memory가 무한한 크기를 가지고 있기를 바란다. 하지만, 이를 실제로 구현하는 것은 비용적으로도, 기술적으로도 불가능하다. 따라서, 이를 마치 존재하는 것처럼 느끼도록 하는 Virtual Memory라는 기술을 사용한다.
 
-David A. Patterson, John L. Hennessy, Computer Organization and Design
+## Locality
 
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
----
-
-컴퓨터를 사용할 때, 우리는 기본적으로 Memory가 무한한 크기를 가지고 있기를 바란다. 하지만, 이를 실제로 구현하는 것은 비용적으로도, 기술적으로도 불가능하다. 따라서, 이를 마치 존재하는 것처럼 느끼도록 하는 기술을 사용한다.
-
-이를 위한 핵심은 `Locality`를 활용하는 것이다. 동작에는 인과가 존재하고, 그렇기에 직전에 자신이 했던 행동 그리고 근처의 대상들이 했던 행동이 지금의 자신이 할 행동에 영향을 주는 것은 어찌보면 당연한 사실이다. 이러한 특징이 `Locality`이다. 이를 이용해서 우리는 Memory를 마치 무한인 것처럼 느낄 수 있게 할 수 있다.
+Virtual Memory를 위한 핵심은 `Locality`를 활용하는 것이다. 동작에는 인과가 존재하고, 그렇기에 직전에 자신이 했던 행동 그리고 근처의 대상들이 했던 행동이 지금의 자신이 할 행동에 영향을 주는 것은 어찌보면 당연한 사실이다. 이러한 특징이 `Locality`이다. 이를 이용해서 우리는 Memory를 마치 무한인 것처럼 느낄 수 있게 할 수 있다.
 
 1. **Temporal Locality**
    하나의 Instruction 또는 data가 사용되었다면, 해당 내용은 곧 다시 사용될 확률이 매우 높다.(반복문일 경우에는 극명하게 드러날 것이다.)
@@ -197,3 +191,7 @@ Page Table이 실제로 Main Memory에 저장되기 때문에 우리는 Page를 
 자주 헷갈릴 수 있는 TLB miss가 Page Fault가 아니라는 것을 꼭 명심하자.
 
 ![Virtual Memory](/images/virtual-memory.png)
+
+## **Reference**
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design

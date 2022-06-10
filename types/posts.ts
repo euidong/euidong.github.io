@@ -5,7 +5,7 @@ export type Post = {
   date: string;
   category: string;
   tags?: string[];
-  excerpt?: string;
+  desc?: string;
   thumbnailSrc?: string;
 };
 

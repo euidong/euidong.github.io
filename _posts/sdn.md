@@ -7,9 +7,7 @@ tags: ["SDN", "NFV", "OpenFlow", "ONOS", "OpenDayLight", "P4", "DPDK", "FD.io", 
 thumbnailSrc: "/images/network-background.jpg"
 ---
 
-## Reference
-
-- Thumbnail : Photo by [Nastya Dulhiier](https://unsplash.com/@dulhiier?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+## Intro
 
 SDN(Software Defined Network)은 기존에 Hardware단에 결합되어 있던 각종 Routing, Forwarding 방식을 별도의 Controller를 통해서 제어하는 방식을 제시한 것이다. 현재 이러한 기술에 대한 연구가 꾸준히 이루어지고 있는데, 이유를 알기 위해서는 기존의 Network 구성 방식의 문제점을 먼저 짚어보자.
 
@@ -193,3 +191,7 @@ IP에 의한 네트워크 주소와 단말기 주소가 완벽하게 구분되�
 ## NFV
 
 SDN과 같이 얘기되어지는 NFV(Network Function Virtualization)도 살펴보고자 한다. 위에서 SDN을 설명하였지만, 결국 아직까지는 DataCenter를 운영하는 서비스 사업자 지향적이다. 대게 닫힌 네트워크 내에서 사용이 용이하다는 것인데, 이는 보안과 관련된 부분도 부족하기 때문이다. 따라서, 통신 사업자들은 SDN을 효과적으로 구성하기 위해서 통신 장비의 하드웨어와 소프트웨어를 분리할 방법을 찾아야 했다. 여기서 나온 방법이 Cloud를 활용하여 소프트웨어 영역을 Cloud 내부에서 구현하고, 통신 장비는 최소한의 소프트웨어만으로 구성하는 것이다. 즉, Network의 특정 기능을 가상화해서 필요에 따라 각 하드웨어 장비가 불러와 사용한다는 개념이다. 결국 통신 사업자 입장에서는 SDN을 구축하기 위해서는 NFV의 구현이 우선시되는 것이다. 이를 수행하게 되면, 당연히 Software의 유연한 구현이 가능하고, 각 장치에서 Software까지 부담해야 하는 비용이 줄기 때문에 설치 및 운영비용(CAPEX / OPEX)에서 큰 이점을 볼 수 있는 것이다.
+
+## Reference
+
+- Thumbnail : Photo by [Nastya Dulhiier](https://unsplash.com/@dulhiier?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/network?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

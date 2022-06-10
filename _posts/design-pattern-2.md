@@ -7,12 +7,7 @@ tags: ["DesignPattern", "AbstractFactoryPattern", "BuilderPattern", "Creationalp
 thumbnailSrc: "/images/design-pattern.jpg"
 ---
 
-## Reference
-
-- Design Patterns: Elements of reusable object oriented software.
-- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-## Creational Pattern
+## Intro
 
 object의 instantiation을 추상화하는 방법입니다.
 
@@ -21,6 +16,8 @@ object의 instantiation을 추상화하는 방법입니다.
 일반적인 순서로는 Abstract Factory, Builder, Factory Method, Prototype, Singleton이지만, 제가 이해하기 쉬운 순서대로 정리하겠습니다.
 
 모든 가정은 App이라는 main class에서 product1과 product2라는 object가 필요하다는 가정하에서 이를 어떻게 얻어오는지에 대해서 살펴보겠습니다.
+
+## Creational Pattern
 
 ### <mark>1. Singleton<mark>
 
@@ -111,3 +108,8 @@ Prototype의 뜻부터 알고 가면 좋습니다. 이는 하나의 type을 대�
 해당 시스템에 대한 구현은 제 Github에 별도의 Branch를 통해서 구현해두었습니다. 언어는 typescript로 작성하였고, 참고할 수 있으면 좋겠습니다. :)
 
 [🔗 GitHub](https://github.com/euidong/oop-design-pattern/tree/creational-pattern)
+
+## Reference
+
+- Design Patterns: Elements of reusable object oriented software.
+- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

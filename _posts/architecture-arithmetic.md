@@ -6,19 +6,10 @@ tags: ["Computer Organization And Design", "Arithmetic"]
 category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
-## **Reference**
 
-![default](/images/default.jpg)
+## Intro
 
-David A. Patterson, John L. Hennessy, Computer Organization and Design
-
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
-- Full Adder 이미지는 WIKIPEDIA full adder의 발췌이다. (<https://upload.wikimedia.org/wikipedia/commons/5/57/Fulladder.gif>)
-
----
-
-여기서는 기본이 되는 **사칙연산**과 **소수점**의 표현방식(**Floating Point**)을 다룹니다.
+컴퓨터 구조에서 기본이 되는 **사칙연산**과 **소수**의 표현방식(**Floating Point**)을 다룬다.
 
 ## Overflow
 
@@ -106,3 +97,8 @@ $$\text{1.xxxxx} \times 2^{yyyyy}$$
 $$(-1)^s \times(1+\text{Fraction})\times2^{(\text{Exponent})}$$
 
 단, 모두 0이면 0으로 친다. floating point 연산은 후에 더 시간이 있으면 자세히 다루겠다.
+
+## Reference
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design
+- Full Adder 이미지는 WIKIPEDIA full adder의 발췌이다. (<https://upload.wikimedia.org/wikipedia/commons/5/57/Fulladder.gif>)

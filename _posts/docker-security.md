@@ -7,10 +7,6 @@ tags: ["Docker", "Container", "Security"]
 thumbnailSrc: "/images/docker-picture.jpg"
 ---
 
-## Reference
-
-- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton
-
 ## Intro
 
 해당 글은 Linux에서 docker를 동작시킨다는 가정하에 작성하였다. (Window도 대부분 동일하다고 한다.)
@@ -78,3 +74,7 @@ Docker는 download 또는 실행할 이미지의 제공자를 식별하고 무�
 ### Docker Secrets
 
 Docker에서 보안 정보를 안전하게 보관하기 위해서 고안된 것으로, 특정 타겟에서 안전하게 SSH key와 같은 정보를 안전하게 전달하는 것 이 가능합니다.
+
+## Reference
+
+- [🔗 Docker Deep Dive](https://www.oreilly.com/library/view/docker-deep-dive/9781800565135/), Nigel Poulton

@@ -7,10 +7,6 @@ tags: ["Docker"]
 thumbnailSrc: "/images/docker-picture.jpg"
 ---
 
-## 출처
-
-- [🔗 just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)
-
 ## Intro
 
 docker에 기본 이념은 하나의 container에는 하나의 process만 두어야 한다는 것이다. 하지만, 이에 대해서 반대를 하고, 하나의 container에 여러 개의 process를 심고 이를 이용하겠다는 생각으로 만들어진 open source이다. 사용 예시는 main process 내부에 cronjob을 끼워넣는 것과 같은 경우가 있을 것이다.
@@ -346,3 +342,7 @@ s6의 동작을 이미 정의된 환경 변수를 설정함으로써 실행단�
 - ejabberd : Robust, Scalable and Extensible Realtime PlatformXMPP Server + MQTT Broker + SIP Service
 - symbol link : soft link라고 불리기도 하며, 다른 파일을 가르키는 특별한 파일로 여길 수 있다. target 파일의 데이터를 포함하는 것이 아닌 단순히 파일 시스템의 다른 파일을 가르키고, 이를 통해 실행하는 것이 가능한 방법이다.
 - nobody user: 대다수의 Unix 시스템에서, "nobody"는 전통적으로 파일을 가지지 않고, 어느 권한 그룹에도 속하지 않으며, 다른 모든 유저들이 가지는 기능을 제외하면 기능이 없는 유저를 의미한다.
+
+## 출처
+
+- [🔗 just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)

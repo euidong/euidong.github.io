@@ -7,13 +7,11 @@ tags: ["Routing"]
 thumbnailSrc: "/images/routing.jpg"
 ---
 
-### References
+## Intro
 
-- Thumbnail : Photo by [Tyler Farmer](https://unsplash.com/@tylerfarmer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/forwarding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- <https://www.itworld.co.kr/tags/6580/MPLS/108621>
-- <https://blog.naver.com/thorong/70147777745>
+MPLS는 2계층과 3계층 사이에서 Routing을 가속화하기 위한 방법으로 제시된 방법이다. 뿐만 아니라 기존에 존재하던 Networking의 문제를 보완하기 위해서 고안되었기에 여러 우수한 기능을 가지고 있다.
 
----
+## MPLS
 
 기존의 Routing에서는 매 hop(router)당 Routing Table을 참조하여 packet을 전송했다. 하지만, 이 과정은 생각보다 많은 시간이 필요하다. 이를 이용해서 화상 통화 등을 한다면, 서비스 품질이 매우 떨어질 위험이 있다. 따라서, MPLS는 Routing를 더 빠르게 하고, 품질 항상을 위해서 만들어졌다. 이는 Multi-Protocol Label Switching(MPLS)이라는 말처럼, 기존의 IP를 이용한 Routing이 아닌 Label(또는 tag)이라는 별도의 data를 이용하여, 3계층을 거치지 않고, Routing을 고속화하는 역할을 할 수 있다.
 
@@ -69,3 +67,9 @@ MPLS network를 구성하기 위해서는 결국 각 Router에 Label을 나누�
 | VPN 비용               | 고가      | 저가      | 중가      |
 | 확장성                 | 우수      | 매우 우수 | 매우 우수 |
 | 구축 / 유지 비용       | 매우 고가 | 저가      | 고가      |
+
+## References
+
+- Thumbnail : Photo by [Tyler Farmer](https://unsplash.com/@tylerfarmer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/forwarding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- <https://www.itworld.co.kr/tags/6580/MPLS/108621>
+- <https://blog.naver.com/thorong/70147777745>

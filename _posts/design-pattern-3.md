@@ -7,19 +7,13 @@ tags: ["DesignPattern", "AdapterPattern", "BridgePattern", "CompositePattern", "
 thumbnailSrc: "/images/design-pattern.jpg"
 ---
 
-중간에 좋은 reference를 찾았기 때문에 여기서부터는 출처가 바뀝니다. 저도 해당 사이트의 도움을 많이 받았기 때문에 해당 사이트 한 번 직접 가보는 것을 추천드립니다.
-
-## Reference
-
-- Design Patterns: Elements of reusable object oriented software.
-- Refactoring GURU : [https://refactoring.guru/design-patterns/structural-patterns](https://refactoring.guru/design-patterns/structural-patterns)
-- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-## Structural Pattern
+## Intro
 
 앞 서 살펴본 creational pattern이 object의 생성에 대한 방법들을 제공하였다면, 해당 object들의 관계를 어떻게 연결할 것인가에 대한 고민에서 만들어진 pattern이라고 생각하시면 됩니다.
 
 예를 들어서, 외부 라이브러리와 내부 모듈 간의 상호작용이나 이들을 연결하는 방식을 정의하는 것이 일반적으로 가장 많이 사용되는 경우라고 볼 수 있습니다.
+
+## Structural Pattern
 
 ### 1. Adapter
 
@@ -155,3 +149,11 @@ Proxy의 특징은 다음과 같습니다.
 
 - service와 이를 이용하는 client와 독립적으로 구현이 가능합니다.
 - 일반적으로 service에 직접 접근하는 것보다 delay가 발생할 수 밖에 없습니다.
+
+## Reference
+
+중간에 좋은 reference를 찾았기 때문에 여기서부터는 출처가 바뀝니다. 저도 해당 사이트의 도움을 많이 받았기 때문에 해당 사이트 한 번 직접 가보는 것을 추천드립니다.
+
+- Design Patterns: Elements of reusable object oriented software.
+- Refactoring GURU : [https://refactoring.guru/design-patterns/structural-patterns](https://refactoring.guru/design-patterns/structural-patterns)
+- Thumbnail : Photo by [MagicPattern](https://unsplash.com/es/@magicpattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/design-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

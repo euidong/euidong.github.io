@@ -7,14 +7,13 @@ tags: ["SDN", "ONF"]
 thumbnailSrc: "/images/flow.jpg"
 ---
 
-## Reference
+## Intro
 
-- [Openflow specification](https://opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.3.1.pdf), ONF, 2012
-- Thumbnail: Photo by [Maksym Tymchyk 🇺🇦](https://unsplash.com/@maksym_tymchyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/flow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+SDN의 본격적인 시작이 OpenFlow라고 보아도 무방하다. OpenFlow는 2007년 Stanford 대학에서 개발이 시작되었고, 지금도 de facto standard(사실상의 표준)으로 받아들여지고 있는 Protocol이다. 해당 Protocol의 핵심은 기존 Switch/Router를 data plane(데이터 평면)과 control plane(제어 평면)으로 나누고, 제어 평면을 OpenFlow Protocol에 따르는 Controler로 대체하면서, OpenFlow Protocol을 따르는 Switch는 data plane만을 포함하여, 둘 간의 통신을 통해서 제어 평면을 구성하자는 것이다. 여기서 데이터 평면은 실제로 interface로 packet이 들어오고, 내보내는 역할을 하는 계층이라고 보면 되고, 제어 평면은 packet에 어떤 동작을 수행시킬지 그리고 어느 interface로 내보낼지를 결정하는 역할을 하는 계층이라고 보면 된다. 이러한 구성을 통해서, 결국 SDN을 구축할 수 있는 토대를 제공하게 된 것이다.
 
-이전 Posting인 SDN의 본격적인 시작이 OpenFlow라고 보아도 무방하다. OpenFlow는 2007년 Stanford 대학에서 개발이 시작되었고, 지금도 de facto standard(사실상의 표준)으로 받아들여지고 있는 Protocol이다. 해당 Protocol의 핵심은 기존 Switch/Router를 data plane(데이터 평면)과 control plane(제어 평면)으로 나누고, 제어 평면을 OpenFlow Protocol에 따르는 Controler로 대체하면서, OpenFlow Protocol을 따르는 Switch는 data plane만을 포함하여, 둘 간의 통신을 통해서 제어 평면을 구성하자는 것이다. 여기서 데이터 평면은 실제로 interface로 packet이 들어오고, 내보내는 역할을 하는 계층이라고 보면 되고, 제어 평면은 packet에 어떤 동작을 수행시킬지 그리고 어느 interface로 내보낼지를 결정하는 역할을 하는 계층이라고 보면 된다. 이러한 구성을 통해서, 결국 SDN을 구축할 수 있는 토대를 제공하게 된 것이다.
+## OpenFlow Switch
 
-따라서, OpenFlow Switch는 다음과 같은 형태로 구성되어진다.
+OpenFlow Switch는 다음과 같은 형태로 구성되어진다.
 
 ![OpenFlow Switch](/images/openflow-switch.jpeg)
 
@@ -147,3 +146,8 @@ action은 기본적으로 아래 순서대로 실행되지만, 동일한 action�
 현재에는 OpenFlow 표준화는 중단된 상태이다. 모든 요구사항을 받아들이다보니 match field의 크기가 너무나 커졌기 때문이다. 따라서, 이용자의 요구에 따라서 programming 할 수 있는 환경을 제공하기 위한 P4(Programmable Protocol-Independent Packet Protocol)을 제작하였다.
 
 즉, 기존에는 Protocol과 이를 지원하는 Switch를 주요 서비스로 삼았다면, 이제는 Programming이 가능한 언어와 이를 이용할 수 있는 Switch를 제공하는 방향으로 전환하였다.
+
+## Reference
+
+- [Openflow specification](https://opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.3.1.pdf), ONF, 2012
+- Thumbnail: Photo by [Maksym Tymchyk 🇺🇦](https://unsplash.com/@maksym_tymchyk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/flow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

@@ -7,17 +7,11 @@ category: "Computer Architecture"
 thumbnailSrc: "/images/default.jpg"
 ---
 
-## **Reference**
+## Intro
 
-![default](/images/default.jpg)
+Computer Organization and Design이라는 책을 정리하고 되돌아볼 것이다. 여기서는 가장 기본이 되는 Idea들을 정리할 것이다.
 
-David A. Patterson, John L. Hennessy, Computer Organization and Design
-
-본 Posting은 다음 교제를 기반으로 챕터 별로 정리 한 내용입니다. 아래부터는 편의를 위해 "-다"로 표현합니다.
-
----
-
-## **1\. 8 Greate Ideas**
+## 1\. 8 Greate Ideas
 
 컴퓨터 구조를 설계하는 과정에서 중요하게 여겨지는 8가지 핵심 아이디어들이다. 뿐만 아니라 이는 전체적인 컴퓨터 과학에서 중요하다고 볼 수 있는 아이디어들이다. 따라서, 앞으로의 Posting에서 Why라는 의문이 든다면, 아래 8가지 이유 중의 하나로 설명할 수 있다.
 
@@ -38,7 +32,7 @@ David A. Patterson, John L. Hennessy, Computer Organization and Design
 8. **Dependability via Redundancy**  
     컴퓨터는 빠르기만 해서 되는 것은 아니다. **신뢰**할 수 있는 시스템을 구축해야 한다. 실패하지 않는 시스템을 구축하는 것은 매우 힘든 일이기 때문에, 우리는 **여분 장치**를 두어 이를 통해서 실패 시에 이를 떠맡을 수 있도록 하는 설계를 해야 한다.
 
-## **2\. Below Your Program**
+## 2\. Below Your Program
 
 program 밑에는 무엇이 있는가?
 
@@ -58,7 +52,7 @@ program 밑에는 무엇이 있는가?
 2. 생산성을 높일 수 있다.
 3. Compiler와 assembly를 통해서 어디서든 돌아가는 프로그램을 제작할 수 있다.
 
-## **3\. Under the Covers**
+## 3\. Under the Covers
 
 우리의 컴퓨터는 어떻게 이루어지는가를 크고 얇게 한 번 알아볼 것이다.
 
@@ -83,7 +77,7 @@ program 밑에는 무엇이 있는가?
   - Instruction Set : hardware에게 동작을 요청하는 하나의 명령어를 Instruction이라고 한다. 이들이 무슨 역할을 하는지를 정리해놓은 것이 Instruction Set이다. 이를 통해서, Operating System은 hardware에 접근하여 특정 동작을 수행시킬 수 있다.
   - ABI(Application Binary Interface) : application 단에 programmer가 hardware 작업 등을 수행하기 위하여 호출할 수 있다. 이를 통해서, binary한 동작도 application programmer가 조작할 수 있다. 일반적인 API와 역할이 동일하지만, programming language가 아닌 machine language를 사용하여 구현되기 때문에 hardware 접근 등에 제한이 없다.
 
-## **4\. Performance**
+## 4\. Performance
 
 우리가 Computer의 성능을 측정하는 것은 중요하다. 왜냐하면, 이를 지표로 계속해서 computer의 성능을 향상시켜야 하기 때문이다.
 
@@ -104,7 +98,7 @@ $$\text{Excution Time} = \text{Clock Cycle Time} \times {\text{Number of Instruc
 
 ---
 
-## **\+ Amdahl's Law**
+## \+ Amdahl's Law
 
 작업의 성능을 개선시켰을 때 이전과 비교하여 얼마나 효율이 증가했는지를 보여주는 지표이다.
 
@@ -117,3 +111,7 @@ $$1\over{(1-P) + {P\over{S}}}$$
 $${1\over{(1-0.1) + {0.1\over{2}}}} = {1\over{0.95}} \approx 1.05$$
 
 따라서, 단기간의 성능향상을 하고 싶다면, 비율이 큰 작업의 성능향상을 꾀하는 것이 좋다는 것을 알 수 있다.
+
+## Reference
+
+- David A. Patterson, John L. Hennessy, Computer Organization and Design

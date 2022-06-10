@@ -7,7 +7,11 @@ tags: ["Binary Search", "Upper Bound", "Lower Bound", "중복 수의 갯수"]
 thumbnailSrc: "/images/algorithm.png"
 ---
 
+## Intro
+
 Binary Search는 가장 기본적이면서도 효과적인 탐색 방법이다. 이는 굉장히 많은 알고리즘의 기본 알고리즘으로 많이 사용된다. 따라서, Binary Search를 제대로 사용할 줄 알아야 한다. 또한, 뒤에 부분에서는 이를 이용해서 중복수를 찾아내는 연산을 어떻게 Binary Search를 통해서 할 수 있는지를 알아볼 것이다.
+
+## Binary Search
 
 Binary Search를 하기 위해서는 먼저 list를 정렬해야 한다. 그렇게 하게 되면, 특정 수를 찾기 위해서 최대 list 전체를 탐색하는 것에서 리스트의 크기를 log 취한 만큼 만 연산해도 충분하다.
 
