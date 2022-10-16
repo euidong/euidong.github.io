@@ -2,9 +2,9 @@
 slug: "ml-parametric-estimation"
 title: "[ML] 1. Parametric Estimation"
 date: "2022-10-15 11:25"
-category: "ML"
-tags: ["MLE", "MAP", "BayesianInference"]
-thumbnailSrc: "/images/default.jpg"
+category: "AI"
+tags: ["ML", "MLE", "MAP", "Bayesian"]
+thumbnailSrc: "/images/ml-thumbnail.jpg"
 ---
 
 ## Intro
@@ -187,3 +187,8 @@ $$
 | Gaussian ($\mu_0, \sigma_0^2$) | Gaussian ($\mu, \sigma^2$)                              | Gaussian (${\displaystyle {\frac {1}{{\frac {1}{\sigma _{0}^{2}}}+{\frac {n}{\sigma ^{2}}}}}\left({\frac {\mu _{0}}{\sigma _{0}^{2}}}+{\frac {\sum _{i=1}^{n}x_{i}}{\sigma ^{2}}}\right),\left({\frac {1}{\sigma _{0}^{2}}}+{\frac {n}{\sigma ^{2}}}\right)^{-1}}$) | ${\displaystyle {\frac {1}{{\frac {1}{\sigma _{0}^{2}}}+{\frac {n}{\sigma ^{2}}}}}\left({\frac {\mu _{0}}{\sigma _{0}^{2}}}+{\frac {\sum _{i=1}^{n}x_{i}}{\sigma ^{2}}}\right)}$ |
 
 이를 이용하면, 우리는 간단하게 Posteriori의 평균을 구할 수 있다.
+
+## Reference
+
+- Tumbnail : Photo by [Markus Winkler](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
