@@ -279,7 +279,7 @@ $$
 따라서, 우리는 Loss가 0이 되는 지점을 찾기 위해서, w의 값을 점진적으로 업데이트하는 방식을 활용한다. 이때, 우리는 w의 값이 계속해서 Loss를 감소시키기를 원한다. 따라서, 우리는 현재 $\bold{w}$에서 Gradient를 현재 $\bold{w}$에 빼준다. 이를 우리는 **Gradient Descent**라고 한다.
 
 $$
-\bold{w}_{t+1} = \bold{w}_{t} - \gamma((\Delta L)(\bold{w}_{t}))^{\top}
+\bold{w}_{t+1} = \bold{w}_{t} - \gamma((\nabla L)(\bold{w}_{t}))^{\top}
 $$
 
 여기서 $\gamma$는 step size(learning rate)라고 하며, 기울기값을 얼마나 반영할지를 의미한다.
@@ -307,11 +307,11 @@ stepsize($\gamma$)가 특정 상수로 제시된 게 아니라 변수로 표현�
 우리가 찾고자 하는 Loss를 찾아가는 과정에서 매 업데이트마다 반대방향으로 기울기가 바뀌는 경우이다.(진동한다) 이는 최종으로 찾고자 하는 값을 찾는 과정이 더 오래 걸리게 한다. 따라서, 우리는 이러한 진동을 막기 위해서 Momentum을 사용한다. 즉, 이전 차시에서의 gradient를 저장해두고, 이를 더해서 진동하는 것을 막는 것이다.
 
 $$
-\bold{w}_{i+1} = \bold{w}_{i} - \gamma_{i}((\Delta L)(\bold{w}_{i}))^{\top} + \alpha \Delta \bold{w}_i ,( \alpha \in [0, 1] )
+\bold{w}_{i+1} = \bold{w}_{i} - \gamma_{i}((\nabla L)(\bold{w}_{i}))^{\top} + \alpha \Delta \bold{w}_i ,( \alpha \in [0, 1] )
 $$
 
 $$
-\Delta \bold{w}_i = \bold{w}_{i} - \bold{w}_{i-1} = \alpha \Delta \bold{w}_{i-1} - \gamma_{i-1}((\Delta L)(\bold{w}_{i-1}))^{\top}
+\Delta \bold{w}_i = \bold{w}_{i} - \bold{w}_{i-1} = \alpha \Delta \bold{w}_{i-1} - \gamma_{i-1}((\nabla L)(\bold{w}_{i-1}))^{\top}
 $$
 
 즉, 그림으로 표현하면, 다음과 같다.
