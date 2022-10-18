@@ -89,7 +89,7 @@ $$
 
 > **Logistic Regression**
 
-자 이제 드디어 Logistric Regression을 시작해보자. 우리는 Discriminant Function을 먼저 지정해야 한다. 여러 가지 방법이 있지만, 가장 대표적으로 사용되는 방법은 **Softmax**를 활용하는 것이다. **Sigmoid**를 활용하여 식을 나타내면 아래와 같다.
+자 이제 드디어 Logistric Regression을 시작해보자. 우리는 Discriminant Function을 먼저 지정해야 한다. 여러 가지 방법이 있지만, 가장 대표적으로 사용되는 방법은 **Softmax**를 활용하는 것이다. **Softmax**를 활용하여 식을 나타내면 아래와 같다.
 
 $$
 p(y_n = k | \bold{x}_n, \bold{w}) = {{\exp(\bold{w}_{k}^{\top}\bold{x}_n)}\over{\sum_{j=1}^{K}{\exp(\bold{w}_{j}^{\top}\bold{x}_n)}}} 
