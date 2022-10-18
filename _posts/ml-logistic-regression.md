@@ -95,7 +95,7 @@ $$
 p(y_n = k | \bold{x}_n, \bold{w}) = {{\exp(\bold{w}_{k}^{\top}\bold{x}_n)}\over{\sum_{j=1}^{K}{\exp(\bold{w}_{j}^{\top}\bold{x}_n)}}} 
 $$
 
-만약, class가 2개인 Binary Classification인 경우에 **Softmax**는 다음과 같아진다. 특히 이를 **Sigmoid**(**Logistic**)라고 정의한다.
+만약, class가 2개인 Binary Classification인 경우에 **Softmax**는 다음과 같아진다. 특히 이를 **Sigmoid**(**Logit**)라고 정의한다.
 
 $$
 p(y_n = k | \bold{x}_n, \bold{w}) = {1\over{1+\exp(-y_{n}\bold{w}^{\top}\bold{x}_{n})}}
