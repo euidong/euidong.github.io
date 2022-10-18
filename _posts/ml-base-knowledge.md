@@ -3,7 +3,7 @@ slug: "ml-base-knowledge"
 title: "[ML] 0. Base Knowledge"
 date: "2022-10-14 19:28"
 category: "AI"
-tags: ["ML"]
+tags: ["ML", "Probability"]
 thumbnailSrc: "/images/ml-thumbnail.jpg"
 ---
 
@@ -135,3 +135,7 @@ Random Variable이라는 것은 특정 사건을 수학적으로 표현하기 �
   추가적으로 알아볼 것은 바로 여러 개의 Random Variable로 Gaussian Distribution을 더 높은 차원으로 구성할 수 있다는 것이다. 이를 수행하고, 해당 Random Variable 간의 Covarince, Correlation coefficient를 구하면, 이 변수 간의 상관성을 얻을 수 있다.
   
   - 유의 사항 : correlation은 어디까지나 상관성이다. correlation이 높다고 해당 Random Variable이 상관성이 높은 Random Variable 발생의 원인이 될 수는 없다.
+
+## Reference
+
+- Tumbnail : Photo by [Markus Winkler](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

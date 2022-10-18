@@ -42,10 +42,10 @@ Machine Learning은 특정 목표를 달성하기 위해서 데이터로 부터 
 sample space $\Omega$에서 통계 실험의 관측 결과를 통해서 얻은 sample $X_1$, $X_2$, ... , $X_n$이 있다고 하자. 각 sample에 대한 확률 분포를 우리는 $p_\theta$라고 한다.
 여기서 $\theta$는 특정 확률 분포에서의 parameter를 의미한다. 만약, bernoulli 라면, 단일 시행에 대한 확률이 될 것이고, binomial이라면, 단일 시행의 확률과 횟수가 해당 값이 될 것이다.
 
-> **Risk**
+> **성능 평가**
 
 여기서 우리가 찾기를 원하는 것은 전체 sample space $\Omega$를 모두 잘 표현할 수 있는 $\theta_{*}$(실제 true $\theta$)를 찾는 것이다.(이미 확률 분포의 형태(함수, ex. Bernoulli, Binomial)는 이미 정의되어 있다.)  
-그렇다면, 실제 $\theta_*$와 추측을 통해 만든 $\hat{\theta}$ 사이의 비교를 위한 지표도 필요할 것이다. 이를 측정하기 위해서 우리는 **Risk**라는 것을 사용한다.  
+그렇다면, 실제 $\theta_*$와 추측을 통해 만든 $\hat{\theta}$ 사이의 비교를 위한 지표도 필요할 것이다. 즉, 우리가 만든 확률 분포의 예측 성능평가가 필요하다는 것이다. 이를 측정하기 위해서 우리는 **Risk**라는 것을 사용한다.  
 간단하게도 실제 $\theta_*$와 $\hat{\theta}$의 Mean Square Error를 계산한다.
 
 $$ 
