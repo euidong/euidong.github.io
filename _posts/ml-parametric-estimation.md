@@ -111,7 +111,7 @@ $$
 
  (*해당 내용은 정보 이론에 기반한 MLE에 대한 추가적인 이해를 위한 내용입니다. 해당 내용은 자세히 알 필요까지는 없습니다.)
 
- 두 확률 분포 간 information entrophy의 차이를 나타내는 KL divergence의 최솟값을 구하는 것이 우리의 목표라고 정의할 수 있다.  
+ 두 확률 분포 간 information Entropy의 차이를 나타내는 KL divergence의 최솟값을 구하는 것이 우리의 목표라고 정의할 수 있다.  
  따라서, 우리가 결국 얻고자 하는 것은 확률 분포 함수가 주어졌을 때,  
  n이 무한대로 갈 때, 경험적 확률(empirical probability)에 가장 근사하는 parameter를 찾는 것이다.  
  따라서, 우리는 KL divergence의 최솟값을 구하면 된다.

@@ -94,7 +94,7 @@ $$\text{Excution Time} = \text{Clock Cycle Time} \times {\text{Number of Instruc
 3. 하드웨어를 잘 설계해서 명령 하나를 처리하는데 걸리는 시간(CPI)을 줄인다.
 4. 동시에 여러 CPU를 실행시켜서, 실행을 하는 unit 자체를 더 만드는 방법도 있다.
 
-따라서, 앞으로 우리가 Performance를 올리기 위해서, Compiler를 어떻게 최적화할지를 계략적으로 배우며, 하드웨어를 어떻게 잘 설계할지를 자세히 알아볼 것이다. 또한, Parallelism을 통해서 작업을 더 빠르게 수행하는 방법 또한 다룰 것이다.
+따라서, 앞으로 우리가 Performance를 올리기 위해서, Compiler를 어떻게 최적화할지를 개략적으로 배우며, 하드웨어를 어떻게 잘 설계할지를 자세히 알아볼 것이다. 또한, Parallelism을 통해서 작업을 더 빠르게 수행하는 방법 또한 다룰 것이다.
 
 ---
 

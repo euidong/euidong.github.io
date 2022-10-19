@@ -3,7 +3,7 @@ slug: "ml-base-knowledge"
 title: "[ML] 0. Base Knowledge"
 date: "2022-10-14 19:28"
 category: "AI"
-tags: ["ML", "Probability", "Calculus"]
+tags: ["ML", "Probability", "Calculus", "InformationTheory"]
 thumbnailSrc: "/images/ml-thumbnail.jpg"
 ---
 
@@ -236,6 +236,137 @@ $$
 $$
 
 이 식을 KKT condition을 이용하여 푸는 것이 기존 식보다 쉽게 풀 수 있는 경우가 많다. 따라서, 이러한 형태로 문제를 풀이할 수도 있다.
+
+## Information Theory
+
+### Entropy
+
+수학에서 정보의 불확실성(uncertainty)을 표현하기 위해서 물리의 entropy 라는 개념을 도입한 것이다. 즉 정보가 가지는 "surprise" 정도가 크다면, entropy가 큰 정보를 의미하고, 일반적인 정보라면 이는 entropy가 작은 정보인 것이다.
+
+수학적으로 다시 정의하자면, 다음과 같다.  
+sample space $\Omega$에서 정의된 random variable $X$와 확률 $p_{X}(x)$이 주어질 때, Entropy를 $H(x)$라 하자.
+
+$$
+H(X) = -\sum_{x \in \Omega}p(x)\log_{2}p(x)
+$$
+
+위 식에서 log의 밑이 2인 것을 알 수 있는데 computer science에서는 정보가 bit단위로 저장되기 때문에 기본적으로는 2를 사용한다. 하지만, 상황에 따라서는 다른 밑을 사용할 수도 있다.
+
+헷갈릴 수 있는데 표기법이 굉장히 다양하니 유의해서 보도록 하자.
+
+$$
+H(X) = H_{p}(X) = H(p) = H_{X}(p) = H(p_{X})
+$$
+
+> **최댓값과 최솟값**
+
+Entropy는 정보의 불확실성을 나타낸다고 했다. 즉, 정보가 확실할 수록 Entrophy는 0으로 수렴하며, 확실히 아는 정보의 경우 Entropy가 최솟값인 0이 된다.  
+반대로 Entropy의 최댓값의 경우 $|\Omega| = n$이라고 할 때, $\log_{2}{n}$이다. 이는 uniform distribution(모든 Random Variable의 확률이 같은 분포)일 경우이다.
+
+$$
+0 \leq H(x) \leq log_{2}{|\Omega|}
+$$
+
+> **$\bold{\log_{2}({1 \over p_{X}(x)})}$의 평균**
+
+Entropy를 random variable x의 확률의 역수의 log를 취한 값으로 해석할 수도 있다.
+
+$$
+\begin{align*}
+E[\log_{2}(({1 \over p_{X}(x)})] &= \sum_{x \in X}p_{X}(x)\log_{2}({1 \over p_{X}(x)}) \\
+&= -\sum_{x \in X}p_{X}(x)\log_{2}(p_{X}(x)) \\
+&= H(p_{X})
+\end{align*}
+$$
+
+여기서 우리는 $\log_{2}({1 \over p_{X}(x)})$을 **정보량**이라고 정의한다. 식에서도 알 수 있지만, 정보량과 해당 정보량을 얻을 확률은 반비례한다.
+
+> **Joint, Conditional Entropy**
+
+Random Variable이 두 개 이상일 때, 이를 적용할 수 있다. 유도 과정은 $H(X)$가 Expectation과 어떤 관계였는지를 떠올려 보면 알 수 있다.
+
+- **Joint Entropy** : $H(X, Y) = -\sum_{x \in \Omega_{X}}\sum_{y \in \Omega_{Y}}p(x, y)\log_{2}p(x, y)$
+- **Conditional Entropy** : $H(Y|X) = -\sum_{x \in \Omega_{X}}\sum_{y \in \Omega_{Y}}p(x, y)\log_{2}p(y|x)$
+
+> **properties**
+
+1. Chain Rule  
+   $H(X, Y) = H(Y|X) + H(X)$  
+   $H(X, Y) = H(X|Y) + H(Y)$
+2. Conditional Entropy's Maximum  
+   $H(Y|X) \leq H(Y)$  
+   독립일 때 같아지며 그 외에는 항상 Conditional의 Entropy가 더 낮다. 의미를 이해하면 쉽다. 한 마디로 X라는 정보가 Y라는 정보가 발생할 확률에 대한 티끌이라도의 힌트를 준다면, 해당 불확실성은 감소하게 되는 것이다.
+3. Joint Entropy's Maximum  
+   $H(X, Y) \leq H(X) + H(Y)$  
+   동일하게 독립일 때 같아지며, 그 외에는 항상 Joint의 Entropy가 더 낮다. 이 또한, 두 사건이 티끌이라도 겹치는 Event가 있다면, 각 Entropy를 더하는 것보다 당연히 작을 수 밖에 없는 것이다.
+4. Concave  
+   Entropy의 그래프는 항상 concave하다. 
+
+> **Coding**
+
+정보 이론이 활발하게 사용되는 예시 중에 하나가 바로 데이터의 Encoding/Decoding을 수행하여 bit data로 mapping할 때이다. variable length encoding을 알고 있다면, 이에 대한 이해가 쉬울 것이다. 쉽게 설명하면, 데이터를 bit sequence로 mapping할 때 모든 데이터에게 동일한 bit sequence의 길이만큼을 할당하는 게 아니라 빈도가 높은 데이터부터 짧은 bit sequence 길이를 할당하는 방식이다. 이때 bit sequence의 길이를 Entropy를 이용해서 구할 수 있다. 이 길이는 항상 해당 데이터의 Entropy보다는 커야 한다. 따라서, 해당 Entropy보다 큰 가장 작은 자연수가 해당 데이터의 Bit Sequence 길이의 최적값이다.
+
+### KL divergence(Relative Entropy)
+
+Kullback-Leibler Divergence의 약자로, 우리가 구하고자하는 실제 확률(p)과 추측 확률(q) 사이의 오차를 계산할 때 사용하는 지표이다. 따라서, 동일한 Sample Space와 Random Variable에 대한 서로 다른 확률 분포를 비교한다고 생각할 수 있다.
+
+$$
+D(p||q) = KL(p||q) = \sum_{x \in \Omega}p(x)\log_{2}(p(x)/q(x)) = E_{p}[\log_{2}({p(x) \over q(x)})]
+$$
+
+아쉽게도 KL divergence는 거리와 같은 연산을 적용할 수 없다. 즉, 둘 사이의 역연산은 같지 않을 뿐만 아니라($D(p||q) \neq D(q||p)$), 서로 다른 Random Variable의 KL divergence의 합이 Random Variable의 합의 KL divergence와는 다르다. 
+
+### Mutual Information
+
+KL divergence를 활용하여 서로 다른 Random Variable X,Y의 연관성을 유추하는 것도 가능하다.
+
+$$
+I(X, Y) = D(p(x,y) || p(x)p(y))
+$$
+
+$I$값이 의미하는 것은 Y를 아는 것이 X의 추측을 얼마나 쉽게하는지에 대한 지표로 작용한다.
+
+증명 과정은 생략하지만, 위의 식을 정리하면 결국은 아래와 같아지기 때문이다.
+
+$$
+\begin{align*}
+  I(X, Y) &= H(X) - H(X|Y) \\
+  &= H(Y) - H(Y|X)
+\end{align*}
+$$
+
+### Cross Entropy
+
+우리가 특정 corpus를 통해서 확률을 추정했다고 해보자. 그렇다면, 우리는 이 가설을 증명하기 위해서 다른 data에 대해서 해당 추측이 적절한지를 확인하여 정당성을 증명할 수 있다. 그러기 위해서 우리가 만든 확률에서 정보량을 추출하고, 이를 우리가 알고 있는 data의 공간에 넣었을 때의 확률을 추정하기 위해서 Cross Entropy를 사용할 수 있다.
+
+$$
+H_{q}(p) = - \sum_{x \in \Omega}q(x)\log_{2}p(x)
+$$
+
+간단하게 요약하면, 위 식은 틀릴 수 있는 정보를 갖고 구한 최적의 Entropy로, 정보량에 추측 정보량을 넣고, 확률에는 실제 확률을 넣는 방식이다.
+
+또한, 이는 다음과 같이 변형되기도 한다.
+
+$$
+H_{q}(p) = H(q) + D(q || p)
+$$
+
+또한, 특정 조건이 주어졌을 때의 Conditional Cross Entropy는 다음과 같다.
+
+$$
+H_{q}(p) = - \sum_{y \in \Omega_{Y}}\sum_{x \in \Omega_{X}}q(y,x)\log_{2}p(y|x)
+$$
+
+하지만, 실제 구현 level에서는 이러한 Cross Entropy를 정석으로 구하는 것은 비용이 크다. 따라서, 이와 근사하는 식을 사용한다.
+
+$$
+\begin{align*}
+  H_{q}(p) &= - \sum_{y \in \Omega_{Y}}\sum_{x \in \Omega_{X}}q(y,x)\log_{2}p(y|x) \\
+  &= {1\over{|T_{Y}|}}\sum_{i=1..|T_{Y}|}{\log_{2}p(y_{i}|x_{i})}
+\end{align*}
+$$
+
+위 식을 이용할 때에는 대신 실제 데이터와 비교에는 사용되어서는 안된다. 대신 두 개의 서로 다른 p,q가 있을 때, s라는 실제 분포에 어떤 것이 더 적절한지를 판명할 때 사용할 수 있다.
 
 ## Reference
 
