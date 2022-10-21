@@ -43,4 +43,24 @@
     ],
     "description": "Import Image",
   },
+  "Insert Link": {
+    "scope": "markdown",
+    "prefix": ["link"],
+    "body": [
+      "[🔗 $0](/posts/$0)"
+    ],
+    "description": "Import Image",
+  },
+  "Insert Plaintext": {
+    "scope": "markdown",
+    "prefix": ["plaintext"],
+    "body": [
+      "```plaintext",
+      " 🤔 $0",
+      " ",
+      " ",
+      "```"
+    ],
+    "description": "Import Image",
+  },
 }

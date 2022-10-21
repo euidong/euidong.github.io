@@ -3,7 +3,7 @@ slug: "nlp-text-processing"
 title: "[NLP] 2. Text Processing"
 date: "2022-10-19 21:59"
 category: "AI"
-tags: ["NLP"]
+tags: ["NLP", "Regex", "Tokenization","Collocation", "MinimumEditDistance"]
 thumbnailSrc: "/images/nlp-thumbnail.jpg"
 ---
 
