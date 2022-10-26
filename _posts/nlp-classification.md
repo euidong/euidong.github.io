@@ -18,12 +18,15 @@ thumbnailSrc: "/images/nlp-thumbnail.jpg"
 일반적으로 많이 사용하는 Classification 도구는 아래와 같다.
 
 1. Naive Bayes
-2. Logistic Regression
-3. Support Vector Machine
+2. Hidden Markov Model(HMM)
+3. Maximum Entropy Model(MaxEnt)
+   1. Logistic Regression
+   2. Support Vector Machine
+   3. Neural Network(Deep Learning)
 4. K Nearest Neighbors
-5. Neural Network(Deep Learning)
 
-2~4까지는 ML에서 자주 다루는 내용들이다. 일단 해당 Chapter에서는 **Naive Bayes Classifier**를 이용한 분류를 수행할 것이다. 나머지 방법들은 기본적으로 각 단어를 Random Variable로 치환해서 처리하는 과정이 필요한데 이는 후에 더 자세히 다룰 것이기 때문에 여기서는 기본적인 Classifier를 활용하는 방법을 배우고 후에 가서 word를 vector로 변환하는 과정을 거친 후에 더 훌륭한 기술들을 활용해보겠다.
+해당 Posting에서는 **Naive Bayes Classifier**를 이용한 분류를 수행할 것이다. 3번 방법은 기본적으로 각 단어를 Random Variable로 치환해서 처리하는 과정이 필요한데 이는 후에 더 자세히 다룰 것이기 때문에 여기서는 기본적인 Classifier를 활용하는 방법을 배우고 후에 가서 word를 vector로 변환하는 과정을 거친 후에 더 훌륭한 기술들을 활용해보겠다.  
+따라서, 앞으로 3개의 Posting 동안은 Naive Bayes, HMM, MaxEnt 방식에 대해서 알아볼 것이고, 그 후에는 word를 vector 데이터로 치환하여 처리를 하는 방식을 배워볼 것이다.
 
 기본적으로 Classification은 데이터가 주어졌을 때, 해당 데이터가 특정 class에 속할 확률을 제시하는 것이다. 따라서, 특정 class에서 해당 데이터가 얼마나 자주 발생되는지와 실제로 해당 class의 빈도가 가장 중요하다.
 

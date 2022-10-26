@@ -25,12 +25,12 @@ Soft Vector Machine의 약자로, 위에서 제시한 문제를 해결하기 위
 
 이것이 SVM의 핵심 아이디어이다.
 
-그렇다면, margin을 수학적으로 정의해보자. 우리가 decision boundary를 $f(\bold{x}) := \bold{w}^{\top}\bold{x} + b = 0$이라고 한다면, 점($\bold{x}_{i}$)과 vector 직선 vector 사이의 거리 공식을 통해서 ${{|f(\bold{x}_{i})|}\over{||\bold{w}||}}$라는 것을 알 수 있다.
+그렇다면, margin을 수학적으로 정의해보자. 우리가 decision boundary를 $f(\bold{x}) := \bold{w}^{\top}\bold{x} + b = 0$이라고 한다면, 점($\bold{x}_{i}$)과 vector 직선 vector 사이의 거리 공식을 통해서 ${{|f(\bold{x}_{i})|}\over{||\bold{w}||^{2}}}$라는 것을 알 수 있다.
 
 따라서 margin은 수학적으로 다음과 같다.
 
 $$
-\min_{i}{{|f(\bold{x}_{i})|}\over{||\bold{w}||}}
+\min_{i}{{|f(\bold{x}_{i})|}\over{||\bold{w}||^{2}}}
 $$
 
 ```plaintext
@@ -50,9 +50,9 @@ $$
 
 $$
 \begin{align*}
-\rho &= {1\over2}\{ {{|f(\bold{x}^{+})|}\over{||\bold{w}||}} - {{|f(\bold{x}^{-})|}\over{||\bold{w}||}}  \} \\
-&= {1\over2}{1\over{||\bold{w}||}}\{\bold{w}^{\top}\bold{x}^{+} - \bold{w}^{\top}\bold{x}^{-}\} \\
-&= {1\over{||\bold{w}||}}
+\rho &= {1\over2}\{ {{|f(\bold{x}^{+})|}\over{||\bold{w}||^{2}}} - {{|f(\bold{x}^{-})|}\over{||\bold{w}||^{2}}}  \} \\
+&= {1\over2}{1\over{||\bold{w}||^{2}}}\{\bold{w}^{\top}\bold{x}^{+} - \bold{w}^{\top}\bold{x}^{-}\} \\
+&= {1\over{||\bold{w}||^{2}}}
 \end{align*}
 $$
 
@@ -62,7 +62,7 @@ $$
 
 $$
 \begin{align*}
-  \text{maximize}   \quad & {1\over{||\bold{w}||}} &\\
+  \text{maximize}   \quad & {1\over{||\bold{w}||^{2}}} &\\
   \text{subject to} \quad & y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) \geq 1, & i = 1, ..., N
 \end{align*}
 $$
@@ -73,7 +73,7 @@ Conditional Optimization은 이전 Posting([[ML] 0. Base Knowledge](/posts/ml-ba
 
 $$
 \begin{align*}
-  \text{minimize}   \quad & {1\over2}||\bold{w}|| &\\
+  \text{minimize}   \quad & {1\over2}||\bold{w}||^{2} &\\
   \text{subject to} \quad & 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) \leq 0, & i = 1, ..., N
 \end{align*}
 $$
@@ -81,7 +81,7 @@ $$
 우선 lagrangian은 다음과 같다.
 
 $$
-\mathcal{L} = {1\over2}||\bold{w}|| + \sum_{i=1}^{N}\alpha_{i}(1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b))
+\mathcal{L} = {1\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}\alpha_{i}(1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b))
 $$
 
 이것에 KKT Condition을 적용하여 정리하면 다음과 같은 등식을 얻을 수 있다.
@@ -125,7 +125,7 @@ SVM의 모든 절차를 살펴본 것 같지만, 우리가 간과한 사실이 �
 먼저 L2-norm을 더하는 방식을 알아보자
 $$
 \begin{align*}
-  \text{minimize}   \quad & {1\over2}||\bold{w}|| + C\sum_{i=1}^{N}\zeta_{i}^{2} &\\
+  \text{minimize}   \quad & {1\over2}||\bold{w}||^{2} + C\sum_{i=1}^{N}\zeta_{i}^{2} &\\
   \text{subject to} \quad & 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) - \zeta_{i} \leq 0, & i = 1, ..., N
 \end{align*}
 $$
@@ -135,7 +135,7 @@ $$
 우선 lagrangian을 먼저 구하면 다음과 같다.
 
 $$
-\mathcal{L} = {1\over2}||\bold{w}|| + {C\over2}\sum_{i=1}^{N}\zeta_{i}^{2} + \sum_{i=1}^{N}\alpha_{i}(1 - \zeta_{i} y_{i}(\bold{w}^{\top}\bold{x}_{i} + b))
+\mathcal{L} = {1\over2}||\bold{w}||^{2} + {C\over2}\sum_{i=1}^{N}\zeta_{i}^{2} + \sum_{i=1}^{N}\alpha_{i}(1 - \zeta_{i} - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b))
 $$
 
 KKT condition을 이용하여 주요 값들을 구하면 다음과 같은 등식을 얻을 수 있다.
@@ -169,7 +169,7 @@ $$
 그 다음은 L1-norm이다.
 $$
 \begin{align*}
-  \text{minimize}   \quad & {1\over2}||\bold{w}|| + C\sum_{i=1}^{N}\zeta_{i} &\\
+  \text{minimize}   \quad & {1\over2}||\bold{w}||^{2} + C\sum_{i=1}^{N}\zeta_{i} &\\
   \text{subject to} \quad & 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) - \zeta_{i} \leq 0, & \\
   & \zeta_{i} \geq 0 & i = 1, ..., N
 \end{align*}
@@ -180,7 +180,7 @@ $$
 lagrangian은 다음과 같다.
 
 $$
-\mathcal{L} = {1\over2}||\bold{w}|| + C\sum_{i=1}^{N}\zeta_{i} + \sum_{i=1}^{N}\alpha_{i}(1 - \zeta_{i} y_{i}(\bold{w}^{\top}\bold{x}_{i} + b)) -  \sum_{i=1}^{N}\beta_{i}\zeta_{i}
+\mathcal{L} = {1\over2}||\bold{w}||^{2} + C\sum_{i=1}^{N}\zeta_{i} + \sum_{i=1}^{N}\alpha_{i}(1 - \zeta_{i} - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b)) -  \sum_{i=1}^{N}\beta_{i}\zeta_{i}
 $$
 
 KKT condition을 이용하여 주요 값들을 구하면 다음과 같은 등식을 얻을 수 있다.
@@ -216,7 +216,7 @@ L1-norm의 optimization으로 돌아가보자.
 
 $$
 \begin{align*}
-  \text{minimize}   \quad & {1\over2}||\bold{w}|| + C\sum_{i=1}^{N}\zeta_{i} &\\
+  \text{minimize}   \quad & {1\over2}||\bold{w}||^{2} + C\sum_{i=1}^{N}\zeta_{i} &\\
   \text{subject to} \quad & 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) - \zeta_{i} \leq 0, & \\
   & \zeta_{i} \geq 0 & i = 1, ..., N
 \end{align*}
@@ -225,7 +225,7 @@ $$
 목적 함수의 slack variable에 constraint의 값을 대입하여, 다음과 같이 변환이 가능하다.
 
 $$
-\min {C^{\prime}\over2}||\bold{w}|| + \sum_{i=1}^{N}max\{ 0, 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) \}
+\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}max\{ 0, 1 - y_{i}(\bold{w}^{\top}\bold{x}_{i} + b) \}
 $$
 
 이 형태는 logistric regression에 regularization을 수행한 것과 동일한 형태를 가지게 된다. 즉, 이전 logistic regression에서 regularization을 다루지 않았는데, 결국은 soft margin svm의 L1-norm 목적함수가 logistic regression 중에서도 hinge function이라는 것을 이용했을 때의 regularization이 되는 것이다.
@@ -235,16 +235,16 @@ $$
 여태까지 살펴본 Regression을 통해서 우리는 General한 Classification 방식을 지정할 수 있다. 우선 아래 식을 살펴보자.
 
 - Linear Regression(Quadratic Loss)  
-  $\min {C^{\prime}\over2}||\bold{w}|| + \sum_{i=1}^{N}{1\over2}(1 - y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})) )^{2}$
+  $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}{1\over2}(1 - y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})) )^{2}$
 - Logit Regresion(Log Loss)  
-  $\min {C^{\prime}\over2}||\bold{w}|| + \sum_{i=1}^{N}\log( 1 + \exp[-y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})]) )$
+  $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}\log( 1 + \exp[-y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})]) )$
 - Binary SVM(Hinge Loss)  
-  $\min {C^{\prime}\over2}||\bold{w}|| + \sum_{i=1}^{N}max\{ 0, 1 - y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})) \}$
+  $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}max\{ 0, 1 - y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})) \}$
 
 여태까지 나온 식들을 살펴보면 위와 같다. 우리는 여기서 아래와 같은 일반적인 형태의 Classification을 제시할 수 있다. 
 
 - General Classification  
-  $\min {C^{\prime}\over2}||\bold{w}|| + \sum_{i=1}^{N}\varepsilon\log( 1 + \exp[-y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})]) )$
+  $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}\varepsilon\log( 1 + \exp[-y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})]) )$
 
 여기서 $\varepsilon$이 1이면 바로 logistic regression이 되고, $\varepsilon$이 0에 수렴할 수록 SVM이 된다. 아래 그림을 보면 이를 알 수 있다.
 
