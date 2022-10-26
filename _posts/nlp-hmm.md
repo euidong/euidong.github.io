@@ -3,7 +3,7 @@ slug: "nlp-hmm"
 title: "[NLP] 5. Hidden Markov Model"
 date: "2022-10-21 21:55"
 category: "AI"
-tags: ["NLP"]
+tags: ["NLP", "MarkovModel", "HMM", "HiddenMarkovModel"]
 thumbnailSrc: "/images/nlp-thumbnail.jpg"
 ---
 
