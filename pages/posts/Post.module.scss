@@ -25,6 +25,7 @@
     list-style-type: none;
     flex-wrap: wrap;
     &__element {
+      font-size: 1.05rem;
       padding: 0 1rem 0 0;
       color: $palette1;
       font-weight: 400;

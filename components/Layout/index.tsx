@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  const [openHeader, setOpenHeader] = useState(true);
+  const [openHeader, setOpenHeader] = useState(false);
   useEffect(() => {
     let prev = window.scrollY;
     const onScroll = () => {

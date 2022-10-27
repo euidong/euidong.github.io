@@ -12,7 +12,6 @@ import styles from "./MarkDown.module.scss";
 import { RiFileCopyLine } from "react-icons/ri";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import TableOfContents from "../TableOfContents";
 import { formatIndex } from "../../lib/utils";
 
 interface Props {
@@ -31,7 +30,6 @@ const MarkDown = ({ content }: Props) => {
 
   return (
     <>
-      <TableOfContents indexes={indexes} />
       <article className={`markdown-body ${styles["markdown-body"]}`}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkMath]}
