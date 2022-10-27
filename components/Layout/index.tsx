@@ -41,8 +41,8 @@ const Layout = ({ children }: Props) => {
             isSearchBarOpen || isSidebarOpen
               ? "sticky"
               : openHeader
-              ? "sticky"
-              : "static",
+                ? "sticky"
+                : "static",
         }}
       >
         <SideBarToggler
