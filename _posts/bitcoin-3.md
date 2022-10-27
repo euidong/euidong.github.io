@@ -97,7 +97,7 @@ Script를 해석하기 위해서는, 구성요소를 먼저 알아야 합니다.
 
 [🔗 Script - Bitcoin Wiki](https://en.bitcoin.it/wiki/Script)
 
-#### **2-3. Goal**
+#### 2-3. Goal
 
 Script의 최종 목적은 **Script의 모든 구성요소를 실행시켜서, 중간에 operation의 에러 없이 stack에 1이라는 숫자를 남기는 것입니다.** 따라서, 해석이 실패하는 경우는 두 가지 입니다. Script의 해석 도중에 operation이 에러를 발생시켰거나, 모든 Script를 해석했음에도 stack에 1이 아닌 값이 있거나 아무 값도 없는 경우입니다.
 

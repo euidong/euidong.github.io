@@ -307,7 +307,7 @@ $ docker run -e S6_READ_ONLY_ROOT=1 --read-only --tmpfs /var:rw,exec [image name
 
 만약 S6\_READ\_ONLY\_ROOT=1 를 사용할 때, fix-attrs.d, cont-init.d, cont-finish.d, services.d의 symbol link를 유의해야 한다. s6의 제한사항 때문에, 앞 선 디렉토리가 /var/run/s6에 복사되며 symbol link가 실행되어 예기치 않은 중복이 발생한다.
 
-### **s6 동작 사용자화**
+### s6 동작 사용자화
 
 s6의 동작을 이미 정의된 환경 변수를 설정함으로써 실행단계에서 조정하는 것이 가능하다.
 
@@ -332,7 +332,7 @@ s6의 동작을 이미 정의된 환경 변수를 설정함으로써 실행단�
 - S6\_READ\_ONLY\_ROOT (default = 0): read-only 파일 시스템을 사용하는 container 내부에서 동작할 때, 1로 설정하여 초기화 scripts를 권한 설정이전에 /etc에서 /var/run/s6/etc 로 복사하도록 하는 방식이다. 자세한 사항은 다음을 참조([Read-Only Root Filesystem](https://github.com/just-containers/s6-overlay#read-only-root-filesystem))
 - S6\_SYNC\_DISKS (default = 0): 1로 설정하여 stage 3에서 container 종료 이전에 file 시스템의 sync를 맞추어야 함을 알린다.
 
-### **Terminology**
+### Terminology
 
 - PID 1 : linux kernel에서 첫번째로 시작되어진 process에게 PID 1이 부여된다. PID 1은 다른 process들과는 달리 다음과 같은 특징일 갖는다.
   - PID 1 process가 종료된다면, 모든 다른 process는 KILL signal로 종료된다.

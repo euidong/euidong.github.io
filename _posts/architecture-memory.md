@@ -192,6 +192,6 @@ Page Table이 실제로 Main Memory에 저장되기 때문에 우리는 Page를 
 
 ![Virtual Memory](/images/virtual-memory.png)
 
-## **Reference**
+## Reference
 
 - David A. Patterson, John L. Hennessy, Computer Organization and Design

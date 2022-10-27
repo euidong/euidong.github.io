@@ -58,7 +58,7 @@ View는 중첩해서 사용이 가능하다. 즉, View안에 View를 중첩해�
 
 View는 user input을 받는 장치(button) 등을 포함하고 있고, Controller instance를 포함하고 있기 때문에, 해당 instance를 교체함으로써 쉽게 동작을 변경하는 것도 가능하다.
 
-### **Type**
+### Type
 
 해당 책에서는 총 23가지의 design pattern을 제시합니다. 그들을 분류하는 체계를 어느 정도 나눈다면 쉽게 이해가 가능할 겁니다.
 
