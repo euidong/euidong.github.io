@@ -6,7 +6,7 @@ const nextConfig = {
     PUBLIC_URL:
       process.env.NODE_ENV === "production"
         ? require("./package.json").homepage
-        : "http://localhost:3000",
+        : process.env.FORWARD_DOMAIN || "http://localhost:3000",
   },
   images: {
     loader: "akamai",
