@@ -68,7 +68,7 @@ MPT는 3가지의 Node로 이루어진다.
 
 이 구조가 가지는 의의는 결국 우리는 하위 node들을 hash한 데이터를 상위 node에서 포함하고 있기 때문에 필요에 따라 trie에 일부분만을 저장해도 data의 검증은 충분히 가능하다는 점이다. 따라서, 모든 data를 가지는 full node와 달리 light client는 더 적은 데이터만 갖고도 검증이 가능한 것이다. 하지만, light client에서 authenticated read(full node의 도움이 필요한 read)를 수행하고자 하는 경우 full node에서는 read를 수행하기 위해서 path를 따라서 읽기를 반복해나가며, leaf node에 있는 최종 value를 얻어와야 한다.
 
-> <mark>**3. Futher Observation**</mark>
+> <mark>**3. Further Observation**</mark>
 
 해당 논문에서는 OpenEthereum Client를 관측하고, 기존 논문들에서 여러 영감을 얻었다. 다음은 이 논문에서 insight를 얻는 데 중요한 역할을 한 관측 정보이다.
 
@@ -113,7 +113,7 @@ Layered Merkle Patricia Trie의 약자로 기존 Ethereum MPT의 한계를 극�
 
 > <mark>**[Design] Structure**</mark>
 
-어떻게 실제로 이를 구현했는지에 대한 outline을 제시하면 다음과 같다. (OpenEthereum은 Rust를 이용하기 때문에 LMPT도 Rust에 기반한 code이다. psuedo code이기 때문에 문법은 다소)
+어떻게 실제로 이를 구현했는지에 대한 outline을 제시하면 다음과 같다. (OpenEthereum은 Rust를 이용하기 때문에 LMPT도 Rust에 기반한 code이다. psuedo code이기 때문에 해당 언어를 몰라도 알아볼 수 있을 것이다.)
 
 ```rust
 struct Trie {

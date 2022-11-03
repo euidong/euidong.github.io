@@ -26,7 +26,7 @@ thumbnailSrc: "/images/nlp-thumbnail.jpg"
 4. K Nearest Neighbors
 
 해당 Posting에서는 **Naive Bayes Classifier**를 이용한 분류를 수행할 것이다. 3번 방법은 기본적으로 각 단어를 Random Variable로 치환해서 처리하는 과정이 필요한데 이는 후에 더 자세히 다룰 것이기 때문에 여기서는 기본적인 Classifier를 활용하는 방법을 배우고 후에 가서 word를 vector로 변환하는 과정을 거친 후에 더 훌륭한 기술들을 활용해보겠다.  
-따라서, 앞으로 3개의 Posting 동안은 Naive Bayes, HMM, MaxEnt 방식에 대해서 알아볼 것이고, 그 후에는 word를 vector 데이터로 치환하여 처리를 하는 방식을 배워볼 것이다.
+따라서, 앞으로 3개의 Posting 동안은 Naive Bayes, HMM, MaxEnt 방식에 대해서 알아볼 것이다.
 
 기본적으로 Classification은 데이터가 주어졌을 때, 해당 데이터가 특정 class에 속할 확률을 제시하는 것이다. 따라서, 특정 class에서 해당 데이터가 얼마나 자주 발생되는지와 실제로 해당 class의 빈도가 가장 중요하다.
 
@@ -66,11 +66,10 @@ binary classificaiton의 결과는 아래와 같이 4개 중 하나로 결정된
 
 이를 쉽게 이해할려면, 병(코로나)의 양성/음성 판정이 row에 해당하고, 실제 병의 여부를 column으로 생각하면 쉽다. 또한, 각 cell의 값이 헷갈릴 수 있는데, 우리가 원하는 것이 예측의 정확도를 확인하는 것이기 때문에 예측 결과는 그대로 보여주면서, 이것이 틀렸는지 맞았는지를 앞에 true/false로 표현했다고 생각하면 쉽다.
 
-
 classification의 성능을 측정하는 지표는 대표적으로 4 가지가 있다.
 
 1. **Accuracy(정확도)**  
-   가장 쉽게 그리고 일반적으로 생각하는 지표다. 위의 표에서는 전체 경우의 수를 더하여 옳게 예측한 것(true postive, true negative)의 합을 나누는 것이다. 
+   가장 쉽게 그리고 일반적으로 생각하는 지표다. 위의 표에서는 전체 경우의 수를 더하여 옳게 예측한 것(true postive, true negative)의 합을 나누는 것이다.
    $tp + fn \over tp + fp + fn + tn$  
    하지만, 이 방식은 한계가 있다. 바로, 데이터가 한쪽으로 치우쳐져있을 때이다. 예를 들어, 우리가 진짜를 진짜라고 맞출확률은 높지만, 가짜를 가짜라고 맞출 확률이 낮다고 할 때, 이를 제대로 반영하기가 어렵다. 그런데 데이터에서 진짜가 가짜보다 압도적으로 많을 경우 정확도는 좋은 지표로 쓰기 어렵다는 것이다.
 2. **Precision(정밀도, 정답률)**  
@@ -177,12 +176,10 @@ $$
 
 이제 평가를 수행할 것이다. 평가는 우리가 알아봤던 Accuracy와 F1 Score를 추출할 수 있다. Binary Classification이기 때문에 쉽게 구할 수 있을 것이다.
 
-
 | prediction\answer | True                                                                       | False                                                                     |
 | :---------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
 | Positive          | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} = c, c = \text{spam}]$    | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} \neq c, c = \text{ham}]$ |
 | Negative          | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} \neq c, c = \text{spam}]$ | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} = c, c = \text{ham}]$    |
-
 
 ## Reference
 

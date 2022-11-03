@@ -24,7 +24,7 @@ $$
 $$
 
 $$
-f(\bold{x}) = \bold{w}^{\top}\bold{x}, 
+f(\bold{x}) = \bold{w}^{\top}\bold{x},
 (\bold{w} = \begin{bmatrix} w_{0} \\ w_{1} \\ w_{2} \\ \vdots \\ w_{N} \\ \end{bmatrix}, \bold{x} = \begin{bmatrix} 1 \\ x_{1} \\ x_{2} \\ \vdots \\ x_{N} \\ \end{bmatrix} )
 $$
 
@@ -33,11 +33,11 @@ $$
 - $x$ : input, 독립 변수, predictor, regressor, covariate
 - $y$ : output, 종속 변수, response
 - $\epsilon$ : noise, 관측되지 않은 요소
-- $w$ : weight, 가중치, parameter 
+- $w$ : weight, 가중치, parameter
 
 > <mark>**성능 평가(MSE)**</mark>
 
-우리가 만든 Regression이 얼마나 데이터를 잘 반영하는지를 알고 싶을 때, 즉 평가하고자 할 때, 우리는 Mean Squared Error(MSE)를 사용한다. 이는 이전 포스팅인 [Parametric Estimation](/posts/ml-parametric-estimation)에서도 살펴보았었다. 
+우리가 만든 Regression이 얼마나 데이터를 잘 반영하는지를 알고 싶을 때, 즉 평가하고자 할 때, 우리는 Mean Squared Error(MSE)를 사용한다. 이는 이전 포스팅인 [Parametric Estimation](/posts/ml-parametric-estimation)에서도 살펴보았었다.
 
 그렇다면, MSE를 최소로 하는 f(x)는 무엇일까? 이를 통해서 또, 하나의 식견을 넓힐 수 있다. 한 번 MSE 식을 정리해보자.
 
@@ -120,8 +120,8 @@ $$
 마지막으로, 이렇게 만들어진 $\phi(\bold{x})$를 하나의 Matrix로 합친 것을 Design Matrix라고 한다. N개의 데이터를 L개의 서로 다른 basis function으로 변환한 데이터를 행렬로 표현하면, 다음과 같다.
 
 $$
-\Phi = 
-  \begin{bmatrix} 
+\Phi =
+  \begin{bmatrix}
     \phi_1({\bold{x_1}})  & \phi_2(\bold{x_1})  & \cdots  & \phi_L(\bold{x_1})  \\
     \phi_1({\bold{x_2}})  & \phi_2(\bold{x_2})  & \cdots  & \phi_L(\bold{x_2})  \\
     \vdots                & \vdots              & \ddots  & \vdots              \\
@@ -205,7 +205,7 @@ $$
 
 > **overfitting**
 
-우리가 MLE를 통해서 Linear Regression을 찾는 것이 충분하다고 생각할 수 있다. 하지만, 우리는 어쩔 수 없이 **overfitting**이라는 문제에 직면하게 된다. 
+우리가 MLE를 통해서 Linear Regression을 찾는 것이 충분하다고 생각할 수 있다. 하지만, 우리는 어쩔 수 없이 **overfitting**이라는 문제에 직면하게 된다.
 
 ![over-fitting-example](/images/over-fitting-example.jpg)
 

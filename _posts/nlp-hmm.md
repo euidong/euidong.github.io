@@ -25,7 +25,7 @@ HMM을 알아보기전에 Markov Model을 알아야 한다. 이는 특정 sequen
 $$
 \begin{align*}
 p(s_{0}, s_{1}, s_{0}, s_{2}) &= p(s_{0}| \text{start}) \times p(s_{1}|s_{0}) \times p(s_{0}|s_{1}) \times p(s_{2}|s_{1}) \times p(end|s_{2}) \\
-&= \pi_{0} \times p_{01} \times p_{10} \times p_{12} \times 1 
+&= \pi_{0} \times p_{01} \times p_{10} \times p_{12} \times 1
 \end{align*}
 $$
 
@@ -55,7 +55,6 @@ p((start, w_{0}), (w_{0}, w_{1}), (w_{1}, w_{0}), (w_{0}, w_{2})) &= p(w_{0}| \t
 &= \pi_{0} \times p_{01} \times p_{10} \times p_{12} \times 1
 \end{align*}
 $$
-
 
 ## Hidden Markov Model
 
@@ -135,7 +134,7 @@ $$
 
 > <mark>**2. Viterbi**</mark>
 
-이는 observed state의 sequence에 의해서 파생되는 가장 적절한 hidden sequence를 구하는 것이 목표이다. 이를 통해서 할 수 있는 대표적인 것이 sequence classification이다. 
+이는 observed state의 sequence에 의해서 파생되는 가장 적절한 hidden sequence를 구하는 것이 목표이다. 이를 통해서 할 수 있는 대표적인 것이 sequence classification이다.
 
 그렇다면 가장 유력한 hidden state의 sequence를 $\hat{s}^{(H)}$라고 하자. 이는 다음과 같다.
 
@@ -157,7 +156,7 @@ $$
 여태까지 HMM을 활용하여 sequential class를 어떻게 estimation 하는지 알아보았다. 그렇다면, 이제는 이를 위해서 사용되는 확률값을 구해야한다. 필요한 확률값은 다음과 같다.
 
 - $p(h_{i}|h_{i-1})$ : Hidden State에서 Hidden State로 넘어가기 위한 확률이다.
-- $p(o_{i}|h_{i})$ : 방출 확률로 특정 Hidden State에서 다음 State의 Observed State로 넘어가는 방법이다. 
+- $p(o_{i}|h_{i})$ : 방출 확률로 특정 Hidden State에서 다음 State의 Observed State로 넘어가는 방법이다.
 - $\pi_{i}$
 
 Trelli 방식에서 만들었던, $\alpha$와 $\beta$의 의미를 이해해야 한다. 각 각은 해당 과정까지 오면서 누적해온 확률이라고 할 수 있다. 그리고, 우리가 원하는 것은 입력으로 주어진 데이터를 잘 반영할 수 있는 확률 값을 찾는 것이다. 그렇다면, 우리가 생각할 수 있는 방법은 평균을 활용하는 것이다. 이를 구하는 과정을 먼저 살펴보자.

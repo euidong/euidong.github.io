@@ -62,7 +62,7 @@ $$
 \begin{align*}
   \text{maximize}   \quad & -{1\over2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}\bold{x}_{i}^{\top}\bold{x}_{j} + \sum_{i=1}^{N}\alpha_{i} &\\
   \text{subject to} \quad & \sum_{i=1}^{N}\alpha_{i}y_{i} = 0, & \\
-  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N 
+  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N
 \end{align*}
 $$
 
@@ -72,7 +72,7 @@ $$
 \begin{align*}
   \text{maximize}   \quad & -{1\over2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}\red{\boldsymbol{\phi}^{\top}(\bold{x}_{i})\boldsymbol{\phi}(\bold{x}_{j})} + \sum_{i=1}^{N}\alpha_{i} &\\
   \text{subject to} \quad & \sum_{i=1}^{N}\alpha_{i}y_{i} = 0, & \\
-  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N 
+  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N
 \end{align*}
 $$
 
@@ -85,7 +85,7 @@ $$
 가장 대표적인 예시로 아래와 같은 복잡한 $\phi$ 가 주어졌을 때,
 
 $$
-\boldsymbol{\phi}(x) = \exp({{-x^{2}}\over{2\sigma^{2}}})[1, \sqrt{1\over{1!\sigma^{2}}}x, \sqrt{1\over{2!\sigma^{4}}}x^{2}, \sqrt{1\over{3!\sigma^{6}}}x^{3}, \cdots]
+\boldsymbol{\phi}(x) = \exp[{{-x^{2}}\over{2\sigma^{2}}}](1, \sqrt{1\over{1!\sigma^{2}}}x, \sqrt{1\over{2!\sigma^{4}}}x^{2}, \sqrt{1\over{3!\sigma^{6}}}x^{3}, \cdots)
 $$
 
 아래의 (RBF) kernel로 대체가 가능해진다.
@@ -96,9 +96,8 @@ $$
 
 대게 우리가 표현하고자 하는 형태의 $\boldsymbol{\phi}$는 이미 특정 kernel 함수로 매핑되고 있으니 직접 $\boldsymbol{\phi}$를 계산하기 전에 찾아보는 것이 도움이 될 것이다.[🔗 link](https://dataaspirant.com/svm-kernels/#t-1608054630726)
 
-
 ## Reference
 
 - Tumbnail : Photo by [Markus Winkler](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- A Comparison of Methods for Multi-class Support Vector Machines, Chih-Wei Hsu and Chih-Jen Lin, https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf
-- SEVEN MOST POPULAR SVM KERNELS, https://dataaspirant.com/svm-kernels/#t-1608054630726
+- A Comparison of Methods for Multi-class Support Vector Machines, Chih-Wei Hsu and Chih-Jen Lin, <https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
+- SEVEN MOST POPULAR SVM KERNELS, <https://dataaspirant.com/svm-kernels/#t-1608054630726>

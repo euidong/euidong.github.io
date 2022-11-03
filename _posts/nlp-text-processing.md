@@ -30,7 +30,7 @@ NLP를 수행할 때, 우리는 sequence of character를 처리하는 방식을 
 
 ### 1. Word Tokenization
 
-우선 쉽게 생각할 수 있는 것은 단순히 띄어쓰기를 기준으로 구분하는 것이다. 그렇게 하면, 우리는 입력으로 주어진 Corpus에서 token을 추출할 수 있다. 
+우선 쉽게 생각할 수 있는 것은 단순히 띄어쓰기를 기준으로 구분하는 것이다. 그렇게 하면, 우리는 입력으로 주어진 Corpus에서 token을 추출할 수 있다.
 
 하지만, "San Francisco"와 같은 단어가 두 개의 token으로 나누는 것이 아니라 하나의 token으로 처리되기를 원할 수 있다. 뿐만 아니라 일부 언어들(특히 중국어와 일본어)의 경우 띄어쓰기 없이 작성하는 언어들의 경우 문제는 더 커질 수 있다. 이 경우에는 **Word Segmenting**이라는 알고리즘을 활용할 수도 있는데, 원리는 매우 간단하다. 언어의 모든 단어를 포함하는 사전을 기반으로 문장에서 사전에 일치하는 가장 긴 문자열을 찾을 수 있을 때까지 token을 연장해서 만드는 방식이다.
 
@@ -56,7 +56,7 @@ NLP를 수행할 때, 우리는 sequence of character를 처리하는 방식을 
 2. **Lemmatization**  
    Lemma(기본형, 사전형)로 단어를 변환하는 것이다. 가장 기본적인 것은 am, are, is와 같은 be동사를 모두 be로 변환하거나 car, cars, car's를 모두 기본형태인 car로 바꾸는 것이다. 대게의 경우에는 이 과정에서 의미를 일부 잃어버리기 때문에 lemma + tag로 기존 token을 복구할 수 있도록 하는 tag를 포함하는 것이 좋다.
 3. **Stemming**  
-   morpheme(형태소)은 중심 의미를 가지는 stem과 핵심 의미는 아니지만 stem에 추가 의미를 더해주는 affixes로 나누어 word를 나눌 수 있다. 따라서, 각 token을 가장 core의 의미를 가지는 stem으로 나타내는 방식이다. 대표적인 예시가 automate, automatic, automation을 automat으로 변환하는 것이다. 이는 lemmatization보다 넓은 범위의 word를 하나로 묶기 때문에 세부의미가 더 손실될 수 있다. 따라서, 기존 의미로 복구할 수 있는 tag를 포함하는 것이 좋다. 
+   morpheme(형태소)은 중심 의미를 가지는 stem과 핵심 의미는 아니지만 stem에 추가 의미를 더해주는 affixes로 나누어 word를 나눌 수 있다. 따라서, 각 token을 가장 core의 의미를 가지는 stem으로 나타내는 방식이다. 대표적인 예시가 automate, automatic, automation을 automat으로 변환하는 것이다. 이는 lemmatization보다 넓은 범위의 word를 하나로 묶기 때문에 세부의미가 더 손실될 수 있다. 따라서, 기존 의미로 복구할 수 있는 tag를 포함하는 것이 좋다.
 
 ### 3. Sentence Segmentation
 
@@ -87,7 +87,6 @@ Text Normalization을 통해서 우리는 sentence를 구분하고, word를 추�
 
 단어 또는 문장 간 유사도를 측정할 때, 사전을 기반으로 수행할 수도 있지만 참고할 corpus가 마땅하지 않거나 더 추가적인 수치가 필요하다면, Minimum Edit Distance로 유사도를 측정하기도 한다. 즉, 두 문자열이 같아지기 위해서 어느정도의 수정이 필요한지를 수치화한 것이다. 여기서 연산은 새로운 문자 추가, 삭제, 대체만 가능하다.
 
-
 ```plaintext
 S - N O W Y  | - S N O W - Y
 S U N N - Y  | S U N - - N Y
@@ -96,26 +95,26 @@ distance : 3 | distance : 5
 
 다음과 같이 표현이 가능하다.
 
-1. 문자열 x, y가 있을 때, $E(i, j)$는 x의 0\~i까지를 포함하는 문자열과 y의 0~j까지를 포함하는 문자열의 distance라고 하자. 
+1. 문자열 x, y가 있을 때, $E(i, j)$는 x의 0\~i까지를 포함하는 문자열과 y의 0~j까지를 포함하는 문자열의 distance라고 하자.
 2. 이렇게 되면, $E(i,j)$에서 우리는 끝문자의 규칙을 볼 수 있다.
-    
+
     오른쪽 끝 문자가 가질 수 있는 조합은 3가지 밖에 없다.
-    
+
     ```plaintext
     x[i]        | -           | x[i]
     -           | y[j]        | y[j]
     distance: 1 | distance: 1 | distance: 0 or 1
     ```
-    
+
 3. 그렇다면 우리는 하나의 사실을 알게 된다.
-    
+
     $E(i,j)$는 다음 경우의 수 중 하나여야만 한다.
-    
+
     - $E(i-1, j) + 1$
     - $E(i, j-1) + 1$
     - $E(i-1, j-1) + ((x[i] == y[j])\text{ ? 0 : 1} )$
 4. 따라서, 다음과 같은 식을 유도할 수 있다.
-    
+
     $E(i, j) =\min( \\
       \quad E(i-1, j) + 1, \\
       \quad E(i, j-1) + 1,  \\

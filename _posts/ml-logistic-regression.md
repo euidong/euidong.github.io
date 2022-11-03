@@ -92,7 +92,7 @@ $$
 자 이제 드디어 Logistric Regression을 시작해보자. 우리는 Discriminant Function을 먼저 지정해야 한다. 여러 가지 방법이 있지만, 가장 대표적으로 사용되는 방법은 **Softmax**를 활용하는 것이다. **Softmax**를 활용하여 식을 나타내면 아래와 같다.
 
 $$
-p(y_n = k | \bold{x}_n, \bold{w}) = {{\exp(\bold{w}_{k}^{\top}\bold{x}_n)}\over{\sum_{j=1}^{K}{\exp(\bold{w}_{j}^{\top}\bold{x}_n)}}} 
+p(y_n = k | \bold{x}_n, \bold{w}) = {{\exp(\bold{w}_{k}^{\top}\bold{x}_n)}\over{\sum_{j=1}^{K}{\exp(\bold{w}_{j}^{\top}\bold{x}_n)}}}
 $$
 
 만약, class가 2개인 Binary Classification인 경우에 **Softmax**는 다음과 같아진다. 특히 이를 **Sigmoid**(**Logit**)라고 정의한다.
@@ -156,7 +156,7 @@ $$
 \argmax_{\bold{w}} \sum_{n=1}^{N}y_{n}\log{\sigma(\bold{w}^{\top}\bold{x}_{n}) + (1-y_{n})\log{(1-\sigma(\bold{w}^{\top}\bold{x}_{n}))} }
 $$
 
-이를 똑같이 미분하여 사용하지만, 반대로 이 경우에는 maximization 이기 때문에 Gradient Ascent를 수행해야 한다. 
+이를 똑같이 미분하여 사용하지만, 반대로 이 경우에는 maximization 이기 때문에 Gradient Ascent를 수행해야 한다.
 
 우선 미분 결과 얻는 Gradient는 다음과 같다.
 
@@ -192,7 +192,7 @@ $$
   H = \nabla^{2}f(x) =
   \left[
     \begin{array}{ccc}
-      \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{1}^{2}} & \cdots & \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{1} \partial x_{D}} \\ 
+      \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{1}^{2}} & \cdots & \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{1} \partial x_{D}} \\
       \vdots & \ddots & \vdots \\
       \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{D} \partial x_{1}} & \cdots & \dfrac{\partial^{2} f(\mathbf{x})}{\partial x_{n}^{2}}
     \end{array}
@@ -217,14 +217,14 @@ $$
 여기서, 아래와 같이 변수를 정의하면,
 
 $$
-S = 
+S =
   \begin{bmatrix}
     \hat{y}_{1}(1-\hat{y}_1)  & \cdots  & 0                         \\
     \vdots                    & \ddots  & \vdots                     \\
     0                         & \cdots  & \hat{y}_{N}(1-\hat{y}_N)  \\
   \end{bmatrix},
 
-\bold{b} = 
+\bold{b} =
   \begin{bmatrix}
     {{y_{1} - \hat{y}_{1}}\over{\hat{y}_{1}(1-\hat{y}_{1})}} \\
     \vdots \\
@@ -243,7 +243,6 @@ $$
 $$
 
 이는 결코 계산 과정이 단순하다고는 할 수 없지만, 빠르게 수렴할 수 있기 때문에 가치있는 방법이다.
-
 
 ## Reference
 

@@ -29,7 +29,7 @@ $$
 그렇다면, 해당 perceptron을 통해서 모든 데이터를 구분하기 위해서는 다음을 만족하는 $\bold{w}$를 찾아야 한다.
 
 $$
-y_{n} = 
+y_{n} =
 \begin{cases}
 1  &\text{ if  } \bold{x}_{n} \in \mathcal{C}_{1} \\
 -1 &\text{ if  } \bold{x}_{n} \in \mathcal{C}_{2} \\
@@ -179,7 +179,7 @@ $$
 
 우선 KL-Divergence, Entropy, Cross Entropy에 대한 약간의 이해가 필요하니 이전 Posting([🔗 Base Knowledge](posts/ml-base-knowledge))을 살펴보고 오자.
 
-위에서는 자연스럽게 Loss를 계산할 때, Squared Error를 사용하였다. 하지만 경우에 따라서는 다양한 함수를 사용할 수 있다. multiclass classification에서는 **Cross Entropy Loss**를 사용한다. 
+위에서는 자연스럽게 Loss를 계산할 때, Squared Error를 사용하였다. 하지만 경우에 따라서는 다양한 함수를 사용할 수 있다. multiclass classification에서는 **Cross Entropy Loss**를 사용한다.
 
 우선 Cross Entropy Loss는 대게 L2 Loss(Squared Error)와 같이 비교되어진다. 우선 우리가 이전 [🔗 Parametric Estimation](posts/ml-parametric-estimation)에서 MLE를 다룰 때, KL-Divergence를 통해서 MLE가 최적 parameter를 찾을 것이라는 걸 증명한 적이 있다. 그렇다면, 우리가 [🔗 Logistic Regression](/posts/ml-logistic-regression)에서 Squared Error를 통해서 Loss를 구했던 공식을 확인해보자.(Gradient Asecent Part)
 
@@ -207,18 +207,14 @@ $$
 따라서, Cross Entropy Loss를 대입하여 다음과 같은 Loss를 얻을 수 있다.
 
 $$
-\mathcal{L} = \sum_{n=1}^{N}\sum_{k=1}^{K}[-y_{k,n}\log\hat{y}_{k,n}],\quad y_{k,n} = p(x_{n} \in C_{k}| x_{n}) 
+\mathcal{L} = \sum_{n=1}^{N}\sum_{k=1}^{K}[-y_{k,n}\log\hat{y}_{k,n}],\quad y_{k,n} = p(x_{n} \in C_{k}| x_{n})
 $$
 
 여기서 $y_{k,n}$은 one-hot encoding된 데이터로, 정답인 class만 1이고 나머지는 모두 0으로 되어 있다. 따라서, multiclass classification에서는 위와 같은 Loss를 주로 사용한다.
 
 이 두가지 뿐만 아니라 여러가지 Loss Function이 이미 존재한다. 예전에 잠깐 설명했던 L1 Loss부터 시작해서 NLLLoss, KLDivLoss 등등 존재하며, data의 특성과 output의 형태에 따라서 우리는 스스로 Loss Function을 새로 정의할 수도 있다.
 
-
-
-
-
 ## Reference
 
 - Tumbnail : Photo by [Markus Winkler](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- activation function, wikipedia, https://en.wikipedia.org/wiki/Activation_function
+- activation function, wikipedia, <https://en.wikipedia.org/wiki/Activation_function>

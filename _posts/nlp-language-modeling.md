@@ -121,14 +121,13 @@ $$
 | bi-gram  | $p(He\vert <s>)=p(can\vert He)=p(the\vert buy)=p(can\vert the)=p(soda\vert of)=p(.\vert sode) =p(</s> \vert .) = 1$<br /> $p(buy\vert can)=p(of\vert can)= 0.5$ |
 | tri-gram | $p(He\vert <s>, <s>)=p(can\vert <s>, He)=p(the\vert He, buy)=...=p(</s>\vert ., </s>) =1$                                                                       |
 
-
 ## Evaluation
 
 평가할 때는 ML과 결국은 동일하다. 우리가 확률분포를 구할 때, 사용한 데이터 외에 데이터를 이용해서 잘 적용이 되었는지를 확인할 수 있다. 하지만, word의 갯수와 데이터의 수가 굉장히 많은 NL의 특성상 이 Evaluation 단계에만 굉장히 많은 시간을 소모할 수 있다. 따라서, 즉각적인 평가를 위해서 사용하는 척도가 있다.
 
 > **Perplexity**
 
-train set을 통해 학습을 하고, test set을 통해서 평가를 수행할 때, train set을 통해 구한 확률이 실제 test set에서 어느정도의 Entropy를 발생시키는지를 확인하는 것이다. 원래의 식은 
+train set을 통해 학습을 하고, test set을 통해서 평가를 수행할 때, train set을 통해 구한 확률이 실제 test set에서 어느정도의 Entropy를 발생시키는지를 확인하는 것이다. 원래의 식은
 $PP = 2^{H}$이지만, 이를 변형하여 다음과 같이 나타낼 수 있다.
 
 $$
@@ -194,7 +193,7 @@ $$
 
 > <mark>**3.Good Turing**</mark>
 
-이를 이해하기 위해서는 우리는 새로운 feature의 데이터를 가져와야 한다. 바로 word의 frequency의 frequency이다. 
+이를 이해하기 위해서는 우리는 새로운 feature의 데이터를 가져와야 한다. 바로 word의 frequency의 frequency이다.
 
 $$
 N_{k} = \sum_{i=1}^{n}1[c(w_{i}) = k]
@@ -237,7 +236,7 @@ $$
 > <mark>**4. Kneser-Ney**</mark>
 
 가장 널리 쓰이는 Smoothing 방식으로 기억해두는 것이 좋다. 이를 이해하기 위해서는 먼저, Absolute Discounting을 먼저 이해해야 한다.  
-Good-turing 방식을 사용했을 때 $c$와 $c^{*}$사이에 차이가 경험적으로 특정 상수만큼씩 차이가 난다는 것을 발견하여, 
+Good-turing 방식을 사용했을 때 $c$와 $c^{*}$사이에 차이가 경험적으로 특정 상수만큼씩 차이가 난다는 것을 발견하여,
 
 $$
 c^{*} = c - d
@@ -246,7 +245,7 @@ $$
 Church과 Gale은 이를 Absolute Discounting 확률이라며 다음 식을 제시한다.
 
 $$
-P(w_{i}|w_{i-1}) = {c(w_{i-1}, w_{i}) -d \over c(w_{i-1})} + \lambda(w_{i-1})P(w) 
+P(w_{i}|w_{i-1}) = {c(w_{i-1}, w_{i}) -d \over c(w_{i-1})} + \lambda(w_{i-1})P(w)
 $$
 
 여기서 뒷에 부분 $\lambda(w_{i-1})P(w)$은 discounting으로 발생한 오차를 매꾸기 위한 값이다.
@@ -254,21 +253,20 @@ $$
 여기서 Kneser-Ney problem은 더 넓은 범위로 확장시킬 수 있는 범위로 확장시킨 것이다. 기존에는 bigram으로 제한되어 있던 Absolute Discounting의 식은 다음과 같이 변형된다.
 
 $$
-P_{KN}(w_{i}|w_{i-n+1}^{i-1}) = {\max(c(w_{i-1}, w_{i}) -d, 0) \over c(w_{i-n+1}^{i-1})} + \lambda(w_{i-n+1}^{i-1})P_{KN}(w_{i}|w_{i-n+2}^{i-1}) 
+P_{KN}(w_{i}|w_{i-n+1}^{i-1}) = {\max(c(w_{i-1}, w_{i}) -d, 0) \over c(w_{i-n+1}^{i-1})} + \lambda(w_{i-n+1}^{i-1})P_{KN}(w_{i}|w_{i-n+2}^{i-1})
 $$
 
 (위의 식에 대해서 정확하게 이해를 하지 않았지만, 그렇구나 하고 넘어가도 충분할 것 같다.)
 
 > <mark>**5. Backoff & Interpolation**</mark>
 
-상황에 따라서 unigram, bigram, trigram을 가중치만큼 더해서 사용하는 방식이다. 결국 n-gram에서 n이 작아질 수록 detail을 신경쓸 수 없지만, 신뢰도 자체는 늘어날 수 있다. 따라서, 이를 적절히 섞어쓰면 좋은 결과가 나온다는 이론이다. 하지만, 어떤 것을 더 중점으로 직접 정해주어야 한다. 
+상황에 따라서 unigram, bigram, trigram을 가중치만큼 더해서 사용하는 방식이다. 결국 n-gram에서 n이 작아질 수록 detail을 신경쓸 수 없지만, 신뢰도 자체는 늘어날 수 있다. 따라서, 이를 적절히 섞어쓰면 좋은 결과가 나온다는 이론이다. 하지만, 어떤 것을 더 중점으로 직접 정해주어야 한다.
 
 $$
 p^{\prime}(w_{i}|w_{i-2}, w_{i-1}) = \lambda_{3}p(w_{i}|w_{i-2}, w_{i-1}) + \lambda_{2}p(w_{i}|w_{i-1}) + \lambda_{1}p(w_{i}) + {\lambda_{0}\over|V|}
 $$
 
 이를 정할 때는 대게 held-out data를 활용해서 구한다.(validation set이라고 부른다.) 즉, 전체 corpus를 (train, validation, test)로 적절히 나누어 쓰라는 것이다. 그래서 성능을 측정할 때는 testset을 쓰고, $\lambda$를 추정할 때에는 validation(heldout)set을 사용하라는 것이다.
-
 
 ## Word Class
 
@@ -297,8 +295,9 @@ $$
   잘못된 spelling 또는 유사한 발음 때문에 뜻이 있는 단어가 만들어졌지만, 오류가 의심되는 경우이다.  
   해결책은 비슷한 발음 또는 spelling의 모든 단어를 찾아서 해당 단어와 함께 language model에 넣어서 가장 높은 가능성을 가지는 값을 찾는 것이다.
 
-먼저, **Non Word Error** 같은 경우는 오타 데이터에 원래 쓰려고 했던 값을 labeling해서 모아두고 다음 값을 학습시키는 것이다. 
+먼저, **Non Word Error** 같은 경우는 오타 데이터에 원래 쓰려고 했던 값을 labeling해서 모아두고 다음 값을 학습시키는 것이다.
 (*x=오타데이터, w=사전에있는단어)
+
 - $P(x|w)$ = x가 w일 가능성
 - $p(w)$ = w의 확률
 
@@ -313,7 +312,7 @@ $$
 **Real Word Error**의 경우에는 결국 이전 단어 sequence를 활용해야 한다. 전체 corpus를 학습해서 tri-gram을 추출해놓고, 번갈아가면서 후보 단어들을 집어넣어서 가장 높은 확률이 나오는 단어를 사용하는 것이다. 예를 들어, 후보 단어가 다음과 같이 정해졌다고 하자. ($\bold{w}_{3} = {w_3^{(1)}, w_3^{(2)}, w_3^{(3)}, ...}$) 이때 우리가 원하는 w는 다음과 같이 구할 수 있다.
 
 $$
-\hat{w}_{3} = \argmax_{w_{3}^{(i)} \in \bold{w}_{3}} P(w_{3}^{(i)}| w_{1}, w_{2}) 
+\hat{w}_{3} = \argmax_{w_{3}^{(i)} \in \bold{w}_{3}} P(w_{3}^{(i)}| w_{1}, w_{2})
 $$
 
 ## Reference

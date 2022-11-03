@@ -9,7 +9,7 @@ thumbnailSrc: "/images/nlp-thumbnail.jpg"
 
 ## Intro
 
-Natural Language(자연어, 사람이 사용하는 통상 언어)를 input으로 활용하고자 하는 노력은 컴퓨터의 등장부터 시작하여 여러 번 시도되어 왔다. 지금까지도 완벽하게 이를 처리하는 것은 힘들다. 왜 Natural Language를 다루는 것은 어렵고, 이를 해결하기 위해서 NLP에서는 어떤 방식을 활용할지에 대한 개략적인 overview를 제시한다. 또한, Natural Language의 특성과 분석 단계를 이해하기 위해서 Linguistics(언어학)을 간략하게 정리한다. 
+Natural Language(자연어, 사람이 사용하는 통상 언어)를 input으로 활용하고자 하는 노력은 컴퓨터의 등장부터 시작하여 여러 번 시도되어 왔다. 지금까지도 완벽하게 이를 처리하는 것은 힘들다. 왜 Natural Language를 다루는 것은 어렵고, 이를 해결하기 위해서 NLP에서는 어떤 방식을 활용할지에 대한 개략적인 overview를 제시한다. 또한, Natural Language의 특성과 분석 단계를 이해하기 위해서 Linguistics(언어학)을 간략하게 정리한다.
 
 ## NLP
 
@@ -28,7 +28,7 @@ Natural Language Processing의 약자로 사람이 사용하는 언어를 input�
 - **Conference Resolution**  
   "he", "she" 등 대명사, 생략 단어 등을 원래의 단어로 대체하거나 채우는 과정을 수행한다. 이 역시도 여러 영역에서 이를 기반으로 추가적인 작업을 할 수 있다.  
 - **Word Sense Disambiguation(WSD)**  
-  특정 단어가 주어졌을 때, 동의어, 동음이의어 등에서 가르키는 진짜 의미를 헷갈리지 않게 명확하게 다시 한 번 처리한다. 이 역시도 다른 NLP usecase에서 두루 사용된다. 
+  특정 단어가 주어졌을 때, 동의어, 동음이의어 등에서 가르키는 진짜 의미를 헷갈리지 않게 명확하게 다시 한 번 처리한다. 이 역시도 다른 NLP usecase에서 두루 사용된다.
 - **Parsing**  
   문장에서 단어들을 의미를 가지는 단위(구, 절, 문장)로 다시 grouping한다. 이 과정을 잘 수행하기 위해서는 이전 단계에서 WSD와 Conference Resolution, POS tagging, NER이 이루어지면 좋다. 이 과정을 통해서 문장의 개략적인 의미를 파악할 수 있다.
 - **Machine Translation(MT)**  
@@ -64,9 +64,9 @@ Natural Language Processing의 약자로 사람이 사용하는 언어를 input�
 이러한 문제를 해결하기 위해서 크게 두 가지 방식을 사용할 수 있다.
 
 - Rule based approach  
-  Gammer와 같은 법칙을 모두 적용해서 prgoramming을 하는 것이다. 하지만, 이 방식은 비문과 같은 문장을 제대로 처리할 수 없을 뿐만 아니라 정확한 형태의 문장이라도 여러 의미로 해석되는 문장에서 경향성과 문맥을 전혀 파악할 수 없다. 
+  Gammer와 같은 법칙을 모두 적용해서 prgoramming을 하는 것이다. 하지만, 이 방식은 비문과 같은 문장을 제대로 처리할 수 없을 뿐만 아니라 정확한 형태의 문장이라도 여러 의미로 해석되는 문장에서 경향성과 문맥을 전혀 파악할 수 없다.
 - Statistic based approach  
-  그래서 최근에는 경향성과 문맥을 파악할 수 있도록 AI 기술, ML, Deep Learning을 이용하여 NLP를 수행하는 것이 하나의 trend로 자리 잡았다. 그렇다면, 어떻게 통계적인 접근법이 경향성과 문맥을 포함할 수 있을까? 이는 통계가 가지는 경향성이라는 특징과 conditional probability를 사용할 때의 문맥을 포함한 경향성을 파악할 수 있다는 점을 활용해서 가능하다. 
+  그래서 최근에는 경향성과 문맥을 파악할 수 있도록 AI 기술, ML, Deep Learning을 이용하여 NLP를 수행하는 것이 하나의 trend로 자리 잡았다. 그렇다면, 어떻게 통계적인 접근법이 경향성과 문맥을 포함할 수 있을까? 이는 통계가 가지는 경향성이라는 특징과 conditional probability를 사용할 때의 문맥을 포함한 경향성을 파악할 수 있다는 점을 활용해서 가능하다.
 
 ## Linguistics
 
@@ -75,7 +75,7 @@ Natural Language Processing의 약자로 사람이 사용하는 언어를 input�
 일반적으로 언어를 분석할 때, 사용할 수 있는 도구는 **Grammar**이다. 이는 특정 language에서 허용되는 규칙의 집합을 정리한 것이다. 이것의 종류는 크게 두 가지로 나뉜다.
 
 - **Classic Grammar**  
-  사람이 실제로 언어를 사용함에 있어 발생하는 이상한 습관과 같은 언어 표현이다. 이러한 법칙들은 대게 예제들을 통해서 정의되는데 이런 것을 명확하게 구분할 수 있는 명백한 도구가 존재하지는 않는다. 예를 들면, 감탄사와 같은 것들이 여기에 포함되겠다. 이는 이러한 변칙적인 형태 때문에 programming적으로 표현하는 것이 불가능하다. 
+  사람이 실제로 언어를 사용함에 있어 발생하는 이상한 습관과 같은 언어 표현이다. 이러한 법칙들은 대게 예제들을 통해서 정의되는데 이런 것을 명확하게 구분할 수 있는 명백한 도구가 존재하지는 않는다. 예를 들면, 감탄사와 같은 것들이 여기에 포함되겠다. 이는 이러한 변칙적인 형태 때문에 programming적으로 표현하는 것이 불가능하다.
 - **Explicit Grammar**  
   명백하게 정의되어 있는 언어 규칙을 의미한다. 이는 Programm으로 구현할 수 있으며, 여러 Grammar 정리 내용이 이미 정리되어 있다. (CFG, LFG, GPSG, HPSG, ....)  
   이를 문법적으로 분석하기 위해서 우리는 6단계의 순차적인 처리가 필요하다.
@@ -101,7 +101,7 @@ Phonetics는 음성학을 의미하며, 혀와 음성의 영향을 주는 다양
 | :---------------------------------------------------------- | :------------------------------------- |
 | Astronomers saw stars with telescopes.를 의미하는 음성 신호 | əsˈtrɒnəməz sɔː stɑːz wɪð ˈtɛlɪskəʊps. |
 
-*https://tophonetics.com/ 을 통해서 변환하여 얻을 수 있다.
+*<https://tophonetics.com/> 을 통해서 변환하여 얻을 수 있다.
 
 > **2. Phonology/Lexicalization(음운론/어휘화)**
 
@@ -113,7 +113,7 @@ Phonology은 음운론으로 소리와 phonemes(음소)사이의 관계를 이�
 
 > **3. Morphology(어형론)**
 
-Morphology는 어형론으로 음소의 구성을 기본형(lemma)의 형태로 변환하며, 각 단어들을 형태학적인 의미를 갖는 카테고리(category, tag)로 분류한다. 
+Morphology는 어형론으로 음소의 구성을 기본형(lemma)의 형태로 변환하며, 각 단어들을 형태학적인 의미를 갖는 카테고리(category, tag)로 분류한다.
 여기서 사용되는 lemma와 category가 무엇인지 좀 더 자세히 살펴보자.
 
 - **lemma**  
@@ -138,7 +138,6 @@ Morphology는 어형론으로 음소의 구성을 기본형(lemma)의 형태로 
    하나의 단어에는 morpheme이 명확하게 구분되고, prefix/suffix/infix 또한 명확하게 구분 가능하다. 따라서, 각 morpheme에 명확한 category를 mapping하는 것이 가능하다.  
    ex. Korean, ...
 
-
 | input                                  | output(based on Brown tagset)                                         |
 | :------------------------------------- | :-------------------------------------------------------------------- |
 | Astronomers saw stars with telescopes. | (astronomer/NNS) (see/VBD) (star/NNS) (with/IN) (telescope/NNS) (./.) |
@@ -146,7 +145,7 @@ Morphology는 어형론으로 음소의 구성을 기본형(lemma)의 형태로 
 > **4. Syntax(통사론)**
 
 lemma나 morpheme을 구문의 요소인 S(Subject, 주어), V(Verb, 동사), O(Object, 목적어)와 같은 요소로 분류한다. 이 분류를 수행할 때에는 문장의 구성요소를 알아야 한다. 이를 bottom-up으로 살펴보자.
- 
+
 - **Word(단어)**  
   사전에 명시된 하나의 단위라고 볼 수 있다. 이는 관용어(dark horse)를 포함한다.
 - **Phrase(구)**  
@@ -168,9 +167,9 @@ lemma나 morpheme을 구문의 요소인 S(Subject, 주어), V(Verb, 동사), O(
 
 결국 우리는 이러한 요소를 적절하게 표시해야 하는데, 이를 위해서 tree 구조를 사용하는 것이 일반적이다. 대표적으로 두 가지의 구조가 있다.
 
-1. **phrase structure(derivation tree)**    
+1. **phrase structure(derivation tree)**
    문장을 기점으로 절, 구, 단어로 top-down으로 내려가는 구조를 가진다.  
-   각 단위를 묶을 때에는 ()를 이용하고, 그 뒤애 해당하는 내용이 무슨 구, 절인지를 표기한다.   
+   각 단위를 묶을 때에는 ()를 이용하고, 그 뒤애 해당하는 내용이 무슨 구, 절인지를 표기한다.
 2. **dependency structure**  
    단어 간의 관계에 더 집중하여 나타낸다. 따라서, 사람이 보기에는 불명확해 보일 수 있지만 특정 usecase에서는 유용하다.
 
@@ -198,8 +197,7 @@ lemma나 morpheme을 구문의 요소인 S(Subject, 주어), V(Verb, 동사), O(
 | :---------------------------------------------------------------------------------------------------- | :----- |
 | ((astronomer/NNS)NP/agent ((see/VBD)V ((star/NNS)NP/affected ((with/IN)P (telescope/NNS)NP)PP)NP)VP)S | False  |
 
-
 ## Reference
 
 - Tumbnail : Photo by [David Ballew](https://unsplash.com/@daveballew?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@daveballew?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-- text to phonetic converter, https://tophonetics.com
+- text to phonetic converter, <https://tophonetics.com>

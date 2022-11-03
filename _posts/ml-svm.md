@@ -106,7 +106,7 @@ $$
 \begin{align*}
   \text{maximize}   \quad & -{1\over2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}\bold{x}_{i}^{\top}\bold{x}_{j} + \sum_{i=1}^{N}\alpha_{i} &\\
   \text{subject to} \quad & \sum_{i=1}^{N}\alpha_{i}y_{i} = 0, & \\
-  & \alpha_{i} \geq 0, & i = 1, ..., N 
+  & \alpha_{i} \geq 0, & i = 1, ..., N
 \end{align*}
 $$
 
@@ -158,7 +158,7 @@ $$
 \begin{align*}
   \text{maximize}   \quad & -{1\over2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}(\bold{x}_{i}^{\top}\bold{x}_{j} + {1\over{C}}\delta_{ij}) + \sum_{i=1}^{N}\alpha_{i} &\\
   \text{subject to} \quad & \sum_{i=1}^{N}\alpha_{i}y_{i} = 0, & \\
-  & \alpha_{i} \geq 0, & i = 1, ..., N 
+  & \alpha_{i} \geq 0, & i = 1, ..., N
 \end{align*}
 $$
 
@@ -203,7 +203,7 @@ $$
 \begin{align*}
   \text{maximize}   \quad & -{1\over2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_{i}\alpha_{j}y_{i}y_{j}\bold{x}_{i}^{\top}\bold{x}_{j} + \sum_{i=1}^{N}\alpha_{i} &\\
   \text{subject to} \quad & \sum_{i=1}^{N}\alpha_{i}y_{i} = 0, & \\
-  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N 
+  & 0 \leq \alpha_{i} \leq C, & i = 1, ..., N
 \end{align*}
 $$
 
@@ -241,7 +241,7 @@ $$
 - Binary SVM(Hinge Loss)  
   $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}max\{ 0, 1 - y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})) \}$
 
-여태까지 나온 식들을 살펴보면 위와 같다. 우리는 여기서 아래와 같은 일반적인 형태의 Classification을 제시할 수 있다. 
+여태까지 나온 식들을 살펴보면 위와 같다. 우리는 여기서 아래와 같은 일반적인 형태의 Classification을 제시할 수 있다.
 
 - General Classification  
   $\min {C^{\prime}\over2}||\bold{w}||^{2} + \sum_{i=1}^{N}\varepsilon\log( 1 + \exp[-y_{i}(\bold{w}^{\top}\phi(\bold{x}_{i})]) )$
