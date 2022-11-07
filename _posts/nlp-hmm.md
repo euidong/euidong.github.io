@@ -1,6 +1,6 @@
 ---
 slug: "nlp-hmm"
-title: "[NLP] 5. Hidden Markov Model"
+title: "[NLP] 6. Hidden Markov Model"
 date: "2022-10-21 21:55"
 category: "AI"
 tags: ["NLP", "MarkovModel", "HMM", "HiddenMarkovModel"]

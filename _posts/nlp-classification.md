@@ -1,61 +1,75 @@
 ---
 slug: "nlp-classification"
 title: "[NLP] 4. Classification"
-date: "2022-10-21 21:53"
+date: "2022-10-21 13:37"
 category: "AI"
-tags: ["NLP", "Classification", "SpamFiltering", "F1Score"]
+tags: ["NLP", "Classification", "Generative", "Discriminative", "ModelEvaluation"]
 thumbnailSrc: "/images/nlp-thumbnail.jpg"
 ---
 
 ## Intro
 
-이전 Posting에서는 sentence의 적절성을 확인한다든지 다음 단어를 유추한다든지 오타를 정정하는 등에 필요한 기본적인 Language Modeling 방식을 살펴보았다. 이번에는 실제로 가장 많이 사용되는 예제인 Classification을 Language Model을 이용하여 할 수 있는지를 배우며, 이를 직접 Spam Filtering에서 어떻게 사용하는지 살펴본다. 주의할점은 해당 Posting은 Naive Bayes 방식을 기반으로 진행하는 Classification이다. 더 다양한 방법론을 원한다면 해당 포스팅은 도움을 주기 어렵다. 만약 지금 말이 이해가 안된다면, 그냥 계속 읽으시면 되겠다.
+이전 Posting에서는 sentence의 적절성을 확인한다든지 다음 단어를 유추한다든지 오타를 정정하는 등에 필요한 기본적인 Language Modeling 방식을 살펴보았다. 이번에는 실제로 가장 많이 사용되는 예제인 Classification을 Language Model을 이용하여 어떻게 구현하는지를 다룬다.
 
 ## Classification
 
-기본적으로 input이 들어왔을 때, 이를 알맞은 분류로 나누는 기능을 하는 것이다. 단순히 사전 지식에 기반해서 이를 수행할 수도 있지만, Language Modeling을 이용하면, 더 정확도 높은 분류를 수행할 수 있다.
+Classification은 input이 들어왔을 때, 이를 알맞은 분류로 나누는 것이 목표이다. 단순히 Rule에 기반하여 이를 수행할 수도 있지만, Statistic한 Language Modeling을 이용하면, 더 정확도가 높은 분류를 수행할 수 있다. 결국 Statistic Prediction을 수행하기 위해서 우리는 3개(Estimation, Modeling, Evaluation)를 중점적으로 봐야 하는 것은 Classification도 동일하다. 따라서, 이에 대해서 살펴볼 것이고, 그 전에 먼저 Classification Model 의 종류를 살펴보도록 하겠다.
 
-일반적으로 많이 사용하는 Classification 도구는 아래와 같다.
+## Generative Model vs Discriminative Model
 
-1. Naive Bayes
-2. Hidden Markov Model(HMM)
-3. Maximum Entropy Model(MaxEnt)
+Classification에서 이용되는 Model을 크게 두가지로 나눌 수 있는데 이에 대해서 먼저 알아보도록 하자.
+
+1. **Generative Model(생성 Model)**
+   1. Naive Bayes
+   2. Hidden Markov Model(HMM)
+2. **Discriminative Model(판별 Model)**
    1. Logistic Regression
-   2. Support Vector Machine
-   3. Neural Network(Deep Learning)
-4. K Nearest Neighbors
+   2. K Nearest Neighbors
+   3. Support Vector Machine
+   4. Maximum Entropy Model(MaxEnt)
+   5. Neural Network(Deep Learning)
 
-해당 Posting에서는 **Naive Bayes Classifier**를 이용한 분류를 수행할 것이다. 3번 방법은 기본적으로 각 단어를 Random Variable로 치환해서 처리하는 과정이 필요한데 이는 후에 더 자세히 다룰 것이기 때문에 여기서는 기본적인 Classifier를 활용하는 방법을 배우고 후에 가서 word를 vector로 변환하는 과정을 거친 후에 더 훌륭한 기술들을 활용해보겠다.  
-따라서, 앞으로 3개의 Posting 동안은 Naive Bayes, HMM, MaxEnt 방식에 대해서 알아볼 것이다.
+두 Model의 가장 큰 차이점은 추론의 과정이다. 우리가 원하는 데이터 $P(\text{class}=c | \text{input} = \text{data})$(특정 data가 주어졌을 때, 각 class의 속할 확률)를 얻는 과정이 서로 다르다.
 
-기본적으로 Classification은 데이터가 주어졌을 때, 해당 데이터가 특정 class에 속할 확률을 제시하는 것이다. 따라서, 특정 class에서 해당 데이터가 얼마나 자주 발생되는지와 실제로 해당 class의 빈도가 가장 중요하다.
-
-이를 수식적으로 표현하기 위해서 다음 변수들을 먼저 살펴보자.
-
-- **documents($D$)**: 여러 개의 Document를 의미하며, 하나의 Document는 대게 여러 개의 words를 포함한다. 각 document는 $d_{i} \in D$의 형태로 표현한다.
-- **classes($C$)**: class는 두 개 이상을 가진다. 각 클래스는 $c_{i} \in C$의 형태로 표현된다.
-- **labeled dataset**: 이는 (document($d_{i}$), class($c_{i}$))가 하나씩 mapping된 형태로 존재한다. 우리가 가지는 dataset으로 학습, 평가 시에 사용한다. 대게 평가에 사용되는 데이터는 학습 시에 사용하는 것을 금지하기 때문에 별도로 분리하여 사용한다.
-- **word($w$)**: 하나의 word를 의미하며 NLP 학습 시에 사용하는 가장 작은 단위이다. 대게 document 하나에 있는 단어의 수는 N으로 표기하고, unique한 단어의 수는 V(size of vocabulary)로 표시한다.
-
-따라서, 우리가 찾고자 하는 가장 높은 확률을 가진 class는 다음을 통해서 구할 수 있다.
+**첫 번째**로, $P(\text{class}=c, \text{input} = \text{data})$일 확률을 구하여 **간접적**으로 구하는 방법이다.
 
 $$
 \begin{align*}
-c_{MAP} &= \argmax_{c \in C}{P(c|d)} \\
-&= \argmax_{c \in C}{p(d|c)p(c)\over p(d)} \\
-&= \argmax_{c \in C}{p(d|c)p(c)} \\
-&= \argmax_{c \in C}{p(w_{1}, w_{2}, ... , w_{N} | c)p(c)} \\
-&= \argmax_{c \in C}{\prod_{i=1}^{N}p(w_{i})p(c)} \\
-&= \argmax_{c \in C}{\log(\prod_{i=1}^{N}p(w_{i})p(c))} \\
-&= \argmax_{c \in C}{\sum_{i=1}^{N}\log p(w_{i}) + \log{p(c)}} \\
+P(\text{class}=c | \text{input} = \text{data}) &= {{P(\text{class}=c, \text{input} = \text{data})}\over{P(\text{input} = \text{data})}} \\
+&\propto {P(\text{class}=c, \text{input} = \text{data})}
 \end{align*}
 $$
 
-여기서 우리가 language model을 무엇으로 정했는지가 중요하다. 위에서는 uni-gram이라고 가정해서 풀이했지만, bi-gram인 경우 document의 형태가 $d={(w_{1}, w_{2}), (w_{2}, w_{3}), ... , (w_{N-1}, w_{N})}$이다. 따라서, 전체적인 크기와 vocabulary자체도 바뀌게 된다.
+이런 식으로 생성하여 추론하는 방식을 <mark>Generative Model</mark>이라고 한다. 이 방식은 결국 Conditional Probability를 추론하기 위해서 Joint Probability를 이용하는 방식이기 때문에 어느정도 한계가 존재한다는 점을 유의하자.
 
-즉, 우리는 train set을 통해서 vocabulary를 완성한다. 그리고, 각 word의 count 및 필요에 따라 필요한 word sequence의 count를 수집하여 $p(w_i)$를 구한 후 위에 방법을 통해서 특정 class를 추측할 수 있는 것이다.
+**두 번째**로는, $P(\text{class}=c | \text{input} = \text{data})$를 **직접적**으로 구하는 방법이 있다. 이를 위해서, 마친 Conditional Probability를 구한 것과 유사한 효과를 내는 **Discriminant Function(판별 함수)**이라는 특별한 함수를 input에 적용하는 방법이다. 이 함수 중에서 가장 대표적인 것이 Softmax function이다. 우리가 만약 input을 softmax function에 입력하게 되면, 이 값은 [0, 1] 사이의 값으로 표현된다. 이를 통해서 우리는 해당 input이 class인 경우 1에 가깝게, 그렇지 않은 경우 0에 가깝게 표현하여 여러 데이터에 적용하면, class의 inpuut에 따른 분포 양상을 확인할 수 있다. 그리고, 이 분포 양상을 확률로 즉각적으로 표현할 수 있기 때문에 softmax function을 취한 결과가 $P(\text{class}=c | \text{input} = \text{data})$과 비례한다는 결론을 낼 수 있다. 자세한 설명이 필요하다면, [🔗 Logistic Regression](/posts/ml-logistic-regression#Logistic-Regression)을 참고하도록 하자. 이러한 방식을 우리는 <mark>Discriminative Model</mark>이라고 한다.
+
+위에서 제시한 방법들 중 대표적인 방법들은 별도의 Posting을 통해서 정리하였다. 해당 링크를 참조하여 확인해보도록 하자.
+
+- **Generative Model(생성 Model)**
+  - [🔗 Naive Bayes](/posts/nlp-naive-bayes)
+  - [🔗 Hidden Markov Model(HMM)](/posts/nlp-hmm)
+- **Discriminative Model(판별 Model)**
+  - [🔗 Maximum Entropy Model(MaxEnt)](/posts/nlp-maxent)
+  - [🔗 Logistic Regression](/posts/ml-logistic-regression)
+
+## Estimation
+
+어떤 Model을 선택했다고 하더라도 결국 우리가 Class를 결정하는 과정을 동일하다. 위의 과정을 통해서 어찌되었든 다음 값을 찾으면 된다.
+
+$$
+\begin{align*}
+c^{\prime} &= \argmax_{c \in C}{P(\text{class}=c | \text{input} = \text{data})}
+\end{align*}
+$$
+
+## Modeling
+
+Model을 만드는 과정, 즉 학습하는 과정은 결국 Model의 구현마다 천차 만별이다. Naive Bayes는 단순하게 data의 word와 count를 활용하고, HMM은 EM algorithm을 활용하며, Linear Regression은 Gradient Descent를 활용한다. 따라서, 여기서는 자세히 다루지 않고 위에서 제시한 링크를 따라가서 각 Model마다의 학습법을 확인해보도록 하자.
 
 ## Evaluation
+
+Classification의 성능을 평가하는 것 역시 중요한 일이다. 가장 쉬운 Binary Classification부터 알아보자.
 
 binary classificaiton의 결과는 아래와 같이 4개 중 하나로 결정된다.
 
@@ -80,7 +94,7 @@ classification의 성능을 측정하는 지표는 대표적으로 4 가지가 �
    $tp \over tp + fp$
 4. **F1 Score**  
    좀 더 세분화된 평가지표이다. 조화 평균에 기반하여 모델의 성능을 정확하게 평가할 때 사용한다.  
-   $2 \times {\text{Precision} \times \text{Recall} \over \text{Precision} + \text{Recall}}$
+   ${2\over{{1\over\text{Precision}} + {1\over\text{Recall}}}} = 2 \times {\text{Precision} \times \text{Recall} \over \text{Precision} + \text{Recall}}$
 
 여기까지 봤으면, 슬슬 multi class의 경우에는 어떻게 해야할지 궁금할 것이다. 대게 두 가지 방법을 통해서 수행할 수 있다.
 
@@ -102,84 +116,6 @@ multi class의 경우에도 별로 다를 것은 없다. 단지 Precision과 Rec
 - Precision: $c_{ii} \over \sum_{j}c_{ij}$
 - Recall: $c_{ii} \over \sum_{j}c_{ji}$
 - Accuracy: $c_{ii} \over \sum_{i}\sum_{j}c_{ij}$
-
-## Case Study. Spam Filtering
-
-초기 NLP가 가장 많이 사용되었던 예시 중에 하나이다. 여러 개의 메일에 spam인지 ham인지를 labeling한 데이터를 갖고 후에 input으로 mail 데이터가 들어왔을 때, 이를 filtering하는 것이다. 위에서 살펴보았던 확률을 그대로 적용하면 된다. 예측에 필요한 확률을 습득하고, 예측하는 방법과 이를 평가하는 방법의 순으로 설명하겠다.
-
-### 0. Preprocessing
-
-사실 mail data의 형태가 이상할 수도 있다. Subject부터 시작하여 날짜 데이터 그리고 특수 문자 등이 존재할 수 있는데, 이를 먼저 처리해서 후에 있을 Modeling 단계에서 잘 사용할 수 있도록 형태를 변형해주어야 한다.
-
-[🔗 이전 Posting(Text Processing)](/posts/nlp-text-processing)에서 배웠던 기술들을 활용하여 이를 해결할 수 있다.
-
-대표적으로 해줄 수 있는 작업들은 다음과 같다.
-
-1. 대소문자 통일
-2. alphabet이 하나라도 들어있지 않은 데이터는 삭제
-3. date, 참조 등을 의미하는 데이터 삭제
-
-### 1. Modeling
-
-Parameter Estimation / Learning / Modeling 등으로 불리는 단계이다. 일단 우리는 train set으로부터 우리가 원하는 확률을 추출해야 한다. 그 전에 우리가 어떤 language model을 이용할지 선택해야 한다. 먼저 uni-gram인 경우에는 다음과 같은 방법으로 train set이 정의된다.
-$$
-\text{TrainSet} = {(d_{1}, c_{1}),  (d_{2}, c_{2}), ..., (d_{N}, c_{N})}
-$$
-$$
-d_{i} = \begin{cases}
-  {w_{1}, w_{2}, ... , w_{M_{i}}} \quad&\text{unigram} \\
-  {(<s>, w_{1}), (w_{1}, w_{2}), ... , (w_{M_{i}}, </s>)} \qquad&\text{bigram}
-\end{cases}
-$$
-
-이제 우리가 원하는 parameter, 즉 확률은 다음과 같은 데이터이다.
-
-> **unigram**
-
-$$
-\begin{align*}
-p(w_{i}|c_{j}) &= {\text{count}(w_{i}, c_{j}) \over \sum_{w \in V} \text{count}(w, c_{j})} \\
-p(c_{j}) &= {\sum_{i = 1}^{N}{1[c_{i} = c_{j}]} \over N}
-\end{align*}
-$$
-
-> **bigram**
-
-$$
-\begin{align*}
-p(w_{i}|w_{i-1},c_{j}) &= {\text{count}((w_{i-1}, w_{i}), c_{j}) \over \sum_{(w^{(1)}, w^{(2)}) \in V} \text{count}((w^{(1)}, w^{(2)}), c_{j})} \\
-p(c_{j}) &= {\sum_{i = 1}^{N}{1[c_{i} = c_{j}]} \over N}
-\end{align*}
-$$
-
-여기서 우리는 반드시 Smoothing을 해주어야 한다. 왜냐하면, spam mail에서 안 본 단어가 나올 가능성이 너무나 높기 때문이다. 따라서, 실제 $p(w_{i}|c_{j})$는 아래와 같이 변경된다. (간단한 예시를 들기 위해서 Add-1 방식을 사용했다. - 해당 내용이 기억이 나지 않는다면, [🔗 이전 포스팅](/posts/nlp-language-modeling)을 다시 보고 오자.)
-
-$$
-p(w_{i}|c_{j}) = {\text{count}(w_{i}, c_{j}) + 1 \over \sum_{w \in V} \text{count}(w, c_{j}) + |V|}
-$$
-
-주의할 점은 다시 한 번 강조하지만, $V$는 후에 Estimation에서 input으로 사용하는 단일 document까지 포함한 Vocabulary이다.
-
-### 2. Estimation
-
-이제 우리가 얻은 parameter를 이용해서 실제 input data에 대한 estimation을 수행할 수 있다.
-
-이 경우 다음과 같은 과정을 수행할 수 있다.
-
-$$
-\hat{c} = \argmax_{c \in C} p(c)\prod_{w \in d_{\text{input}}}p(w|c)
-$$
-
-물론 어떤 n-gram을 쓰냐에 따라 $d_{\text{input}}$도 형태가 달라질 것이다.
-
-### 3. Evaluation
-
-이제 평가를 수행할 것이다. 평가는 우리가 알아봤던 Accuracy와 F1 Score를 추출할 수 있다. Binary Classification이기 때문에 쉽게 구할 수 있을 것이다.
-
-| prediction\answer | True                                                                       | False                                                                     |
-| :---------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
-| Positive          | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} = c, c = \text{spam}]$    | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} \neq c, c = \text{ham}]$ |
-| Negative          | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} \neq c, c = \text{spam}]$ | $\sum_{(d, c) \in D_{\text{test}}} 1[\hat{c}_{d} = c, c = \text{ham}]$    |
 
 ## Reference
 
