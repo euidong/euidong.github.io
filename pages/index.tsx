@@ -1,6 +1,7 @@
 import Head from "next/head";
 import ColumnCardList from "../components/Card/Column/List";
 import { getAllCategories, getAllPosts } from "../lib/api";
+import { DEFAULT_DESCRIPTION } from "../lib/constants";
 import { Post } from "../types/posts";
 import styles from "./Home.module.scss";
 
@@ -15,6 +16,8 @@ const Home = ({ recentPosts, categorizedPosts }: Props) => {
       <Head>
         <title>JustLog</title>
         <meta property="og:title" content="JustLog" />
+        <meta name="description" content={DEFAULT_DESCRIPTION} />
+        <meta property="og:description" content={DEFAULT_DESCRIPTION} />
         <link rel="canonical" href={process.env.PUBLIC_URL} />
         <meta property="og:url" content={process.env.PUBLIC_URL} />
       </Head>

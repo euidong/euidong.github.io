@@ -3,7 +3,6 @@ import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Layout from "../components/Layout";
 import Script from "next/script";
 import Head from "next/head";
-import { DEFAULT_DESCRIPTION } from "../lib/constants";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,8 +10,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content={DEFAULT_DESCRIPTION} />
-        <meta property="og:description" content={DEFAULT_DESCRIPTION} />
         <meta property="og:type" content="blog" />
         <meta property="og:site_name" content="JustLog" />
         <meta

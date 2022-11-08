@@ -21,6 +21,8 @@ const Category = ({ posts, params }: Props) => {
     <>
       <Head>
         <title>{`${params.subject} | JustLog`}</title>
+        <meta name="description" content={`${params.subject} Posting`} />
+        <meta property="og:description" content={`${params.subject} Posting`} />
         <meta property="og:title" content={`${params.subject} | JustLog`} />
         <link
           rel="canonical"
