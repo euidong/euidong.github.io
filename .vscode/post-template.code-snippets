@@ -31,36 +31,38 @@
       "## Intro",
       "",
       "## Reference",
-      "",
+      ""
     ],
-    "description": "Post Template",
+    "description": "Post Template"
   },
   "Import Image": {
     "scope": "markdown",
     "prefix": ["image"],
-    "body": [
-      "![$0](/images/$0.jpg)"
-    ],
-    "description": "Import Image",
+    "body": ["![$0](/images/$0.jpg)"],
+    "description": "Import Image"
   },
   "Insert Link": {
     "scope": "markdown",
     "prefix": ["link"],
-    "body": [
-      "[🔗 $0](/posts/$0)"
-    ],
-    "description": "Import Image",
+    "body": ["[🔗 $0](/posts/$0)"],
+    "description": "Import Image"
   },
   "Insert Plaintext": {
     "scope": "markdown",
     "prefix": ["plaintext"],
-    "body": [
-      "```plaintext",
-      " 🤔 $0",
-      " ",
-      " ",
-      "```"
-    ],
-    "description": "Import Image",
+    "body": ["```plaintext", " 🤔 $0", " ", " ", "```"],
+    "description": "Import Image"
   },
+  "Insert Highlight": {
+    "scope": "markdown",
+    "prefix": ["highlight"],
+    "body": "<mark>$0</mark>",
+    "description": "Insert Highlight"
+  },
+  "Insert Highlight with bold": {
+    "scope": "markdown",
+    "prefix": ["highbold"],
+    "body": ["<mark>**$0**</mark>"],
+    "description": "Insert Highlight with bold"
+  }
 }
