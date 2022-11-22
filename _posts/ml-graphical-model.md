@@ -3,7 +3,7 @@ slug: "ml-graphical-model"
 title: "[ML] 8. Graphical Model"
 date: "2022-11-14 13:08"
 category: "AI"
-tags: ["ML"]
+tags: ["ML", "GraphicalModel", "ConditionalIndependence", "MarkovRandomField", "BayesianNetwork", "FactorGraph", "D-Seperation", "Factorization", "MarkovProperty", "MessagePassing", "BeliefPropagation", "Chow-LiuAlgorithm"]
 thumbnailSrc: "/images/ml-thumbnail.jpg"
 ---
 
@@ -333,11 +333,15 @@ $$
 
 이것이 의미하는 바는 무엇일까? 이는 단순하게 순서를 바꾸어 재조합하는 것만으로 Computing을 줄일 수 있음을 보여줬다. 먼저, 앞의 $\sum$연산만 단독으로 할 때, $L$번의 연산이 필요하고, 뒤에 연속해서 나오는 3번의 $\sum$을 구하기 위해서는 결국 $L^{3}$의 연산이 필요하다. 즉, $L + L^{3}$의 합연산으로 marginalization 결과를 구할 수 있다는 것이다. 그렇기에 더 효율적인 연산이 가능한 것이다. 이는 특히 Graph의 중앙에 있는 값을 구할 때 더 도드라지게 나타난다. 전체 marginalization 결과를 나타내면 다음과 같다.
 
-1. $P(X_{1}) = \sum_{X_{2}}f_{a}(X_{1}, X_{2})\sum_{X_{3}}f_{b}(X_{2}, X_{3})\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5}) \rightarrow L^{4}$
-2. $P(X_{2}) = (\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{3}}f_{b}(X_{2}, X_{3})\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow L^{3} + L$
-3. $P(X_{3}) = (\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow 2L^{2}$
-4. $P(X_{4}) = (\sum_{X_{3}}f_{c}(X_{3}, X_{4})\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow L^{3} + L$
-5. $P(X_{5}) = \sum_{X_{4}}f_{d}(X_{4}, X_{5})\sum_{X_{3}}f_{c}(X_{3}, X_{4})\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}) \rightarrow L^{4}$
+$$
+\begin{align*}
+P(X_{1}) &= \sum_{X_{2}}f_{a}(X_{1}, X_{2})\sum_{X_{3}}f_{b}(X_{2}, X_{3})\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5}) \rightarrow L^{4} \\
+P(X_{2}) &= (\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{3}}f_{b}(X_{2}, X_{3})\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow L^{3} + L \\
+P(X_{3}) &= (\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{4}}f_{c}(X_{3}, X_{4})\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow 2L^{2} \\
+P(X_{4}) &= (\sum_{X_{3}}f_{c}(X_{3}, X_{4})\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}))(\sum_{X_{5}}f_{d}(X_{4}, X_{5})) \rightarrow L^{3} + L \\
+P(X_{5}) &= \sum_{X_{4}}f_{d}(X_{4}, X_{5})\sum_{X_{3}}f_{c}(X_{3}, X_{4})\sum_{X_{2}}f_{b}(X_{2}, X_{3})\sum_{X_{1}}f_{a}(X_{1}, X_{2}) \rightarrow L^{4}
+\end{align*}
+$$
 
 이것이 끝이 아니다. 우리는 중복된 연산을 별도로 저장해두어서 더 빠른 연산을 수행하는 것도 가능하다. 예를 들어 다음과 같은 과정이라고 할 수 있다.
 
