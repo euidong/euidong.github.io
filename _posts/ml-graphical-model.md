@@ -79,7 +79,7 @@ $$
 
 ### Markov Random Field(Undirected Graphical Model, Correlation)
 
-**Markov Random Field(MRF)**라고 불리며, **Correlation**를 표현한 Graph이다. 각 Node는 Random Variable을 의미하며, Edge는 Correlation를 의미한다. 즉, 두 Node가 Edge로 연결되어 있다면, 두 Random Variable은 Independence하지 않다는 것이다.
+**Markov Random Field**(MRF)라고 불리며, **Correlation**를 표현한 Graph이다. 각 Node는 Random Variable을 의미하며, Edge는 Correlation를 의미한다. 즉, 두 Node가 Edge로 연결되어 있다면, 두 Random Variable은 Independence하지 않다는 것이다.
 
 ![ml-undirected-graph-1](/images/ml-undirected-graph-1.jpg)
 
