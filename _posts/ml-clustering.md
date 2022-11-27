@@ -162,6 +162,7 @@ $$
 $$
 \begin{align*}
 \mathcal{L}(\theta) &= \log{p(\mathcal{D} | \theta)} \\
+&\geq \log{p(X, Z | \theta)} \\
 &= \sum_{i=1}^{N}{\log{p(x_{i}, z_{i}| \theta)}} \\
 &= \sum_{i=1}^{N}{\log{p(z_{i} | \theta) \times p(x_{i}| z_{i}, \theta)}} \\
 &= \sum_{i=1}^{N}{\log{(\prod_{k=1}^{K}{\pi_{k}^{z_{ik}}} \times \prod_{k=1}^{K}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)^{z_{ik}}})}} \\
@@ -170,24 +171,56 @@ $$
 \end{align*}
 $$
 
-<!-- TODO: 여기 부분 EM algorithm 복습한 이후에 다시 점검(p.28~31) -->
+이에 따라서 우리는 EM Algorithm의 $\mathcal{Q}$를 다음과 같이 구할 수 있다.
 
-이에 따라서 다음과 같이 우리는 정리할 수 있다.
+$$
+\begin{align*}
+\mathcal{Q}(\theta; \theta^{\prime}) &= \sum_{i=1}^{N}E_{z_{i}|x_{i}, \theta^{\prime}}[\log p(x_{i}, z_{i} | \theta)] \\
+&= \sum_{i=1}^{N}E_{z_{i}|x_{i}, \theta^{\prime}}[\sum_{k=1}^{K}z_{ik}\log{({\pi_{k}}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)})}] (\because \text{위의 식에서 3번째 줄을 참고})\\
+&= \sum_{i=1}^{N}\sum_{k=1}^{K}E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}\log{({\pi_{k}}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)})}] \\
+&= \sum_{i=1}^{N}\sum_{k=1}^{K}E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}\log{({\pi_{k}}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)})}] \\
+&= \sum_{i=1}^{N}\sum_{k=1}^{K}E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}]\log{({\pi_{k}}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)})} \\
+\end{align*}
+$$
+
+따라서, 우리는 각 step을 다음과 같이 정의할 수 있다.
 
 - **E-step**  
+  $\mathcal{Q}$에서 parameter($\pi,\, \mu,\, \Sigma$)를 제외하고, 아직 미지수로 남아있는 값은 $E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}]$이다. 즉, 이 값만 구하면 $\mathcal{Q}$를 구했다고 할 수 있다.  
   $$
-  r_{ik} = p(z_{i} = k | x_{i}, \theta) = \frac{p(z_{i} = k, x_{i} | \theta)}{p(x_{i} | \theta)} = \frac{p(z_{i} = k, x_{i} | \theta)}{\sum_{l=1}^{K}{p(z_{i} =l, x_{i} | \theta)}} = \frac{\pi_{k}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)}}{\sum_{l=1}^{K}{\pi_{l}{\mathcal{N}(x_{i}|z_{i} = l, \mu_{l}, \Sigma_{l} I)}}}
+  \begin{align*}
+  E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}] &= \sum_{k=1}^{K}{z_{ik}p(z_{i} = k | x_{i}, \theta^{\prime})} \\
+  &= p(z_{i} = k^{*} | x_{i}, \theta^{\prime}) = r_{ik^{*}}
+  \end{align*}
+  $$  
+  결국 우리가 해당 단계에서 구할 것은 관측 가능한 data와 이전 parameter가 주어졌을 때, 속하게 되는 cluster에서의 확률을 구하는 것이다. 이것을 모든 data에 대해서 구하면, $\mathcal{Q}$에서 parameter를 제외한 모든 부분을 구할 수 있다. 따라서, 식을 좀 더 정리하면 다음과 같은 결론을 얻을 수 있다.
   $$
+  \begin{align*}
+  E_{z_{i}|x_{i}, \theta^{\prime}}[z_{ik}] = r_{ik^{*}} &= \frac{p(x_{i}, z_{i}=k^{*} | \theta^{\prime})}{p(x_{i}|\theta^{\prime})} \\
+  &= \frac{\pi_{k^{*}}^{\prime}{\mathcal{N}(x_{i}|\mu_{k^{*}}^{\prime}, \Sigma_{k^{*}}^{\prime} I)}}{\sum_{l=1}^{K}{\pi_{l}{\mathcal{N}(x_{i}|z_{i} = l, \mu_{l}, \Sigma_{l} I)}}}
+  \end{align*}
+  $$  
+  
 - **M-step**  
+  결론적으로 우리는 다음과 같은 $\mathcal{Q}$와 constraint를 얻었다.  
+  $$
+  \begin{align*}
+  \text{maximize}&\quad \mathcal{Q}(\theta; \theta^{\prime}) = \sum_{i=1}^{N}\sum_{k=1}^{K}r_{ik}\log{({\pi_{k}}{\mathcal{N}(x_{i}|\mu_{k}, \Sigma I)})} \\
+  \text{subject to}&\quad \sum_{k=1}^{K}{\pi_{k}} = 1
+  \end{align*}
+  $$  
+  이제 우리는 이를 Optimization 방식을 활용하여 풀기만 하면 끝이다. ([🔗 참고(Base Knowledge)](/posts/ml-base-knowledge))  
   $$
   \begin{align*}
   \mu_{k} &= \frac{\sum_{i=1}^{N}{r_{ik}x_{i}}}{\sum_{i=1}^{N}{r_{ik}}} \\
-  \Sigma_{k} &= \frac{1}{D}\frac{\sum_{i=1}^{N}{r_{ik}||x_{i} - \mu_{k}||^{2}}}{\sum_{i=1}^{N}{r_{ik}}} \\
-  \pi_{k} &= \frac{1}{N}\sum_{i=1}^{N}{r_{ik}} \\
+  \Sigma_{k} &= \frac{\sum_{i=1}^{N}{r_{ik}||x_{i} - \mu_{k}||^{2}}}{\sum_{i=1}^{N}{r_{ik}}} \\
+  \pi_{k} &= \frac{1}{N}\sum_{i=1}^{N}{r_{ik}}
   \end{align*}
   $$
 
-이렇게 식을 정리하고 나면, 하나의 insight를 얻을 수 있다. 그것은 바로 K-means Clustering은 사실 GMM의 하나의 special case라는 것이다. 만약, 우리가 $\pi_{k},\, \Sigma_{k}$를 모두 같은 값으로 설정하면, $\pi_{k} = \frac{1}{K}$이고 $\Sigma_{k} = \Sigma$가 된다고 하자. 이때 EM algorithm을 살펴보면 다음과 같다.
+---
+
+마지막으로 짚고 넘어갈 것은, 바로 K-means Clustering은 사실 GMM의 하나의 special case라는 것이다. 만약, 우리가 $\pi_{k},\, \Sigma_{k}$를 모두 같은 값으로 설정하면, $\pi_{k} = \frac{1}{K}$이고 $\Sigma_{k} = \Sigma$가 된다고 하자. 이때 EM algorithm을 살펴보면 다음과 같다.
 
 - **E-step**  
   $$
