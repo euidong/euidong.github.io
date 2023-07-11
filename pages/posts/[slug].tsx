@@ -9,6 +9,7 @@ import { Post, PostMetadata } from "../../types/posts";
 import ColumnCardList from "../../components/Card/Column/List";
 import Comment from "../../components/Comment";
 import { formatDate } from "../../lib/utils";
+import GoogleAds from "../../components/GoogleAds"
 
 interface Props {
   post: Post;
@@ -46,6 +47,7 @@ const Post = ({ post, relatedPosts }: Props) => {
           content={post.thumbnailSrc || DEFAULT_THUMBNAIL_SOURCE}
         />
       </Head>
+      <GoogleAds type="banner" />
       <div className={styles.post__wrapper}>
         <h1 className={styles.post__title}>{post.title}</h1>
         <p className={styles.post__date}>{formatDate(post.date)}</p>
@@ -55,8 +57,8 @@ const Post = ({ post, relatedPosts }: Props) => {
           ))}
         </ul>
         <MarkDown content={post.content} />
-        {/* <GoogleAds type="banner" /> */}
         <Comment />
+        <GoogleAds type="multiplex" />
         {relatedPosts.length > 0 && (
           <ColumnCardList
             title="Related Posts"
