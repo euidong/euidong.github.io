@@ -2,7 +2,7 @@
 slug: "making-blog"
 title: "블로그 제작기"
 date: "2022-05-05 21:54"
-category: "Web"
+category: "Memoir"
 tags: ["frontend", "react", "gatsby", "nextjs", "github"]
 thumbnailSrc: "/images/blog.png"
 ---

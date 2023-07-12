@@ -59,6 +59,7 @@ const Post = ({ post, relatedPosts }: Props) => {
         <MarkDown content={post.content} />
         <Comment />
         <GoogleAds type="multiplex" />
+        <div className={styles.post__empty} />
         {relatedPosts.length > 0 && (
           <ColumnCardList
             title="Related Posts"

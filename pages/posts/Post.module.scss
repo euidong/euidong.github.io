@@ -33,6 +33,9 @@
       line-height: 1.4rem;
     }
   }
+  &__empty {
+    height: 30px;
+  }
   &__related_post_list {
     display: flex;
     flex-direction: row;
