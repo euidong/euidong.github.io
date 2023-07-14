@@ -1,0 +1,97 @@
+---
+slug: "nlp-powered-intent-based-network-management"
+title: "NLP Powered Intent Based Network Management for Private 5G Networks"
+date: "2023-07-14 16:13"
+category: "Paper"
+tags: ["IBN", "IDN", "NLP", "5G"]
+thumbnailSrc: "/images/ibn-thumbnail.jpg"
+---
+
+## Intro
+
+해당 논문은 Private 5G Network에서 Intent Based Network 관리를 Natural Language를 통해서 수행할 수 있는지를 보인 논문이다. 해당 논문에서는 Design과 실제 구현 사례를 3개의 usecase에 적용한 사례를 보인다. 해당 논문은 2023년에 publish 되었지만, LLM을 적용하지는 않았고, 이에 대한 적용은 Future Work에서도 고려하고 있다고 언급한다.
+
+## Background
+
+### Intent Based Network(IBN)
+
+Non-Public Network(NPN)은 관리자에 의해서 자유롭게 설정이 가능하다는 장점을 갖고 있다. 하지만, 5G를 다룰 수 있는 숙련된 기술자가 아닌 경우 이를 효율적으로 운용하는데에는 한계가 있다. 따라서, 이러한 문제를 해결하기 위해서 **Intent Based Network(IBN)**이 제안되었다. IBN을 활용하면, private 5G network를 네트워크에 대한 지식이 없이도 단순한 의도(Intent)를 작성하는 것만으로 문제를 해결할 수 있다. 즉, IBN의 목표는 Network가 하는 일을 최대한 추상화하여 private network 관리자의 운영을 단순화하는 것이다.
+
+```plaintext
+ 🤔 Intent란?
+
+ Intent란 사용자의 의도를 의미한다.
+ 따라서, 사용자는 자신의 요구사항을 작성할 뿐,
+ 이를 어떻게(How) 구현할지는 기술하지 않는다.
+```
+
+### 5G-CLARITY
+
+5G Private nework에 대한 하나의 architecture이다. 이는 이전 논문 "5G-CLARITY: 5G-Advanced Private Networks Integrating 5GNR, WiFi, and LiFi"에서 처음 제시된 구조로, 해당 구조에서는 5G New Radio(5GNR)을 포함한 WiFi, LiFi와 같은 Protocol을 지원한다. 이를 통해서 virtual, physical network function들을 모두 설정하고 관리할 수 있는 구조를 제시한다. 해당 architecture는 5G network를 위한 3가지의 구성 요소를 가진다.
+
+1. **Infrastructure Stratum(계층)**  
+   각종 가상화된 장치나 Router, Switch, 통신 단말 등을 실제로 접근할 수 있는 계층으로 이를 통해서 해당 장치를 모니티링하거나 설정 및 관리할 수 있다.
+2. **Virtualised Network and Application function Stratum(계층)**  
+   실제 Network function을 구현한 계층으로 Infrastructure의 Telemetry를 수집하는 역할이나 Virtual Machine(VM)에서 기능핧 가족 기능들을 포함하는 계층이다.
+3. **Management and Orchestration Stratum(계층)**  
+   각 장비와 VM을 관리하고, 이를 통해서 Service를 제공하는 계층이다.
+
+### 기존 연구의 한계
+
+기존에도 Intent를 반영하기 위한 여러 시도가 있었다. 하지만, 해당 논문에서는 현재까지 실제로 NLP를 활용하여 Intent를 추출한 사례는 존재하지 않는다고 말한다. 따라서, 해당 연구에서 핵심 골자는 NLP를 통해서 Intent를 추출할 수 있고, 이를 통해서 Network Management를 수행할 수 있음을 보이는 것이다.
+
+## Design
+
+해당 연구는 기존 Background에서 제시한 5G-CLARITY를 구조에서 나아가 하나의 계층(Intelligence Stratum)을 추가적으로 더하는 것을 제안한다. 해당 계층에서는 Machine Learning 모델을 포함한 ML Engine과 NLP 모델에 기반한 Intent Engeine을 포함하고 있는데, 이를 활용하여 기존 5G-CLARITY 구조에 적절한 Query를 전달하여 Network 장치의 상태를 조회하고, 관리를 할 수 있도록 하였다.
+해당 시스템에서는 우선 Natural Language로 입력이 들어오면 Intent Engine에서 이를 여러 개의 Intent로 분리한다. 여기서 중요한 것은 실제로 어떻게 Intent를 추출하냐인데, 해당 논문에서는 Intent를 정의하는 것부터 시작한다. 여기서는 Intent를 아래와 같은 형태로 정의한다.
+
+```json
+{
+  "intent": {
+    "request": "Create a slice",
+    "parameters": {
+      "name": "nova",
+      "user-list": [
+        {"imsi": "001035432100005"}
+      ],
+      "location": {
+        "latitude": 0.0,
+        "longitude": 0.0,
+      },
+      "technology": [
+        "AMRISOFT_CELL",
+        "SUB6_ACCESS",
+      ]
+    }
+  }
+}
+```
+
+`request`는 사용자의 요청을 natural language로 표현하고, `parameters`는 해당 요청에 대한 추가적인 정보를 포함한다. 이를 추출하는 과정에서 NLP를 수행했는데 이때는 굉장히 간단히 Wikipedia data를 활용해서 text distance를 측정하는 방식을 활용했다.
+
+## Usecases
+
+1. Network Slice Provisioning  
+   5G에서 서비스마다 다른 QoS를 제공하기 위해서 Network Slicing 기술을 제공하는데 이를 위한 기반을 Intent만 갖고도 적용이 가능하다. 만약, 특정 시스템을 위한 Slicing이 필요하다는 Intent가 들어온다면, 해당 시스템에서는 NLP를 통해서 Intent를 세분화하고, ML을 통해서 더 좋은 Network Configuration을 다시 변경할 수 있도록 구현하였다.
+2. NLoS Identification  
+   Line of Sight(LoS)는 통신 가용성을 평가하는 지표이다. 통신 장비마다 위치에 따라서 LoS가 다르기 때문에 이를 고려해서 통신 장비를 배치해야 한다. 이를 위해서는 NLoS(Non-Line of Sight)를 식별해야 한다. 이 또한, Intent를 통해서 구현할 수 있다. 단순히 각 Line의 상태를 받아서 처리하면 충분하다.
+3. Network Service Provisioning  
+   VNF와 같은 Network Service를 제공할 때에도 특정 요구사항에 맞게 Intent를 입력하면 이를 추출해서 수행할 수 있다.
+
+## Evaluation
+
+Evaluation은 아래와 같은 표가 제시된 것이 끝이다. 실제 예측이나 실행 능력에 대한 지표는 제시하지 않았다. 대신에 이는 충분히 잘 되었고, 이를 실행하는데 걸린 시간만 단순히 제시하였다.
+
+|                               | Network Slice Provisioning | NLoS Identification | Network Service Provisioning |
+| ----------------------------- | -------------------------- | ------------------- | ---------------------------- |
+| Average intent execution time | 3 minutes                  | 1 seconds           | 4 minutes                    |
+
+## Opinion
+
+전체적인 구현은 단순했다. 5G Network를 구성할 수 있는 system을 도입하고, 여기서 Intent를 해석하는 시스템을 도입했는데 이 또한 어려운 구현이 없이 Wikipedia data엤서 단순히 word distance만 활용하여 위에서 제시한 usecase를 모두 커버했다고 논문에서 주장하니 직접 확인해보지 않은 이상 뭐라고 말할 수 있는 것은 없는 거 같다. 대신에 전체 흐름 자체가 Natural Language를 입력 받아서 이를 어떻게 Encoding할 지 그리고, 이렇게 Encoding 된 데이터를 어떻게 시각화할지 그리고 이를 어떻게 실제 네트워크에 반영할지에 대한 힌트 정도는 얻을 수 있었다. 해당 시스템에서는 애초에 Natural Language로 다시 Encoding을 했었다. 이러한 구조도 이해하기 쉬운 구조로 만들기 좋은 거 같다. 그러나 현재 Network Configuration을 적용하는 과정에 대한 설명은 전혀없는데 이에 대한 내용도 추가적으로 찾아보아야할 것 같다.
+
+## Reference
+
+- J. Mcnamara et al., "NLP Powered Intent Based Network Management for Private 5G Networks," in IEEE Access, vol. 11, pp. 36642-36657, 2023, doi: 10.1109/ACCESS.2023.3265894.
+- T. Cogalan et al., "5G-CLARITY: 5G-Advanced Private Networks Integrating 5GNR, WiFi, and LiFi," in IEEE Communications Magazine, vol. 60, no. 2, pp. 73-79, February 2022, doi: 10.1109/MCOM.001.2100615.
+- Thumbnail: Photo by<a href="https://unsplash.com/@annikamaria?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annika Gordon</a> on <a href="https://unsplash.com/ko/%EC%82%AC%EC%A7%84/cZISY8ai2iA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
