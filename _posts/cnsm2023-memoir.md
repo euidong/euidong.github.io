@@ -4,7 +4,7 @@ title: "CNSM2023 학회 회고록"
 date: "2023-11-04 15:45"
 category: "Memoir"
 tags: ["Conference"]
-thumbnailSrc: "/images/default.jpg"
+thumbnailSrc: "/images/cnsm2023_thumbnail.png"
 ---
 <!-- thumbnail 바꾸기 -->
 
